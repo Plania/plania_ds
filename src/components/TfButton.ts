@@ -1,29 +1,73 @@
 import { css, html, TfBase } from './TfBase.js';
+import { tfIconNameMap } from './TfIcon.js';
 
 const style = css`
+  :host {
+    width:fit-content;
+    display:block;
+  }
+
    button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       padding: 0.5rem 1rem;
       border-radius: 30px;
       text-align: center;
       border: none;
+      justify-content: center;
+      font: var(--tf-button);
+      width:100%;
    }
 
-   button:hover {
+   button:hover , .hover {
       cursor: pointer;
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
    }
 
+   button:active , .focus {
+      outline: none;
+      box-shadow: none;
+   }
+
+   .disabled:hover {
+      cursor: default;
+      box-shadow: none;
+   }
+
+   .disabled:active {
+      cursor: default;
+      box-shadow: none;
+   }
+
+   .only-icon {
+      padding:6px !important;
+      border-radius: 50%;
+   }
+
    .small {
-      padding: 6px 16px;
+      padding: 6px 1rem;
       font-size: 11px;
    }
 
+   .small svg {
+      width: 1rem;
+      height: 1rem;
+   }
+
    .large {
-      padding: 8px 16px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
    }
 
    .medium {
-      padding: 4px 16px;
+      padding: 4px 1rem;
+      font-size: 1rem;
+   }
+
+   svg {
+      width: 1.5rem;
+      height: 1.5rem;
    }
 
    .disabled {
@@ -41,15 +85,14 @@ export class TfButton extends TfBase {
                ${style}
             </style>
             <button class="primary">
-               <slot></slot>
-            </button>
+              <slot></slot>
+              </button>
          `);
   }
 
-  // connectedCallback() {}
 
   static get observedAttributes() {
-    return ['variant', 'state', 'size', 'active'];
+    return ['variant', 'state', 'size', 'active','icon','text'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -57,17 +100,50 @@ export class TfButton extends TfBase {
 
     if (!buttonElem) return;
 
-    if (['variant', 'state', 'size'].includes(name)) {
-      buttonElem.classList.remove(oldValue);
-      buttonElem.classList.add(newValue);
+    this.setButtonState(buttonElem);
+    this.setButtonContent(buttonElem);
+
+    switch (name) {
+    case 'variant':
+    case 'state':
+    case 'size':
+      this.updateButtonClass(buttonElem, oldValue, newValue);
+      break;
     }
 
-    if (name === 'active') {
-      buttonElem.disabled = newValue !== 'true';
-      newValue === 'false'
-        ? buttonElem.classList.add('disabled')
-        : buttonElem.classList.remove('disabled');
+    if (name === 'icon') {
+      this.insertIcon(buttonElem, newValue);
     }
+         
+  }
+
+  setButtonState(buttonElem: HTMLButtonElement) {
+    if (!this.active) {
+      buttonElem.classList.add('disabled');
+      buttonElem.disabled = true;
+    } else {
+      buttonElem.classList.remove('disabled');
+      buttonElem.disabled = false;
+    }
+  }
+
+  setButtonContent(buttonElem: HTMLButtonElement) {
+    if (!this.text) {
+      buttonElem.classList.add('only-icon');
+    } else {
+      buttonElem.classList.remove('only-icon');
+    }
+  }
+
+  updateButtonClass(buttonElem: HTMLButtonElement, oldValue: string, newValue: string) {
+    buttonElem.classList.remove(oldValue);
+    buttonElem.classList.add(newValue);
+  }
+
+  insertIcon(buttonElem: HTMLButtonElement, icon: string) {
+    this.shadowRoot?.querySelector('svg')?.remove();
+    if (!tfIconNameMap[icon]) return;
+    buttonElem.insertAdjacentHTML('afterbegin', tfIconNameMap[icon]);
   }
 
   get variant() {
@@ -94,11 +170,29 @@ export class TfButton extends TfBase {
   }
 
   get active() {
-    return this.getAttribute('active') || 'true';
+    return this.hasAttribute('active');
   }
 
   set active(value) {
-    this.setAttribute('active', value);
+    value && this.setAttribute('active', '');
+    !value && this.removeAttribute('active');
+  }
+
+  get text() {
+    return this.hasAttribute('text');
+  }
+
+  set text(value) {
+    value && this.setAttribute('text', '');
+    !value && this.removeAttribute('text');
+  }
+
+  get icon() {
+    return this.getAttribute('icon') || '';
+  }
+
+  set icon(value) {
+    this.setAttribute('icon', value);
   }
 }
 

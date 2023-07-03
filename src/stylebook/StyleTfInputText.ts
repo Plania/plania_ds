@@ -2,85 +2,84 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const tfInputTextIconDefault: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextIconDefault: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component with icon.',
   data: {
     icon: 'true',
     status: 'default',
-    pictogramme: 'account_circle',
-    content: 'default',
-    label: 'default',
+    pictogramme: 'account-circle',
+    label: 'Default Icon',
   },
 };
 
-const tfInputTextDefault: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextDefault: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component no icon.',
   data: {
     icon: 'false',
     status: 'default',
-    content: 'default',
-    label: 'default',
+    label: 'Default',
   },
 };
 
-const tfInputTextIconDisabled: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextIconDisabled: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component disabled with icon.',
   data: {
     icon: 'true',
     status: 'disabled',
-    pictogramme: '',
-    content: 'default',
-    label: 'default',
+    pictogramme: 'account-circle',
+    label: 'Disabled Icon',
   },
 };
 
-const tfInputTextDisabled: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextDisabled: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component disabled no icon.',
   data: {
     icon: 'false',
     status: 'disabled',
-    content: 'default',
-    label: 'default',
+    label: 'Disabled',
   },
 };
 
-const tfInputTextIconError: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextIconError: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component error with icon.',
   data: {
     icon: 'true',
     status: 'error',
-    pictogramme: '',
-    content: 'default',
-    label: 'default',
+    pictogramme: 'account-circle',
+    placeholder: 'old value',
+    label: 'Error',
+    content: '<span slot="error">Error message</span>',
   },
 };
 
-const tfInputTextError: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextError: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component error no icon.',
   data: {
     icon: 'false',
     status: 'error',
-    content: 'default',
-    label: 'default',
+    placeholder: 'old value',
+    label: 'Error',
+    content: '<span slot="error">Error message</span>',
   },
 };
 
-const meta: StyleComponentProps<'tf-input-text'> = {
-  ref: 'tf-input-text',
-  tag: 'tf-input-text',
-  description: 'Tourisfair input text component. It is used to showcase an input text',
+const meta: StyleComponentProps<'tf-text-input'> = {
+  ref: 'tf-text-input',
+  tag: 'tf-text-input',
+  description:
+    'Tourisfair input text component. It is used to showcase an input text',
   component: 'Tourisfair Input Text',
   variants: [
     tfInputTextIconDefault,
@@ -92,4 +91,5 @@ const meta: StyleComponentProps<'tf-input-text'> = {
   ],
 };
 
-export const styleTfInputText = (styleBook: StyleBook) => styleBook.addComponent(meta);
+export const styleTfInputText = (styleBook: StyleBook) =>
+  styleBook.addComponent(meta);

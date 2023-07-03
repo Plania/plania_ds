@@ -1,3 +1,7 @@
 {
-    "liveServer.settings.root": "/public"
+    "liveServer.settings.root": "/public",
+    "liveServer.settings.mount": [
+        ["/dist", "./dist"],
+    ],
+    "liveServer.settings.port": 5501
 }

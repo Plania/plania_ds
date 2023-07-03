@@ -13,6 +13,9 @@
     "engine",
     "activities"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "Nizar S. AYED",
   "license": "ISC",
   "devDependencies": {

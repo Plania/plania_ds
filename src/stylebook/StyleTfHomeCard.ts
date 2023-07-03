@@ -8,8 +8,8 @@ const homeCard: StyleVariantProps<'tf-home-card'> = {
   description: 'A card for home page.',
   data: {
     content: `
-        <h1 slot='title'>Home Card</h1>
-        <div slot='content'>
+        <h1 slot="title">Home Card</h1>
+        <div slot="content">
             <p>Home Card Content</p>
         </div>
         `,

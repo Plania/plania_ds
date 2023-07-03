@@ -1,127 +1,169 @@
 import { html, css, TfBase } from './TfBase.js';
 
 const style = css`
-   input {
-      padding: 12px 8px;
-      width: 100%;
-   }
+  input {
+    padding: 0.5rem 0;
+    width: calc(100% - 0.75rem);
+    padding-left: 0.75rem;
+    font : var(--tf-body1);
+  }
 
-   label {
-      position: absolute;
-      top: 50%;
-      left: 8px;
-      transform: translateY(-50%);
-      pointer-events: none;
-      transition: 0.2s ease all;
-   }
+  label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.2s ease all;
+  }
 
-   input:focus ~ label {
+  input:focus ~ label,
+  .error ~ label {
+    top: -10px;
+  }
+
+  .input-icon ~ label {
+    left: 3rem;
+  }
+
+  .input-icon:focus ~ label,
+  .error ~ label {
+    left: 2rem;
+  }
+
+  .keep-focus ~ label {
       top: -10px;
+      left: 2rem;
    }
 
-   .input-icon {
-      padding-left: 40px !important;
-      width: calc(100% - 34px);
-   }
+  .input-icon {
+    padding-left: 3rem !important;
+    width: calc(100% - 3rem - 2px);
+  }
 
-   .input-icon ~ label {
-      left: 40px;
-   }
+  .container {
+    position: relative;
+  }
 
-   .input-icon:focus ~ label {
-      left: 10px;
-   }
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    transform: translateY(50%);
+    color: var(--tf-sys-light-on-primary);
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 
-   .container {
-      position: relative;
-   }
+  input:focus {
+    outline: none;
+    border-color: var(--tf-sys-light-on-primary);
+  }
 
-   .icon {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-   }
+  .default {
+    border: 1px solid var(--tf-sys-light-outline);
+    border-radius: 1.5rem;
+    background-color: var(--tf-sys-light-primary-container);
+  }
 
-   input:focus {
-      border-color: var(--tf-sys-light-primary);
-   }
+  .disabled {
+    border-color: var(--tf-sys-light-surface-variant);
+    background-color: var(--tf-sys-light-surface-variant);
+  }
 
-   .default {
-      border: 1px solid var(--tf-sys-light-outline);
-      border-radius: 24px;
-      background-color: var(--tf-sys-light-primary-container);
-   }
+  .error {
+    background-color: var(--tf-sys-light-error-container);
+  }
 
-   .disabled {
-      border-color: var(--tf-sys-light-surface-variant);
-      background-color: var(--tf-sys-light-surface-variant);
-   }
+  .error,
+  .error ~ label,
+  .error-message,
+  .error::placeholder,
+  .error ~ .icon {
+    color: var(--tf-sys-light-error);
+  }
 
-   .error {
-      background-color: var(--tf-syslight-error-container);
-      color: var(--tf-sys-light-error);
-   }
+  .error-message{
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export class TfInputText extends TfBase {
   constructor() {
     super();
-    this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <div class="container">
-               <input type="text" class="default input-icon" />
-               <label></label>
-            </div>
-         `);
+    this.shadowRoot && 
+    (this.shadowRoot.innerHTML += html`
+      <style>
+        ${style}
+      </style>
+      <div class="container">
+        <input type="text" class="default" />
+        <label></label>
+      </div>
+    `);
   }
 
-  // connectedCallback() {}
+  connectedCallback() {
+    const input = this.shadowRoot?.querySelector('input');
+    if(!input) return;
+    input.addEventListener('change', () => {
+      if (input.value.length > 0) {
+        input.classList.add('keep-focus');
+      }else{
+        input.classList.remove('keep-focus');
+      }
+    });
+  }
 
   static get observedAttributes() {
-    return ['icon', 'status', 'pictogramme', 'label'];
+    return ['icon', 'status', 'pictogramme', 'label' , 'value'];
   }
 
-  attributeChangedCallback(name: string /*_oldValue: string, _newValue: string*/) {
-    const input = this.shadowRoot?.querySelector('input') as HTMLInputElement;
-    const label = this.shadowRoot?.querySelector('label') as HTMLLabelElement;
-
+  attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
+    const input = this.shadowRoot?.querySelector('input');
+    const label = this.shadowRoot?.querySelector('label');
+    const icon = this.shadowRoot?.querySelector('tf-icon');
+    if (!input || !label) return;
+    
     switch (name) {
     case 'status':
-      input.classList.toggle(this.status, true);
-      input.disabled = this.status === 'disabled';
+      input?.classList.toggle(_newValue, true);
+      input.disabled = _newValue === 'disabled';
+      if (_newValue === 'error') {
+        label.insertAdjacentHTML('afterend', '<div class="error-message"><slot name="error"></slot></div>');
+      }
       break;
 
     case 'label':
-      label.classList.toggle('label', true);
-      label.textContent = this.label;
+      label.textContent = _newValue;
       break;
 
-    case 'icon':
-      if (this.icon === 'true') {
-        input.insertAdjacentHTML(
-          'beforebegin',
+    case 'pictogramme':
+      icon?.remove();
+      input?.classList.remove('input-icon');
+      if (this.icon) {
+        input?.insertAdjacentHTML(
+          'afterend',
           `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
         );
-        input.classList.add('input-icon');
-      } else if (this.icon === 'false') {
-        const icon = this.shadowRoot?.querySelector('.icon') as HTMLElement;
-        icon && icon.remove();
-        input.classList.remove('input-icon');
+        input?.classList.add('input-icon');
       }
+      break;
+    case 'value':
+      input.value = _newValue;
+      input.classList.add('keep-focus');
       break;
     }
   }
 
   get icon() {
-    return this.getAttribute('icon') || 'false';
+    return this.hasAttribute('icon');
   }
 
   set icon(value) {
-    this.setAttribute('icon', value);
+    value && this.setAttribute('icon', '');
+    !value && this.removeAttribute('icon');
   }
 
   get status() {
@@ -150,9 +192,9 @@ export class TfInputText extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-input-text': TfInputText;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-text-input': TfInputText;
+  }
 }
 
-customElements.define('tf-input-text', TfInputText);
+customElements.define('tf-text-input', TfInputText);

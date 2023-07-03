@@ -1,18 +1,40 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   .type {
-      padding: 0.25rem;
-      line-height: 0.75rem;
-      font-size: 0.625rem;
+   span {
+      background-color: var(--tf-sys-light-surface);
+      outline: 1px solid var(--tf-sys-light-primary);
+      border-radius: 1rem;
+      padding: 0.25rem 0.5rem;
+      font: var(--tf-body-small);
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      cursor: pointer;
    }
 
-   .activity {
-      background-color: var(--tf-secondary-main);
+   span > tf-icon {
+      width: 1rem;
+      height: 1rem;
+      color: var(--tf-sys-light-onprimary);
    }
 
-   .poi {
-      background-color: var(--tf-tertiary-main);
+   .selected {
+      background-color: var(--tf-sys-light-primary);
+   }
+
+   .disabled {
+      color:var(--tf-sys-light-outline);
+      background-color: var(--tf-sys-light-surface-variant);
+      outline-color: var(--tf-sys-light-outline);
+      cursor: default;
+   }
+
+   .chip-card {
+      background-color: var(--tf-sys-light-surface);
+      outline:none;
+      box-shadow: 2px 2px 4px 0px #00000040;
+      padding: 0rem 0.5rem;
    }
 `;
 
@@ -24,7 +46,7 @@ export class TfChip extends TfBase {
             <style>
                ${style}
             </style>
-            <span class="activity">
+            <span class='disabled'>
                <slot></slot>
             </span>
          `);
@@ -33,17 +55,29 @@ export class TfChip extends TfBase {
   // connectedCallback() {}
 
   static get observedAttributes() {
-    return ['type'];
+    return ['selected', 'active', 'symbol', 'icon'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     const chipElem = this.shadowRoot?.querySelector('span');
-
     if (!chipElem) return;
+    chipElem.classList.remove('selected');
+    chipElem.classList.remove('disabled');
 
-    if (name === 'type') {
-      chipElem.classList.remove(oldValue);
-      chipElem.classList.add(newValue);
+    if(!this.active){
+      chipElem.classList.add('disabled');
+    }
+    switch (name) {
+    case 'selected':
+      chipElem.classList.add('selected');
+      break;
+    case 'symbol':
+      if (!this.icon) return;
+      chipElem.insertAdjacentHTML(
+        'afterbegin',
+        '<tf-icon icon="' + newValue + '"></tf-icon>'
+      );
+      break;
     }
   }
 
@@ -53,6 +87,41 @@ export class TfChip extends TfBase {
 
   set type(value) {
     this.setAttribute('type', value ?? 'activity');
+  }
+
+  get selected() {
+    return this.hasAttribute('selected');
+  }
+
+  set selected(value) {
+    value && this.setAttribute('selected', '');
+    !value && this.removeAttribute('selected');
+  }
+
+  get active() {
+    return this.hasAttribute('active');
+  }
+
+  set active(value) {
+    value && this.setAttribute('active', '');
+    !value && this.removeAttribute('active');
+  }
+
+  get symbol() {
+    return this.getAttribute('symbol') || '';
+  }
+
+  set symbol(value) {
+    this.setAttribute('symbol', value ?? '');
+  }
+
+  get icon() {
+    return this.hasAttribute('icon');
+  }
+
+  set icon(value) {
+    value && this.setAttribute('icon', '');
+    !value && this.removeAttribute('icon');
   }
 }
 

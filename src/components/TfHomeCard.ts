@@ -1,13 +1,28 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   .container {
+   :host{
+      display: block;
+      width: 100%;
+      height: 100%;
       background-color: var(--tf-sys-light-surface);
-      padding: 24px 16px 16px;
-      border-radius: 40px 40px 0px 0px;
-      border: 1px solid var(--tf-sys-light-surface-variant);
+      border-radius:2.5rem 2.5rem 0px 0px;
+      border-bottom: 1px solid var(--tf-sys-light-surface-variant);
       box-shadow: 0px -12px 12px 0px #00000014;
    }
+
+   .container {
+      padding: 1.5rem 1rem 1rem;
+      border: 1px solid var(--tf-sys-light-surface-variant);
+      border-radius: 2.5rem 2.5rem 0px 0px;
+      border-bottom: none;
+   }
+
+   ::slotted([slot="title"]) {
+   font-size: 1.75rem !important;
+   font-weight: 600 !important;
+   margin-bottom: 1rem !important;
+}
 `;
 
 export class TfHomeCard extends TfBase {

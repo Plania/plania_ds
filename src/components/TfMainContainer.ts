@@ -7,9 +7,9 @@ const style = css`
       height: 100%;
    }
 
-   main {
+   main{
       width: 100%;
-      height: 80vh;
+      height: 100%;
    }
    .down {
       border-radius: 0 0 40px 40px;
@@ -17,6 +17,10 @@ const style = css`
 
    .up {
       border-radius: 40px 40px 0 0;
+   }
+
+   .default {
+      background-color: var(--tf-sys-light-background)
    }
 `;
 
