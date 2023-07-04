@@ -1243,24 +1243,31 @@ export class TfWelcomeImage extends TfBase {
             <style>
                ${style}
             </style>
-            <div>${step[this.step]}</div>
+            <div>${step['inspire']}</div>
          `);
   }
+
 
   static get observedAttributes() {
     return ['step'];
   }
 
-  attributeChangedCallback(name: string, newValue: string) {
+  attributeChangedCallback(name: string, oldValue : string ,newValue: string) {
     if (name === 'step') {
-      const divElement = this.shadowRoot?.querySelector('div');
-      if (divElement) {
-        if (step[newValue] === undefined) {
-          divElement.innerHTML = step['inspire'];
-          return;
-        }
-        divElement.innerHTML = step[newValue];
+      this.displayImage(newValue);
+    }
+  }
+  
+
+  displayImage(image = this.step) {
+    console.log('displayImage', image);
+    const divElement = this.shadowRoot?.querySelector('div');
+    if (divElement) {
+      if (step[image] === undefined) {
+        divElement.innerHTML = step['inspire'];
+        return;
       }
+      divElement.innerHTML = step[image];
     }
   }
 

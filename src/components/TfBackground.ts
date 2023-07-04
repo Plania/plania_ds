@@ -32,7 +32,6 @@ export class TfBackground extends TfBase {
   attributeChangedCallback(name: string, oldValue: string, newValue: string, ) {
     if (name === 'variant') {
       this.shadowRoot?.querySelector('section')?.removeAttribute('class');
-      
       if (newValue !== 'primary' && newValue !== 'secondary' && newValue !== 'tertiary' && newValue !== 'default'){
         this.shadowRoot?.querySelector('section')?.classList.add('primary');
         return;
