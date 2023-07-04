@@ -31,6 +31,8 @@ import { styleTfFavoritePlan } from './StyleTfFavoritePlan.js';
 import { StyleTfActivityCard } from './StyleTfActivityCard.js';
 import { styleTfCalendar } from './StyleTfCalendar.js';
 import { styleTfDay } from './StyleTfDay.js';
+import { styleTfWelcomeImage } from './StyleTfWelcomeImage.js';
+import { styleTfBackground } from './StyleBackground.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -183,6 +185,8 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfBackground(styleBook);
+styleTfWelcomeImage(styleBook);
 styleTfCalendar(styleBook);
 styleTfDay(styleBook);
 StyleTfActivityCard(styleBook);
