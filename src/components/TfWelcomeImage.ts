@@ -1251,7 +1251,7 @@ export class TfWelcomeImage extends TfBase {
     return ['step'];
   }
 
-  attributeChangedCallback(name: string, oldValue: any, newValue: string) {
+  attributeChangedCallback(name: string, newValue: string) {
     if (name === 'step') {
       const divElement = this.shadowRoot?.querySelector('div');
       if (divElement) {
