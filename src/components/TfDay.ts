@@ -2,8 +2,8 @@ import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
    :host {
-      height: 2.5rem;
-      width: 2.5rem;
+      height: 100%;
+      width: 100%;
    }
 
    button {

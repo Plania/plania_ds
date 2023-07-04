@@ -2,11 +2,11 @@ import { html, css, TfBase } from './TfBase.js';
 
 const tfFavoriteStyle = css`
    .favorite {
-      stroke: var(--tf-onprimary-main);
+      stroke: var(--tf-sys-light-surface);
       strike-width: 2;
    }
    .enabled .favorite {
-      fill: var(--tf-onprimary-main);
+      fill: var(--tf-sys-light-surface);
    }
 `;
 

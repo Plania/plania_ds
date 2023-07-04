@@ -4,6 +4,8 @@ const style = css`
    input {
       padding: 12px 0 12px 1rem;
       width: 100%;
+      border: 1px solid var(--tf-sys-light-outline);
+      border-radius: 1.5rem;
    }
 
    label {
@@ -36,7 +38,7 @@ const style = css`
 
    .input-icon {
       padding-left: 2.5rem !important;
-      width: calc(100% - 2.5rem);
+      width: calc(100% - 2.5rem - 2px);
    }
 
    .container {
@@ -64,8 +66,6 @@ const style = css`
    }
 
    .default {
-      border: 1px solid var(--tf-sys-light-outline);
-      border-radius: 1.5rem;
       background-color: var(--tf-sys-light-primary-container);
    }
 

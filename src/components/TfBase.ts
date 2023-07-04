@@ -130,7 +130,6 @@ const style = css`
       border-spacing: 0;
    }
 
-
    :host {
       font-family: 'Nunito';
       font-style: normal;
@@ -139,44 +138,29 @@ const style = css`
       line-height: 2rem;
    }
 
-   * {
-      --tf-sys-light-primary-container: #c2e8ff;
-      --tf-sys-light-secondary-container: #ffdacf;
-      --tf-sys-light-tertiary-container: #ffddb0;
-      --tf-sys-light-error-container: #ffdad4;
-      --tf-sys-light-onprimary: #250127;
-      --tf-sys-light-onsecondary: #250127;
-      --tf-sys-light-ontertiary: #250127;
-      --tf-sys-light-on-error : #FFFFFF;
-      --tf-sys-light-primary: #00aae3;
-      --tf-sys-light-secondary: #ff805e;
-      --tf-sys-light-tertiary: #ffb030;
-      --tf-sys-light-error: #ba1b1b;
-      --tf-sys-light-surface-variant: #d4d4d4;
-      --tf-sys-light-surface: #fbfdfd;
-      --tf-sys-light-outline: #71787d;
-      --tf-sys-light-background: #f3f3f3;
-      --tf-onprimary-main: #f9f9f8;
-      --tf-onsecondary-main: #f9f9f8;
-      --tf-ontertiary-main: #f9f9f8;
-      --tf-secondary-main: #f2bf41;
-      --tf-tertiary-main: #4ca7de;
-      --tf-main-main: #012e4a;
-      --tf-main-variant: #505050;
-      --tf-main-disabled: #c4c4c4;
-      --tf-background-main: #ffffff;
-      --tf-background-main: #f3f3f3;
-      --tf-ref-green: #56a359;
-      --tf-ref-white-25: #ffffff;
-      --tf-ref-neutral-neutral95: #eff1f1;
-      --tf-ref-primary-primary90: #c2e8ff;
-      --tf-ref-primary-primary10: #001e2c;
+   :host {
+      --tf-sys-light-primary: var(--light-primary, #00aae3);
+      --tf-sys-light-onprimary: var(--light-onprimary, #250127);
+      --tf-sys-light-primary-container: var(--light-primary-container, #c2e8ff);
+      --tf-sys-light-secondary: var(--light-secondary, #ff805e);
+      --tf-sys-light-onsecondary: var(--light-onsecondary, #250127);
+      --tf-sys-light-secondary-container: var(--light-secondary-container, #ffdacf);
+      --tf-sys-light-tertiary: var(--light-tertiary, #ffb030);
+      --tf-sys-light-ontertiary: var(--light-ontertiary, #250127);
+      --tf-sys-light-tertiary-container: var(--light-tertiary-container, #ffddb0);
+      --tf-sys-light-error: var(--light-error, #ba1b1b);
+      --tf-sys-light-on-error: var(--light-on-error, #ffffff);
+      --tf-sys-light-error-container: var(--light-error-container, #ffdad4);
+      --tf-sys-light-surface-variant: var(--light-surface-variant, #d4d4d4);
+      --tf-sys-light-surface: var(--light-surface, #f9f9f8);
+      --tf-sys-light-outline: var(--light-outline, #71787d);
+      --tf-sys-light-background: var(--light-background, #f3f3f3);
 
-      --tf-subhead1 : 700 1rem/2rem Nunito,sans-serif;
-      --tf-caption : 400 0.75rem/1rem Nunito,sans-serif;
-      --tf-body-small : 400 0.75rem/1rem Nunito,sans-serif;
-      --tf-button : 700 1rem Nunito,sans-serif;
-      --tf-body1 : 400 1rem/1.5rem Nunito,sans-serif;
+      --tf-subhead1: var(--subhead1, 700 1rem/2rem Nunito, sans-serif);
+      --tf-caption: var(--caption, 400 0.75rem/1rem Nunito, sans-serif);
+      --tf-body-small: var(--body-small, 400 0.75rem/1rem Nunito, sans-serif);
+      --tf-button: var(--button, 700 1rem Nunito, sans-serif);
+      --tf-body1: var(--body1, 400 1rem/1.5rem Nunito, sans-serif);
    }
 
    .primary {
@@ -186,21 +170,20 @@ const style = css`
 
    .secondary {
       background-color: var(--tf-sys-light-secondary);
-      color: var(--tf-onsecondary-main);
+      color: var(--tf-sys-light-onsecondary);
    }
 
    .tertiary {
       background-color: var(--tf-sys-light-tertiary);
-      color: var(--tf-sys-light-onprimary);
+      color: var(--tf-sys-light-ontertiary);
    }
 
    .primary-container {
-      background-color: var(--tf-ref-primary-primary90);
-      color: var(--tf-ref-primary-primary10);
+      background-color: var(--tf-sys-light-primary-container);
    }
 
    .background {
-      background-color: var(--tf-background-main);
+      background-color: var(--tf-sys-light-background);
    }
 `;
 
