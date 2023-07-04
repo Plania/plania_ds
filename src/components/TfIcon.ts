@@ -2,7 +2,7 @@ import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
    :host {
-      display: block;
+      display: inline-block;
       width: 24px;
       height: 24px;
    }

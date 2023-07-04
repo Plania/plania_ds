@@ -19,8 +19,28 @@ export class StyleComponent extends HTMLElement {
             <style>
                ${styleBookCSS}
             </style>
+            <style>
+               details {
+                  border: 1px solid #ccc1;
+                  border-radius: 0.25rem;
+                  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+                  margin: 0.25rem;
+               }
+               summary {
+                  list-style-position: outside;
+                  border-bottom: 1px solid #ddd;
+                  padding-bottom: 0.5rem;
+               }
+               summary a {
+                  display: inline-block;
+                  float: right;
+               }
+            </style>
             <details class="style-component" open>
-               <summary><slot name="title"></slot></summary>
+               <summary>
+                  <slot name="title"></slot>
+                  <a href="#">Top <tf-icon icon="arrow-drop-up" /></a>
+               </summary>
                <slot></slot>
             </details>
          `);
@@ -67,7 +87,7 @@ export class StyleComponent extends HTMLElement {
   }
 
   get tag() {
-    return this.getAttribute('tag');
+    return this.getAttribute('tag') ?? '';
   }
 
   set tag(value_) {
