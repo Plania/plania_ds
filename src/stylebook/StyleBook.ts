@@ -19,11 +19,11 @@ import { styleTfMainContainer } from './StyleTfMainContainer.js';
 import { styleTfTextButton } from './StyleTfTextButton.js';
 import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
 import { styleTfProgressBar } from './StyleTfProgressBar.js';
-import { styleTfNavigationItem } from './StyleNavigationItem.js';
+import { styleTfNavigationItem } from './StyleTfNavigationItem.js';
 import { styleTfNavigationBar } from './StyleTfNavigationBar.js';
 import { styleTfInputPassword } from './StyleTfInputPassword.js';
 import { styleTfLogoNotch } from './StyleTfLogoNotch.js';
-import { styleTfCheckbox } from './StyleCheckbox.js';
+import { styleTfCheckbox } from './StyleTfCheckbox.js';
 import { styleTfSimpleSlider } from './StyleTfSimpleSlider.js';
 import { styleTfAgeSelector } from './StyleTfAgeSelector.js';
 import { styleTfCityOfTheWeek } from './StyleTfCityOfTheWeek.js';
@@ -58,8 +58,10 @@ export const styleBookCSS: string = css`
    .style-book {
       font-family: 'SF Pro Display', 'Arial', Helvetica, sans-serif;
       display: flex;
+      flex-direction: column;
       gap: 1rem;
-      flex-wrap: wrap;
+      height: 100vh;
+      overflow: auto;
    }
 
    .style-component {
@@ -108,6 +110,15 @@ export const styleBookCSS: string = css`
       background-color: var(--sb-error);
       color: var(--sb-on-error);
    }
+
+   .main {
+      display: flex;
+      flex-wrap: nowrap;
+   }
+
+   .navbar {
+      min-width: 13rem;
+   }
 `;
 
 export class StyleBook extends HTMLElement {
@@ -117,9 +128,8 @@ export class StyleBook extends HTMLElement {
     const styleBook: StyleBook = document.querySelector('style-book') as unknown as StyleBook;
     if (styleBook) return styleBook;
     super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot &&
-         (this.shadowRoot.innerHTML = html`
+    this.innerHTML = html`
+         <div class="main">
             <style>
                ${styleBookCSS}
             </style>
@@ -127,15 +137,26 @@ export class StyleBook extends HTMLElement {
                <ul></ul>
             </nav>
             <div class="style-book"></div>
-         `);
+         </div>
+      `;
   }
 
   // connectedCallback() {}
 
   addComponent<K extends keyof HTMLElementTagNameMap>(props_: StyleComponentProps<K>): StyleBook {
     const component: StyleComponent = this.buildComponent(props_);
-    this.shadowRoot?.querySelector('.style-book')?.appendChild(component);
+    this.querySelector('.style-book')?.appendChild(component);
     return this;
+  }
+
+  addToNavbar(component_: StyleComponent): void {
+    const navbarItem: HTMLElement = document.createElement('li');
+    navbarItem.innerHTML = html`<a
+         onclick="document.querySelector('#${component_.id}')?.scrollIntoView()"
+         href="#${component_.tag}"
+         >${component_.tag}</a
+      >`;
+    this.querySelector('.navbar ul')?.appendChild(navbarItem);
   }
 
   buildComponent<K extends keyof HTMLElementTagNameMap>(
@@ -147,6 +168,8 @@ export class StyleBook extends HTMLElement {
     component.component = props_.component;
     component.variants = props_.variants;
     component.tag = props_.tag;
+    component.id = props_.tag;
+    this.addToNavbar(component);
     return component;
   }
 
@@ -164,11 +187,8 @@ export class StyleBook extends HTMLElement {
   }
 
   addHTML(html_: string): void {
-    if (this.shadowRoot) {
-      const styleBook: HTMLDivElement | null = this.shadowRoot.querySelector('.style-book');
-      if (styleBook) styleBook.innerHTML += html_;
-    }
-    // TODO : add to nav
+    const styleBook: HTMLDivElement | null = this.querySelector('.style-book');
+    if (styleBook) styleBook.innerHTML += html_;
   }
 }
 
@@ -184,38 +204,40 @@ customElements.define('style-book', StyleBook);
  * Stylebook
  */
 
-const styleBook = document.createElement('style-book') as StyleBook;
-styleTfBackground(styleBook);
-styleTfWelcomeImage(styleBook);
-styleTfCalendar(styleBook);
-styleTfDay(styleBook);
+// const styleBook = document.createElement('style-book') as StyleBook;
+const styleBook = new StyleBook();
+document.body.appendChild(styleBook);
 StyleTfActivityCard(styleBook);
-styleTfFavoritePlan(styleBook);
-styleTfCityOfTheWeek(styleBook);
 styleTfAgeSelector(styleBook);
-styleTfSimpleSlider(styleBook);
-styleTfButton(styleBook);
-styleTfCheckbox(styleBook);
-styleTfLogoNotch(styleBook);
-styleTfInputPassword(styleBook);
-styleTfNavigationBar(styleBook);
-styleTfNavigationItem(styleBook);
-styleTfInputText(styleBook);
-styleTfCitySwiperItem(styleBook);
-styleTfCitySwiper(styleBook);
-styleTfIcon(styleBook);
-styleTfHomeCard(styleBook);
-styleTfWelcomeCard(styleBook);
-styleTfTextButton(styleBook);
+styleTfBackground(styleBook);
 styleTfBadge(styleBook);
 styleTfBudget(styleBook);
+styleTfButton(styleBook);
+styleTfCalendar(styleBook);
 styleTfCardDetails(styleBook);
 styleTfCardHeaderImage(styleBook);
 styleTfCarrouselIndicator(styleBook);
+styleTfCheckbox(styleBook);
 styleTfChip(styleBook);
+styleTfCityOfTheWeek(styleBook);
+styleTfCitySwiper(styleBook);
+styleTfCitySwiperItem(styleBook);
+styleTfDay(styleBook);
 styleTfDropDownListButton(styleBook);
 styleTfFavorite(styleBook);
+styleTfFavoritePlan(styleBook);
+styleTfHomeCard(styleBook);
+styleTfIcon(styleBook);
+styleTfInputText(styleBook);
+styleTfInputPassword(styleBook);
 styleTfLogo(styleBook);
+styleTfLogoNotch(styleBook);
 styleTfMainContainer(styleBook);
+styleTfNavigationBar(styleBook);
+styleTfNavigationItem(styleBook);
 styleTfProgressBar(styleBook);
+styleTfSimpleSlider(styleBook);
+styleTfTextButton(styleBook);
+styleTfWelcomeCard(styleBook);
+styleTfWelcomeImage(styleBook);
 document.body.appendChild(styleBook);
