@@ -29,3 +29,4 @@ export * from './components/TfFavoritePlan.js';
 export * from './components/TfActivityCard.js';
 export * from './components/TfCalendar.js';
 export * from './components/TfDay.js';
+export * from './components/TfWelcomeImage.js';
