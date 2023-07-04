@@ -77,7 +77,7 @@ export class TfCheckbox extends TfBase {
                ${style}
             </style>
             <section class="checkbox">
-               <input type="checkbox" id="checkbox" checked />
+               <input type="checkbox" checked />
                <label for="checkbox">
                   <slot></slot>
                </label>

@@ -6,6 +6,8 @@ const style = css`
     width: calc(100% - 0.75rem);
     padding-left: 0.75rem;
     font : var(--tf-body1);
+    border: 1px solid var(--tf-sys-light-outline);
+    border-radius: 1.5rem;
   }
 
   label {
@@ -61,8 +63,6 @@ const style = css`
   }
 
   .default {
-    border: 1px solid var(--tf-sys-light-outline);
-    border-radius: 1.5rem;
     background-color: var(--tf-sys-light-primary-container);
   }
 
@@ -113,6 +113,7 @@ export class TfInputText extends TfBase {
       }else{
         input.classList.remove('keep-focus');
       }
+      this.value = input.value;
     });
   }
 
@@ -128,6 +129,7 @@ export class TfInputText extends TfBase {
     
     switch (name) {
     case 'status':
+      input.classList.remove(_oldValue);
       input?.classList.toggle(_newValue, true);
       input.disabled = _newValue === 'disabled';
       if (_newValue === 'error') {
@@ -152,6 +154,7 @@ export class TfInputText extends TfBase {
       break;
     case 'value':
       input.value = _newValue;
+      if (input.value.length <= 0) return;
       input.classList.add('keep-focus');
       break;
     }
@@ -188,6 +191,14 @@ export class TfInputText extends TfBase {
 
   set label(value) {
     this.setAttribute('label', value);
+  }
+
+  get value() {
+    return this.getAttribute('value') || '';
+  }
+
+  set value(value) {
+    this.setAttribute('value', value);
   }
 }
 
