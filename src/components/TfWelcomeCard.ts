@@ -2,48 +2,59 @@ import { css, html, TfBase } from './TfBase.js';
 import { TfCarrouselIndicator } from './TfCarrouselIndicator.js';
 
 const style = css`
-   .welcome-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--tf-sys-light-background);
-      border-radius: 32px;
-      padding: 16px;
-   }
+  .welcome-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--tf-sys-light-background);
+    border-radius: 32px;
+    padding: 16px;
+  }
 
-   .welcome-card__title {
-      size: 1.5rem;
-      font-weight: 800;
-   }
+  .welcome-card__title {
+    size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+  }
 
-   .welcome-card__content {
-      line-height: 24px;
-      text-align: center;
-   }
+  .welcome-card__content {
+    line-height: 24px;
+    text-align: center;
+    width: 100%;
+  }
 
-   .welcome-card__actions {
-      margin-top: 12px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 100%;
-   }
+  .welcome-card__actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
+  .spacer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  /*
    .action-button {
       margin: 0 auto;
    }
 
    .transform {
       transform: translateX(85%);
-   }
+      }
+    */
 `;
 
 export class TfWelcomeCard extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
+      (this.shadowRoot.innerHTML += html`
       <style>
         ${style}
       </style>
@@ -56,13 +67,14 @@ export class TfWelcomeCard extends TfBase {
         </div>
         <tf-carrousel-indicator step=${this.step}></tf-carrousel-indicator>
         <div class="welcome-card__actions">
+          <div class="spacer"></div>
           <tf-button variant="primary" size="medium" text active class="action-button transform"/>Next</tf-button>
-          <tf-text-button
-          suffix-icon="<tf-icon icon='arrow-forward-ios'></tf-icon>"
-          >Skip</tf-text-button>
-          
+          <div class="spacer">
+            <tf-text-button suffix-icon="<tf-icon icon='arrow-forward-ios'></tf-icon>">
+              Skip
+            </tf-text-button>
+          </div>
         </div>
-        
       </section>
     `);
   }
@@ -102,9 +114,9 @@ export class TfWelcomeCard extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-welcome-card': TfWelcomeCard;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-welcome-card': TfWelcomeCard;
+  }
 }
 
 customElements.define('tf-welcome-card', TfWelcomeCard);

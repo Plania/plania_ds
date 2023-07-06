@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito"
-      rel="stylesheet"
-    />
-    <script src="/dist/components.js" type="module"></script>
-    <title>Liste des activités</title>
-  </head>
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="main.css" />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+         crossorigin="anonymous"
+      />
+      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+      <script src="/dist/components.js" type="module"></script>
+      <title>Liste des activités</title>
+   </head>
 
-  <body style="margin: 10px">
-    <tf-background variant="secondary">
-      <tf-welcome-image></tf-welcome-image>
-    </tf-background>
+   <body style="margin: 0px">
+      <div class="container">
+         <tf-background variant="secondary">
+            <tf-main-container color="default" direction="up">
+               <div class="content">
+                  <tf-welcome-image step="plan"></tf-welcome-image>
+                  <tf-welcome-card step="first">
+                     <h1 slot="title">Title</h1>
+                     <p slot="content">Content inside your card. First step</p>
+                  </tf-welcome-card>
+               </div>
+            </tf-main-container>
+         </tf-background>
+      </div>
 
-    <script src="script.js"></script>
-  </body>
+      <script src="script.js"></script>
+   </body>
 </html>

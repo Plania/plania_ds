@@ -2,7 +2,7 @@ import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
    button {
-      padding: 0.5rem 1rem;
+      padding: 0;
       border: none;
       background-color: transparent;
       cursor: pointer;
@@ -10,13 +10,14 @@ const style = css`
 
    .button-container {
       display: flex;
-      font-size: 1rem;
       align-items: center;
       justify-content: center;
    }
 
    .button-text {
-      margin: 0 0.5rem;
+      color: var(--tf-sys-light-on-primary);
+      text-align: center;
+      font: var(--tf-body-medium);
    }
 `;
 
