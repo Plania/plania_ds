@@ -158,6 +158,7 @@ const style = css`
 
       --tf-subhead1: var(--subhead1, 700 1rem/2rem Nunito, sans-serif);
       --tf-caption: var(--caption, 400 0.75rem/1rem Nunito, sans-serif);
+      --tf-body-medium: var(--body-medium, 400 0.875rem/1.25rem Nunito, sans-serif);
       --tf-body-small: var(--body-small, 400 0.75rem/1rem Nunito, sans-serif);
       --tf-button: var(--button, 700 1rem Nunito, sans-serif);
       --tf-body1: var(--body1, 400 1rem/1.5rem Nunito, sans-serif);
