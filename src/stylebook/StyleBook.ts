@@ -33,6 +33,14 @@ import { styleTfCalendar } from './StyleTfCalendar.js';
 import { styleTfDay } from './StyleTfDay.js';
 import { styleTfWelcomeImage } from './StyleTfWelcomeImage.js';
 import { styleTfBackground } from './StyleBackground.js';
+import { styleTfSearchActivityCard } from './StyleTfSearchActivityCard.js';
+import { styleTfSearchBadge } from './StyleTfSearchBadge.js';
+import { styleTfSearchBudget } from './StyleTfSearchBudget.js';
+import { styleTfSearchButton } from './StyleTfSearchButton.js';
+import { styleTfSearchChip } from './StyleTfSearchChip.js';
+import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
+import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
+import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -240,4 +248,13 @@ styleTfSimpleSlider(styleBook);
 styleTfTextButton(styleBook);
 styleTfWelcomeCard(styleBook);
 styleTfWelcomeImage(styleBook);
+styleTfSearchActivityCard(styleBook);
+styleTfSearchBadge(styleBook);
+styleTfSearchBudget(styleBook);
+styleTfSearchChip(styleBook);
+styleTfSearchFavorite(styleBook);
+styleTfSearchCardDetails(styleBook);
+styleTfSearchCardHeaderImage(styleBook);
+styleTfSearchButton(styleBook);
+
 document.body.appendChild(styleBook);
