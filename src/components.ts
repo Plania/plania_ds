@@ -1,3 +1,4 @@
+export * from './components/TfBackground.js';
 export * from './components/TfBadge.js';
 export * from './components/TfBase.js';
 export * from './components/TfBudget.js';
@@ -30,4 +31,11 @@ export * from './components/TfActivityCard.js';
 export * from './components/TfCalendar.js';
 export * from './components/TfDay.js';
 export * from './components/TfWelcomeImage.js';
-export * from './components/TfBackground.js';
+export * from './components/TfSearchActivityCard.js';
+export * from './components/TfSearchBadge.js';
+export * from './components/TfSearchBudget.js';
+export * from './components/TfSearchButton.js';
+export * from './components/TfSearchCardHeaderImage.js';
+export * from './components/TfSearchCardDetails.js';
+export * from './components/TfSearchChip.js';
+export * from './components/TfSearchFavorite.js';
