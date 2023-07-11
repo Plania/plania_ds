@@ -23,7 +23,6 @@ const ChipSecondaryNotSelectedIcon: StyleVariantProps<'tf-chip'> = {
     variant : 'secondary',
   },
 };
-
 const ChipTertiaryNotSelectedIcon: StyleVariantProps<'tf-chip'> = {
   name: 'Chip',
   tag: 'tf-chip',
