@@ -3,7 +3,6 @@ import { html, css, TfBase } from './TfBase.js';
 const style = css`
    input {
       padding: 12px 0 12px 1rem;
-      width: 100%;
       border: 1px solid var(--tf-sys-light-outline);
       border-radius: 1.5rem;
    }
@@ -66,7 +65,7 @@ const style = css`
    }
 
    .default {
-      background-color: var(--tf-sys-light-primary-container);
+      background-color: var(--tf-sys-light-surface);
    }
 
    .disabled {
