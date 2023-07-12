@@ -11,6 +11,15 @@ const singleDateSelector: StyleVariantProps<'tf-date-selector'> = {
   },
 };
 
+const intervalDateSelector: StyleVariantProps<'tf-date-selector'> = {
+  name: 'Interval Date Selector',
+  tag: 'tf-date-selector',
+  description: 'Interval Date Selector',
+  data: {
+    'variant': 'interval'
+  },
+};
+
 const meta : StyleComponentProps<'tf-date-selector'> = {
   ref: 'tf-date-selector',
   description: 'Tourisfair Date Selector component. It is used to enter date.',
@@ -18,6 +27,7 @@ const meta : StyleComponentProps<'tf-date-selector'> = {
   component: 'Tourisfair Date Selector',
   variants: [
     singleDateSelector,
+    intervalDateSelector
   ],
 };
 
