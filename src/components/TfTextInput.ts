@@ -63,7 +63,7 @@ const style = css`
   }
 
   .default {
-    background-color: var(--tf-sys-light-primary-container);
+    background-color: var(--tf-sys-light-surface);
   }
 
   .disabled {
