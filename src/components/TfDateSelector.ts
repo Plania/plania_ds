@@ -77,6 +77,7 @@ export class TfDateSelector extends TfBase {
         this.createEndInput(div);
       }else if(newValue === 'single'){
         if(div?.querySelector('#end')) div?.querySelector('#end')?.remove();
+        this.removeAttribute('end');
       }
       break;
 
