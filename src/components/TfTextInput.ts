@@ -107,13 +107,14 @@ export class TfInputText extends TfBase {
   connectedCallback() {
     const input = this.shadowRoot?.querySelector('input');
     if(!input) return;
-    input.addEventListener('change', () => {
+    input.addEventListener('input', () => {
       if (input.value.length > 0) {
         input.classList.add('keep-focus');
       }else{
         input.classList.remove('keep-focus');
       }
       this.value = input.value;
+      this.dispatchEvent(new CustomEvent('keyup', { detail: input.value }));
     });
   }
 
