@@ -10,12 +10,24 @@ const tfWeekDefault: StyleVariantProps<'tf-week'> = {
   },
 };
 
+const tfWeekDisabled: StyleVariantProps<'tf-week'> = {
+  name: 'disabled',
+  tag: 'tf-week',
+  description: 'Disabled day before today',
+  data: {
+    disabledpreviousdays : 'true',
+    year : '2023',
+    month : 'July',
+    week : '2',
+  },
+};
+
 const meta: StyleComponentProps<'tf-week'> = {
   ref: 'tf-week',
   tag: 'tf-week',
   description: 'Week',
   component: 'Tourisfair Week',
-  variants: [tfWeekDefault],
+  variants: [tfWeekDefault, tfWeekDisabled],
 };
 
 export const styleTfWeek = (styleBook: StyleBook) => styleBook.addComponent(meta);

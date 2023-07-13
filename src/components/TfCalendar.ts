@@ -166,7 +166,9 @@ export class TfCalendar extends TfBase {
           <section>
             <tf-week-days></tf-week-days>
             <tf-month-header></tf-month-header>
-            
+            <section>
+              
+            </section>
             <div class="calendar-week-container" tabindex="0"></div>
             <div class="calendar-month-container">
               <div class="calendar-day-container center"></div>
@@ -273,7 +275,7 @@ export class TfCalendar extends TfBase {
       const inputElement = input.shadowRoot?.querySelector('input');
       inputElement?.addEventListener('keyup', (e) => {
         e.preventDefault();
-        if(e.key === 'Backspace' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') return;
+        if (e.key === 'Backspace' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') return;
         inputElement.value = inputElement.value.replace(/[^0-9]/g, '');
         if (inputElement.value.length >= 2) {
           inputElement.value = inputElement.value.slice(0, 2) + '-' + inputElement.value.slice(2);
@@ -304,6 +306,12 @@ export class TfCalendar extends TfBase {
       ?.addEventListener('keyup', () => {
         this.eventForInput(false);
       });
+  }
+
+  numberOfWeeksInMonth() {
+    const firstDay = this.getFirstDayOfMonth(this.month, this.year);
+    const numberOfWeeks = Math.ceil((this.numbersOfDaysInMonth + firstDay) / 7);
+    return numberOfWeeks;
   }
 
   allDayToDefault() {
@@ -377,34 +385,35 @@ export class TfCalendar extends TfBase {
   }
 
   eventForInput(isStart = true) {
-    const startValue = this.shadowRoot?.querySelector('#start')?.shadowRoot?.querySelector('input')?.value as string;
-    const endValue = this.shadowRoot?.querySelector('#end')?.shadowRoot?.querySelector('input')?.value as string;
+    const startValue = this.shadowRoot?.querySelector('#start')?.shadowRoot?.querySelector('input')
+      ?.value as string;
+    const endValue = this.shadowRoot?.querySelector('#end')?.shadowRoot?.querySelector('input')
+      ?.value as string;
     if (startValue.length < 10 && endValue.length < 10) return;
     const start = startValue.length >= 10 ? this.inputValueToStamp(startValue) : -1;
     const end = endValue.length >= 10 ? this.inputValueToStamp(endValue) : -1;
     if (Number.isNaN(start) || Number.isNaN(end)) {
       this.displayError();
       return;
-    }else{
+    } else {
       this.removeError();
     }
 
-    if(isStart && start !== -1){
+    if (isStart && start !== -1) {
       this.month = this.allMonth[new Date(start).getMonth()];
       this.year = new Date(start).getFullYear().toString();
-    }else if (!isStart && end !== -1){
+    } else if (!isStart && end !== -1) {
       this.month = this.allMonth[new Date(end).getMonth()];
       this.year = new Date(end).getFullYear().toString();
     }
 
-
-    if(end === -1 && this.numberClick === 0){
+    if (end === -1 && this.numberClick === 0) {
       this.setInputValue(start, 'start');
       this.setInputValue(start, 'end');
       this.element.daySelected.push(start);
       this.displaySelectedDate(true);
       this.numberClick = 1;
-    }else if(start === -1 && this.numberClick === 0){
+    } else if (start === -1 && this.numberClick === 0) {
       this.setInputValue(end, 'start');
       this.setInputValue(end, 'end');
       this.element.daySelected.push(end);
@@ -419,13 +428,12 @@ export class TfCalendar extends TfBase {
       this.element.daySelected.sort();
       this.setInputValue(this.element.daySelected[0], 'start');
       this.setInputValue(this.element.daySelected[1], 'end');
-      if(start === end){
+      if (start === end) {
         this.displaySelectedDate(true);
-      }else{
+      } else {
         this.displaySelectedDate();
       }
-    }  
-
+    }
   }
 
   displayError() {
@@ -539,9 +547,9 @@ export class TfCalendar extends TfBase {
     const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
     const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
     input.setAttribute('value', `${day}-${month}-${date.getFullYear()}`);
-    if(id === 'start'){
+    if (id === 'start') {
       this.startDate = input.value;
-    }else{
+    } else {
       this.endDate = input.value;
     }
   }
@@ -688,7 +696,7 @@ export class TfCalendar extends TfBase {
     if (firstDay === lastDay) {
       this.removeAllValue();
       this.numberClick = 0;
-    }else{
+    } else {
       this.setInputValue(firstDay, 'start');
       this.setInputValue(lastDay, 'end');
       this.startDate = this.generateDateByTimeStamp(firstDay);
