@@ -3,9 +3,9 @@ import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
 const checkboxDefault: StyleVariantProps<'tf-checkbox'> = {
-  name: 'Checkbox',
+  name: 'Checkbox ',
   tag: 'tf-checkbox',
-  description: 'Checkbox',
+  description: 'Checkbox default not checked, click to focus',
   data: {
     status : 'default',
     content : 'Checkbox',
@@ -15,7 +15,7 @@ const checkboxDefault: StyleVariantProps<'tf-checkbox'> = {
 const checkboxDefaultChecked: StyleVariantProps<'tf-checkbox'> = {
   name: 'Checkbox',
   tag: 'tf-checkbox',
-  description: 'Checkbox',
+  description: 'Checkbox default checked, click to focus',
   data: {
     status : 'default',
     checked : 'true',
@@ -23,10 +23,12 @@ const checkboxDefaultChecked: StyleVariantProps<'tf-checkbox'> = {
   },
 };
 
+
+
 const checkboxDisabled: StyleVariantProps<'tf-checkbox'> = {
   name: 'Checkbox',
   tag: 'tf-checkbox',
-  description: 'Checkbox',
+  description: 'Checkbox disabled not checked',
   data: {
     status : 'disabled',
     content : 'Checkbox',
@@ -36,7 +38,7 @@ const checkboxDisabled: StyleVariantProps<'tf-checkbox'> = {
 const checkboxDisabledChecked: StyleVariantProps<'tf-checkbox'> = {
   name: 'Checkbox',
   tag: 'tf-checkbox',
-  description: 'Checkbox',
+  description: 'Checkbox disabled checked',
   data: {
     status : 'disabled',
     checked : 'true',
