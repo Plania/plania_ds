@@ -164,6 +164,9 @@ export class TfCalendar extends TfBase {
             <tf-icon icon="arrow-forward-ios"></tf-icon>
           </section>
           <section>
+            <tf-week-days></tf-week-days>
+            <tf-month-header></tf-month-header>
+            
             <div class="calendar-week-container" tabindex="0"></div>
             <div class="calendar-month-container">
               <div class="calendar-day-container center"></div>
