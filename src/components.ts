@@ -41,3 +41,4 @@ export * from './components/TfSearchChip.js';
 export * from './components/TfSearchFavorite.js';
 export * from './components/TfWeek.js';
 export * from './components/TfWeekDays.js';
+export * from './components/TfMonthHeader.js';
