@@ -53,7 +53,7 @@ const tfInputPasswordDefaultIconDisabledShow: StyleVariantProps<'tf-input-passwo
 const tfInputPasswordIconDisabled: StyleVariantProps<'tf-input-password'> = {
   name: 'tf input password',
   tag: 'tf-input-password',
-  description: 'A password input component disabled with icon.',
+  description: 'A password input component disabled with icon and show password.',
   data: {
     icon: 'true',
     status: 'disabled',
@@ -65,7 +65,7 @@ const tfInputPasswordIconDisabled: StyleVariantProps<'tf-input-password'> = {
 const tfInputPasswordIconDisabledShow: StyleVariantProps<'tf-input-password'> = {
   name: 'tf input password',
   tag: 'tf-input-password',
-  description: 'A password input component disabled with icon.',
+  description: 'A password input component disabled with icon and no show password.',
   data: {
     icon: 'true',
     status: 'disabled',
@@ -77,7 +77,7 @@ const tfInputPasswordIconDisabledShow: StyleVariantProps<'tf-input-password'> = 
 const tfInputPasswordShow: StyleVariantProps<'tf-input-password'> = {
   name: 'tf input password',
   tag: 'tf-input-password',
-  description: 'A password input component disabled with icon.',
+  description: 'A password input component disabled with no icon and show password.',
   data: {
     icon: 'false',
     status: 'disabled',
@@ -90,10 +90,11 @@ const tfInputPasswordShow: StyleVariantProps<'tf-input-password'> = {
 const tfInputPasswordDisabled: StyleVariantProps<'tf-input-password'> = {
   name: 'tf input password',
   tag: 'tf-input-password',
-  description: 'A password input component disabled no icon.',
+  description: 'A password input component disabled with no icon and no show password.',
   data: {
     icon: 'false',
     status: 'disabled',
+    show: 'false',
     label: 'Password',
   },
 };
