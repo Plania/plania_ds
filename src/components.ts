@@ -1,3 +1,4 @@
+export * from './components/TfActionBar.js';
 export * from './components/TfBackground.js';
 export * from './components/TfBadge.js';
 export * from './components/TfBase.js';
