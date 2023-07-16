@@ -41,7 +41,7 @@ import { styleTfSearchChip } from './StyleTfSearchChip.js';
 import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
-
+import { styleTfSliderThumb } from './StyleTfSliderThumb.js';
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
@@ -256,5 +256,5 @@ styleTfSearchFavorite(styleBook);
 styleTfSearchCardDetails(styleBook);
 styleTfSearchCardHeaderImage(styleBook);
 styleTfSearchButton(styleBook);
-
+styleTfSliderThumb(styleBook);
 document.body.appendChild(styleBook);
