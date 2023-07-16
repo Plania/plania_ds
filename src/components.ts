@@ -5,6 +5,7 @@ export * from './components/TfBudget.js';
 export * from './components/TfButton.js';
 export * from './components/TfCardHeaderImage.js';
 export * from './components/TfChip.js';
+export * from './components/TfDropdown.js';
 export * from './components/TfDropdownItem.js';
 export * from './components/TfFavorite.js';
 export * from './components/TfProgressBar.js';
