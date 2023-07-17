@@ -219,7 +219,7 @@ customElements.define('style-book', StyleBook);
 // const styleBook = document.createElement('style-book') as StyleBook;
 const styleBook = new StyleBook();
 document.body.appendChild(styleBook);
-<<<<<<<<< Temporary merge branch 1
+styleTfWeek(styleBook);
 styleTfWeekDays(styleBook);
 StyleTfMonthHeader(styleBook);
 StyleTfActivityCard(styleBook);
