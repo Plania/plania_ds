@@ -41,6 +41,7 @@ import { styleTfSearchChip } from './StyleTfSearchChip.js';
 import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
+import { styleTfWeek } from './StyleTfWeek.js';
 import { styleTfDateSelector } from './StyleDateSelector.js';
 import { styleTfWeekDays } from './StyleTfWeekDays.js';
 import { StyleTfMonthHeader } from './StyleMonthHeader.js';
@@ -218,7 +219,7 @@ customElements.define('style-book', StyleBook);
 // const styleBook = document.createElement('style-book') as StyleBook;
 const styleBook = new StyleBook();
 document.body.appendChild(styleBook);
-styleTfDateSelector(styleBook);
+<<<<<<<<< Temporary merge branch 1
 styleTfWeekDays(styleBook);
 StyleTfMonthHeader(styleBook);
 StyleTfActivityCard(styleBook);

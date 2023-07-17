@@ -39,6 +39,8 @@ export * from './components/TfSearchCardHeaderImage.js';
 export * from './components/TfSearchCardDetails.js';
 export * from './components/TfSearchChip.js';
 export * from './components/TfSearchFavorite.js';
-export * from './components/TfDateSelector.js';
+<<<<<<<<< Temporary merge branch 1
 export * from './components/TfWeekDays.js';
+=========
 export * from './components/TfMonthHeader.js';
+>>>>>>>>> Temporary merge branch 2
