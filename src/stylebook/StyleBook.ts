@@ -42,6 +42,7 @@ import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
 import { styleTfDateSelector } from './StyleDateSelector.js';
+import { styleTfWeekDays } from './StyleTfWeekDays.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -216,7 +217,6 @@ customElements.define('style-book', StyleBook);
 // const styleBook = document.createElement('style-book') as StyleBook;
 const styleBook = new StyleBook();
 document.body.appendChild(styleBook);
-styleTfDateSelector(styleBook);
 StyleTfActivityCard(styleBook);
 styleTfAgeSelector(styleBook);
 styleTfBackground(styleBook);
