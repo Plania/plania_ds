@@ -217,6 +217,8 @@ customElements.define('style-book', StyleBook);
 // const styleBook = document.createElement('style-book') as StyleBook;
 const styleBook = new StyleBook();
 document.body.appendChild(styleBook);
+styleTfDateSelector(styleBook);
+styleTfWeekDays(styleBook);
 StyleTfActivityCard(styleBook);
 styleTfAgeSelector(styleBook);
 styleTfBackground(styleBook);
