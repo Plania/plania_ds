@@ -80,7 +80,12 @@ export class TfDateSelector extends TfBase {
         this.removeAttribute('end');
       }
       break;
-
+    case 'start':
+      this.shadowRoot?.querySelector('#start')?.setAttribute('value', newValue);
+      break;
+    case 'end':
+      this.shadowRoot?.querySelector('#end')?.setAttribute('value', newValue);
+      break;
     }
   }
 

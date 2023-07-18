@@ -4,6 +4,7 @@ const style = css`
     .week {
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 100%;
     }
 
@@ -53,7 +54,6 @@ class TfWeek extends TfBase {
   }
 
   attributeChangedCallback(name: string) {
-    console.log(name);
     if (name === 'month' || name === 'year' || name === 'week' || name === 'disabledpreviousdays') {
       this.generateDaysOfWeek();
     }
