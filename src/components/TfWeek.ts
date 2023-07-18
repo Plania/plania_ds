@@ -4,6 +4,7 @@ const style = css`
     .week {
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 100%;
     }
 
@@ -53,7 +54,6 @@ class TfWeek extends TfBase {
   }
 
   attributeChangedCallback(name: string) {
-    console.log(name);
     if (name === 'month' || name === 'year' || name === 'week' || name === 'disabledpreviousdays') {
       this.generateDaysOfWeek();
     }
@@ -77,11 +77,10 @@ class TfWeek extends TfBase {
     const todayDay = today.getDate();
     const todayMonth = today.getMonth();
     if(!this.disabledPreviousDays) return false;
-    if(todayMonth > this.convertMonth()){
-      return true;
-    }else{
-      return (todayDay > day && todayMonth === this.convertMonth());
-    }
+    if(today.getFullYear() > parseInt(this.year)) return true;
+    if(todayMonth > this.convertMonth() && today.getFullYear() === parseInt(this.year)) return true;
+    if(todayMonth === this.convertMonth() && today.getFullYear() === parseInt(this.year) && day < todayDay) return true;
+    return false;
   };
 
   generateDay = (days : number) => {
