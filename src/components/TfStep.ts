@@ -45,12 +45,9 @@ export class TfStep extends TfBase {
         }
     }
 }
-
 declare global {
            interface HTMLElementTagNameMap {
               'tf-step': TfStep;
            }
         }
-    
-
 customElements.define('tf-step', TfStep);
