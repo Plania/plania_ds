@@ -26,13 +26,12 @@ const TfDropdownDefault: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component with no icon.',
   data: {
     content: html`
-    <tf-text-input icon="false" status="default" label="Label">
-    </tf-text-input>
-    <div slot="dropdown-options">
-      <tf-dropdown-item>Option 1</tf-dropdown-item>
-      <tf-dropdown-item>Option 2</tf-dropdown-item>
-      <tf-dropdown-item>Option 3</tf-dropdown-item>
-    </div>
+      <tf-text-input icon="false" status="default" label="Label"> </tf-text-input>
+      <div slot="dropdown-options">
+        <tf-dropdown-item>Option 1</tf-dropdown-item>
+        <tf-dropdown-item>Option 2</tf-dropdown-item>
+        <tf-dropdown-item>Option 3</tf-dropdown-item>
+      </div>
     `,
   },
 };
@@ -43,21 +42,16 @@ const TfDropdownDisabledIcon: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component disabled with icon.',
   data: {
     content: html`
-    <div class="container">
-      <tf-text-input
-        icon="true"
-        status="disabled"
-        pictogramme="account-circle"
-        label="Label"
-        disabled
-      ></tf-text-input>
-    </div>
-    <div slot="dropdown-options">
-      <tf-dropdown-item>Option 1</tf-dropdown-item>
-      <tf-dropdown-item>Option 2</tf-dropdown-item>
-      <tf-dropdown-item>Option 3</tf-dropdown-item>
-    </div>
+      <div class="container">
+        <tf-text-input
+          icon="true"
+          status="disabled"
+          pictogramme="account-circle"
+          label="Label"
+        ></tf-text-input>
+      </div>
     `,
+    disabled: true,
   },
 };
 
@@ -67,16 +61,11 @@ const TfDropdownDisabled: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component disabled with no icon.',
   data: {
     content: html`
-    <div class="container">
-      <tf-text-input
-        icon="false"
-        status="disabled"
-        pictogramme="account-circle"
-        label="Label"
-        disabled
-      ></tf-text-input>
-    </div>
+      <div class="container">
+        <tf-text-input icon="false" status="disabled" label="Label"></tf-text-input>
+      </div>
     `,
+    disabled: true,
   },
 };
 
