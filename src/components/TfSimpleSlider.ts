@@ -192,7 +192,7 @@ const style = css`
 
   .slider-value-text {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -70%);
   }
   .slider-text {
     text-align: center;
