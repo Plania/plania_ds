@@ -199,13 +199,13 @@ const style = css`
     font-family: Nunito;
     font-size: 16px;
     font-weight: 600;
-    line-height: 16px; /* 145.455% */
+    line-height: 16px;
     letter-spacing: 0.5px;
     margin-top: -7px;
   }
 
   :root {
-    --svg-color: #f9f9f8; /* Initial color of the SVG icon */
+    --svg-color: #f9f9f8; 
   }
 `;
 
