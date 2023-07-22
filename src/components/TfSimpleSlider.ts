@@ -261,10 +261,10 @@ export class TfSimpleSlider extends TfBase {
       this.displayRangeValue(input.value);
       input.addEventListener('input', () => this.displayRangeValue(input.value), false);
       this.eventListener(input);
-      this.displayRangeValue(input.value); // Update the display after adding the event listener
+      this.displayRangeValue(input.value); 
     }
 
-    // handle initial attribute value
+    
     if (this.text !== null) {
       this.displayRangeValue(input.value);
     }
@@ -289,7 +289,7 @@ export class TfSimpleSlider extends TfBase {
           valueSpan.innerHTML = value;
         }
         if (svgElement) {
-          svgElement.style.display = 'none'; // Hide the SVG when text is true
+          svgElement.style.display = 'none'; 
         }
       }
     } else {
@@ -299,7 +299,7 @@ export class TfSimpleSlider extends TfBase {
           valueSpan.style.display = 'none';
         }
         if (svgElement) {
-          svgElement.style.display = 'flex'; // Always display the SVG
+          svgElement.style.display = 'flex'; 
         }
       }
     }
@@ -334,12 +334,12 @@ export class TfSimpleSlider extends TfBase {
           this.style.setProperty(
             '--svg-color',
             '#000'
-          ); /* Change SVG icon color to black when disabled */
+          ); 
         } else {
           this.style.setProperty(
             '--svg-color',
             '#F9F9F8'
-          ); /* Reset SVG icon color when not disabled */
+          ); 
         }
       }
     }
