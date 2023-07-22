@@ -201,7 +201,7 @@ const style = css`
     font-weight: 600;
     line-height: 16px;
     letter-spacing: 0.5px;
-    margin-top: -7px;
+    margin-top: -'px;
   }
 
   :root {

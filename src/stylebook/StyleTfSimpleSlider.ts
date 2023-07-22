@@ -2,7 +2,7 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const SliderDefaultText: StyleVariantProps<'tf-simple-slider'> = {
+const SliderOnDefaultText: StyleVariantProps<'tf-simple-slider'> = {
   name: 'Slider on default text',
   tag: 'tf-simple-slider',
   description: 'Slider on default',
@@ -42,7 +42,7 @@ const SliderErrorText: StyleVariantProps<'tf-simple-slider'> = {
   },
 };
 
-const SliderDefault: StyleVariantProps<'tf-simple-slider'> = {
+const SliderOnDefault: StyleVariantProps<'tf-simple-slider'> = {
   name: 'Slider on default no text',
   tag: 'tf-simple-slider',
   description: 'Slider on default',
@@ -87,7 +87,7 @@ const meta: StyleComponentProps<'tf-simple-slider'> = {
   tag: 'tf-simple-slider',
   description: 'Tourisfair slider component',
   component: 'Tourisfair Slider Component',
-  variants: [ SliderDefaultText,SliderFocusText, SliderDisabledText , SliderErrorText , SliderDefault,SliderFocus, SliderDisabled , SliderError ],
+  variants: [ SliderOnDefaultText,SliderFocusText, SliderDisabledText , SliderErrorText , SliderOnDefault,SliderFocus, SliderDisabled , SliderError ],
 };
 
 export const styleTfSimpleSlider = (styleBook: StyleBook) => styleBook.addComponent(meta);
