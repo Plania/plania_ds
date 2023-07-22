@@ -256,5 +256,5 @@ styleTfSearchFavorite(styleBook);
 styleTfSearchCardDetails(styleBook);
 styleTfSearchCardHeaderImage(styleBook);
 styleTfSearchButton(styleBook);
-
+styleTfSimpleSlider(styleBook);
 document.body.appendChild(styleBook);
