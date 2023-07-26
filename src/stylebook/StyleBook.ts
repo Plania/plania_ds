@@ -41,9 +41,10 @@ import { styleTfSearchChip } from './StyleTfSearchChip.js';
 import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
+import { styleTfWeek } from './StyleTfWeek.js';
+import { styleTfWeekDays } from './StyleTfWeekDays.js';
 import { StyleTfMonthHeader } from './StyleMonthHeader.js';
 import { styleTfDateSelector } from './StyleTfDateSelector.js';
-import { styleTfWeekDays } from './StyleTfWeekDays.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -259,6 +260,7 @@ styleTfSearchCardDetails(styleBook);
 styleTfSearchCardHeaderImage(styleBook);
 styleTfSearchButton(styleBook);
 styleTfTextButton(styleBook);
+styleTfWeek(styleBook);
 styleTfWeekDays(styleBook);
 styleTfWelcomeCard(styleBook);
 styleTfWelcomeImage(styleBook);

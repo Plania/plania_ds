@@ -39,6 +39,7 @@ export * from './components/TfSearchFavorite.js';
 export * from './components/TfSimpleSlider.js';
 export * from './components/TfTextButton.js';
 export * from './components/TfTextInput.js';
+export * from './components/TfWeek.js';
 export * from './components/TfWeekDays.js';
 export * from './components/TfWelcomeCard.js';
 export * from './components/TfWelcomeImage.js';
