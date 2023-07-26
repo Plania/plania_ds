@@ -10,7 +10,7 @@ const StyletfCardDetailsStyle = css`
     font-weight: 700;
   }
 `;
-const defaultActivityCard: StyleVariantProps<'tf-search-activity-card'> = {
+const defaultSearchActivityCard: StyleVariantProps<'tf-search-activity-card'> = {
   name: 'Default Activity Card',
   tag: 'tf-search-activity-card',
   description: '',
@@ -21,21 +21,22 @@ const defaultActivityCard: StyleVariantProps<'tf-search-activity-card'> = {
       <style>
         ${StyletfCardDetailsStyle}
       </style>
-
-      <tf-search-card-header-image slot="image"></tf-search-card-header-image>
-      <tf-search-budget level="3" slot="budget"></tf-search-budget>
-      <tf-search-chip type="activity" slot="chip">Churches</tf-search-chip>
-      <tf-search-chip type="poi" slot="chip">History</tf-search-chip>
+      <span slot="title">Sagrada Familia</span>
+      <span slot="subtitle">C/ de Mallorca, 401, 08013</span>
+      <tf-search-card-header-image
+        src="/assets/image.png"
+        slot="image"
+      ></tf-search-card-header-image>
+      <tf-budget level="3" slot="budget"></tf-budget>
+      <tf-chip type="activity" active slot="chip">Churches</tf-chip>
+      <tf-chip type="poi" active slot="chip">History</tf-chip>
       <p slot="description">
         The Expiatory Temple of the Sagrada Familia, known simply as the Sagrada Familia, is a
         Catholic basilica in Barcelona, designed by architect Antoni Gaudí.
         <span class="read">Read more...</span>
       </p>
-      <tf-search-button variant="secondary" slot="actions">Book Now</tf-search-button>
+      <tf-button variant="secondary" text active slot="actions">Book Now</tf-button>
     `,
-    data: {
-      src: '/assets/image.png',
-    },
   },
 };
 //
@@ -43,9 +44,9 @@ const meta: StyleComponentProps<'tf-search-activity-card'> = {
   ref: 'tf-search-activity-card',
   tag: 'tf-search-activity-card',
   description:
-    'Tourisfair activity card are used to display information about an activity or a place.',
-  component: 'Tourisfair Activity Card',
-  variants: [defaultActivityCard],
+    'Tourisfair activity card are used to display information about an activity or a place in the search page.',
+  component: 'Tourisfair Search Activity Card',
+  variants: [defaultSearchActivityCard],
 };
 
 export const styleTfSearchActivityCard = (styleBook: StyleBook) => styleBook.addComponent(meta);
