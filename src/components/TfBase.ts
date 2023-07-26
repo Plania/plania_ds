@@ -128,7 +128,7 @@ const style = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
-
+  
   :host {
     --tf-sys-light-primary: var(--light-primary, #00aae3);
     --tf-sys-light-onprimary: var(--light-onprimary, #250127);
