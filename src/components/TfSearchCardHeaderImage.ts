@@ -9,12 +9,12 @@ const tfCardHeaderImageStyle = css`
 
   .badge {
     position: relative;
-    left: 30px;
+    left: 2rem;
   }
   .favorite {
     position: relative;
-    top: 175px;
-    left: 40px;
+    bottom: 1rem;
+    left: 2rem;
   }
 
   .image {
@@ -22,7 +22,6 @@ const tfCardHeaderImageStyle = css`
     max-height: 100%;
     width: 14rem;
     height: 20rem;
-    border-radius: 15px 0 0 15px;
     background-size: cover;
     background-position: center;
   }
