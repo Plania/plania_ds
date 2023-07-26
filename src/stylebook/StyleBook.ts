@@ -42,6 +42,7 @@ import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
 import { styleTfWeek } from './StyleTfWeek.js';
+import { styleTfDateSelector } from './StyleDateSelector.js';
 import { styleTfWeekDays } from './StyleTfWeekDays.js';
 import { StyleTfMonthHeader } from './StyleMonthHeader.js';
 import { styleTfDateSelector } from './StyleTfDateSelector.js';

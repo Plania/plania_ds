@@ -7,10 +7,6 @@ const style = css`
     align-items: flex-start;
     gap: 0.5rem;
   }
-
-  tf-text-input {
-    width: 100%;
-  }
 `;
 
 export class TfDateSelector extends TfBase {
@@ -41,16 +37,10 @@ export class TfDateSelector extends TfBase {
     this.shadowRoot?.querySelectorAll('tf-text-input').forEach((input) => {
       input?.addEventListener('keyup', (e) => {
         e.preventDefault();
-        if (
-          e.key === 'Backspace' ||
-          e.key === 'ArrowLeft' ||
-          e.key === 'ArrowRight' ||
-          e.key === undefined
-        )
-          return;
-
-        input.value = input.value.replace(/[^0-9-]/g, '');
-
+        if(e.key === 'Backspace' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === undefined) return;
+       
+        input.value = input.value.replace(/[^0-9-]/g,'');
+        
         if (input.value.length === 2) {
           input.value += '-';
         }
@@ -72,51 +62,39 @@ export class TfDateSelector extends TfBase {
         }
       });
       input?.addEventListener('input', (e) => {
-        input.id === 'start'
-          ? (this.start = input.value.slice(0, 10))
-          : (this.end = input.value.slice(0, 10));
+        input.id === 'start' ? this.start = input.value.slice(0,10) : this.end = input.value.slice(0,10);
       });
     });
+
+    
   }
 
   static get observedAttributes() {
-    return ['variant', 'start', 'end', 'status' , 'start-label', 'end-label'];
+    return ['variant', 'start', 'end'];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(name : string , oldValue: string, newValue: string) {
     const div = this.shadowRoot?.querySelector('div') as HTMLElement;
-
+    
     switch (name) {
     case 'variant':
-      if (newValue === 'interval') {
+      if (newValue === 'interval'){
         this.createEndInput(div);
-      } else if (newValue === 'single') {
-        if (div?.querySelector('#end')) div?.querySelector('#end')?.remove();
+      }else if(newValue === 'single'){
+        if(div?.querySelector('#end')) div?.querySelector('#end')?.remove();
         this.removeAttribute('end');
       }
-      this.changeStatus();
       break;
-    case 'start-label':
-      div?.querySelector('#start')?.setAttribute('label', newValue === null ? 'Start' : newValue);
+    case 'start':
+      this.shadowRoot?.querySelector('#start')?.setAttribute('value', newValue);
       break;
-    case 'end-label':
-      if (!div?.querySelector('#end')) return;
-      div?.querySelector('#end')?.setAttribute('label', newValue === null ? 'End' : newValue);
-      break;
-    case 'status':
-      this.changeStatus(newValue);
+    case 'end':
+      this.shadowRoot?.querySelector('#end')?.setAttribute('value', newValue);
       break;
     }
   }
 
-  changeStatus(_newValue = this.status) {
-    const div = this.shadowRoot?.querySelector('div') as HTMLElement;
-    div?.querySelectorAll('tf-text-input').forEach((input) => {
-      input.status = _newValue;
-    });
-  }
-
-  createEndInput(div: HTMLElement) {
+  createEndInput(div : HTMLElement) {
     const input = document.createElement('tf-text-input');
     input.setAttribute('icon', '');
     input.setAttribute('status', 'default');
@@ -149,22 +127,6 @@ export class TfDateSelector extends TfBase {
 
   set end(value) {
     this.setAttribute('end', value || '');
-  }
-
-  get status() {
-    return this.getAttribute('status') || 'default';
-  }
-
-  set status(value) {
-    this.setAttribute('status', value);
-  }
-
-  get startLabel() {
-    return this.getAttribute('start-label');
-  }
-
-  set startLabel(value) {
-    this.setAttribute('start-label', value || '');
   }
 }
 
