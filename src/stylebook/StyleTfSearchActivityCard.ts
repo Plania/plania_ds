@@ -24,7 +24,7 @@ const defaultSearchActivityCard: StyleVariantProps<'tf-search-activity-card'> = 
       <span slot="title">Sagrada Familia</span>
       <span slot="subtitle">C/ de Mallorca, 401, 08013</span>
       <tf-search-card-header-image
-        src="/assets/image.png"
+        src="/assets/image.jpg"
         slot="image"
       ></tf-search-card-header-image>
       <tf-budget level="3" slot="budget"></tf-budget>

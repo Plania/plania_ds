@@ -43,6 +43,7 @@ const tfActivityCardStyle = css`
   .actions {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row-reverse;
   }
 `;
 //

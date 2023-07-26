@@ -21,7 +21,6 @@ const tfCardHeaderImageStyle = css`
     position: relative;
     max-width: 100%;
     max-height: 100%;
-    width: 14rem;
     height: 20rem;
     background-size: cover;
     background-position: center;
