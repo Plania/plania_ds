@@ -3,13 +3,13 @@ import { html, css, TfBase } from './TfBase.js';
 const tfFavoriteStyle = css`
    .favorite {
       stroke: var(--tf-sys-light-surface);
-      strike-width: 2;
-   }
-   .enabled .favorite {
+      stroke-width: 2;
       fill: var(--tf-sys-light-surface);
    }
+   .enabled {
+      fill: none !important;
+   }
 `;
-
 export class TfFavorite extends TfBase {
   constructor() {
     super();
@@ -35,7 +35,11 @@ export class TfFavorite extends TfBase {
          `);
   }
 
-  // connectedCallback() {}
+  connectedCallback() {
+    this.shadowRoot?.querySelector('div')?.addEventListener('click', () => {
+      this.enabled = !this.enabled;
+    });
+  }
 
   static get observedAttributes() {
     return ['enabled'];
@@ -43,7 +47,7 @@ export class TfFavorite extends TfBase {
 
   attributeChangedCallback() {
     // _newValue: string | null // _oldValue: string | null, // _name: string,
-    const favoriteElem = this.shadowRoot?.querySelector('div') as HTMLDivElement;
+    const favoriteElem = this.shadowRoot?.querySelector('path') as SVGPathElement;
     // The enabled attribute has no value: we only check if it is present or not
     if (this.enabled) {
       favoriteElem.classList.add('enabled');
