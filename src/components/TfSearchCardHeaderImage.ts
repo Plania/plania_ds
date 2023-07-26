@@ -8,16 +8,17 @@ const tfCardHeaderImageStyle = css`
   }
 
   .badge {
-    position: relative;
+    position: absolute;
     left: 2rem;
   }
   .favorite {
-    position: relative;
+    position: absolute;
     bottom: 1rem;
     left: 2rem;
   }
 
   .image {
+    position: relative;
     max-width: 100%;
     max-height: 100%;
     width: 14rem;
