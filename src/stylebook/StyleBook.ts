@@ -41,7 +41,7 @@ import { styleTfSearchChip } from './StyleTfSearchChip.js';
 import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
-import { styleTfDateSelector } from './StyleDateSelector.js';
+import { styleTfDateSelector } from './StyleTfDateSelector.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');

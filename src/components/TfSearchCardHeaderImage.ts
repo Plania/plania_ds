@@ -17,7 +17,7 @@ const tfCardHeaderImageStyle = css`
     left: 40px;
   }
 
-  .header-img {
+  .image {
     max-width: 100%;
     max-height: 100%;
     width: 14rem;
@@ -36,7 +36,7 @@ export class TfSearchCardHeaderImage extends TfBase {
         <style>
           ${tfCardHeaderImageStyle}
         </style>
-        <div class="header-img">
+        <div class="image">
           <tf-badge class="badge no"></tf-badge>
           <tf-favorite class="favorite" enabled=""></tf-favorite>
         </div>
@@ -50,7 +50,7 @@ export class TfSearchCardHeaderImage extends TfBase {
   }
 
   attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {
-    const divElem = this.shadowRoot?.querySelector<HTMLDivElement>('.header-img');
+    const divElem = this.shadowRoot?.querySelector<HTMLDivElement>('.image');
     const favoriteElem = this.shadowRoot?.querySelector<HTMLDivElement>('badge');
     if (!divElem) return;
     if (_name === 'src') {
