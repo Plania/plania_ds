@@ -6,6 +6,7 @@ const tfActivityCardStyle = css`
     gap: 0px;
     border-radius: 0.75rem;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
   }
 
   .header-image {
