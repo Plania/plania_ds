@@ -1,124 +1,131 @@
-/* eslint-disable no-case-declarations */
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   :host {
-      max-width: 19rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      position: relative;
-   }
+  :host {
+    max-width: 19rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
 
-   .icon-input {
-      padding-left: 2.2 !important;
-      width: calc(100% - 2.2rem - 2px);
-   }
+  section {
+    width: 100%;
+  }
 
-   tf-icon {
-      cursor: pointer;
-   }
-   .button-container {
-      display: flex;
-      gap: 0.25rem;
-   }
+  .icon-input {
+    padding-left: 2.2 !important;
+    width: calc(100% - 2.2rem - 2px);
+  }
 
-   .button-container > span {
-      display: flex;
-      align-items: center;
-   }
+  tf-icon {
+    cursor: pointer;
+  }
+  .button-container {
+    display: flex;
+    gap: 0.25rem;
+  }
 
-   .button-container > span::after {
-      content: '';
-      display: block;
-      width: 0.5rem;
-      border-bottom: 2px solid black;
-   }
+  .button-container > span {
+    display: flex;
+    align-items: center;
+  }
 
-   .calendar-day-container {
-      display: grid;
-      grid-template-columns: repeat(7, auto);
-      grid-template-rows: repeat(6, auto);
-      column-gap: 0;
-      width: 100%;
-      position: absolute;
-      height: 100%;
-   }
+  .button-container > span::after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    border-bottom: 2px solid black;
+  }
 
-   .calendar-month-container {
-      width: 19rem;
-      height: 15rem;
-      overflow: hidden;
-      position: relative;
-      background-color: var(--tf-sys-light-surface);
-   }
+  .calendar-day-container {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    grid-template-rows: repeat(6, auto);
+    column-gap: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+  }
 
-   .calendar-week-container {
-      display: grid;
-      grid-template-columns: repeat(7, auto);
-   }
+  .calendar-month-container {
+    height: 15rem;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--tf-sys-light-surface);
+  }
 
-   .calendar-left {
-      width: 400px;
-      position: absolute;
-      bottom: 0;
-      right: -400px;
-   }
+  .calendar-week-container {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+  }
 
-   .day {
-      display: flex;
-      background-color: var(--tf-sys-light-surface);
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-   }
+  .calendar-left {
+    width: 400px;
+    position: absolute;
+    bottom: 0;
+    right: -400px;
+  }
 
-   .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-   }
+  .day {
+    display: flex;
+    background-color: var(--tf-sys-light-surface);
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
 
-   .calendar-header > span {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-      font-weight: 700;
-   }
+  #all-calendar {
+    z-index: 999;
+  }
 
-   .right {
-      right: -400px;
-      transition: 0.5s;
-   }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-   .left {
-      right: 400px;
-      transition: 0.5s;
-   }
+  .calendar-header > span {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    font-weight: 700;
+  }
 
-   .center {
-      right: 0;
-      transition: 0.5s;
-   }
+  .right {
+    right: -400px;
+    transition: 0.5s;
+  }
 
-   .modal {
-      display:none;
-      position: absolute;
-      top: 3rem;
-      background-color: var(--tf-sys-light-background);
-   }
+  .left {
+    right: 400px;
+    transition: 0.5s;
+  }
+
+  .center {
+    right: 0;
+    transition: 0.5s;
+  }
+
+  .modal {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    background-color: var(--tf-sys-light-background);
+  }
 `;
 
 export class TfCalendar extends TfBase {
   element: {
-      calendar?: HTMLElement;
-      calendarDayContainer?: HTMLElement;
-      calendarWeekContainer?: HTMLElement;
-      calendarMonthContainer?: HTMLElement;
-      allCalendar: HTMLElement;
-      daySelected: HTMLElement[];
-   };
+    calendar?: HTMLElement;
+    calendarDayContainer?: HTMLElement;
+    calendarWeekContainer?: HTMLElement;
+    calendarMonthContainer?: HTMLElement;
+    allCalendar: HTMLElement;
+    endInput: HTMLElement;
+    daySelected: number[];
+  };
 
   allMonth: string[];
   numbersOfDaysInMonth: number;
@@ -129,41 +136,41 @@ export class TfCalendar extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <div class="button-container">
-               <tf-text-input
-                  icon
-                  status="default"
-                  pictogramme="date-range"
-                  label="Start"
-                  id="start"
-               ></tf-text-input>
-               <span></span>
-               <tf-text-input
-                  icon
-                  status="default"
-                  pictogramme="date-range"
-                  label="End"
-                  id="end"
-               ></tf-text-input>
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <div class="button-container">
+          <tf-text-input
+            icon
+            status="default"
+            pictogramme="date-range"
+            label="Start"
+            id="start"
+          ></tf-text-input>
+          <span></span>
+          <tf-text-input
+            icon
+            status="default"
+            pictogramme="date-range"
+            label="End"
+            id="end"
+          ></tf-text-input>
+        </div>
+        <section id="all-calendar">
+          <section class="calendar-header" tabindex="0">
+            <tf-icon icon="arrow-back-ios"></tf-icon>
+            <span></span>
+            <tf-icon icon="arrow-forward-ios"></tf-icon>
+          </section>
+          <section>
+            <div class="calendar-week-container" tabindex="0"></div>
+            <div class="calendar-month-container">
+              <div class="calendar-day-container center"></div>
             </div>
-            <section id="all-calendar">
-               <section class="calendar-header">
-                  <tf-icon icon="arrow-back-ios"></tf-icon>
-                  <span></span>
-                  <tf-icon icon="arrow-forward-ios"></tf-icon>
-               </section>
-               <section>
-                  <div class="calendar-week-container"></div>
-                  <div class="calendar-month-container">
-                     <div class="calendar-day-container center"></div>
-                  </div>
-               </section>
-            </section>
-         `);
+          </section>
+        </section>
+      `);
     this.element = {
       calendar: this.shadowRoot?.querySelector('.center') as HTMLElement,
       calendarDayContainer: this.shadowRoot?.querySelector(
@@ -176,6 +183,7 @@ export class TfCalendar extends TfBase {
         '.calendar-month-container'
       ) as HTMLElement,
       allCalendar: this.shadowRoot?.querySelector('#all-calendar') as HTMLElement,
+      endInput: this.shadowRoot?.querySelector('#end') as HTMLElement,
       daySelected: [],
     };
     this.allMonth = [
@@ -199,6 +207,9 @@ export class TfCalendar extends TfBase {
   }
 
   connectedCallback() {
+    if (this.getAttribute('month') === null && this.getAttribute('year') === null) {
+      this.displayDefaultDate();
+    }
     this.generateDaysWeek();
     this.shadowRoot
       ?.querySelector('tf-icon[icon="arrow-back-ios"]')
@@ -211,13 +222,12 @@ export class TfCalendar extends TfBase {
       ?.addEventListener('click', () => {
         this.handleOnClick(true);
       });
-
     this.element.calendarMonthContainer?.addEventListener('click', this.handleCalendarClick);
     this.keyUpEventForTextInput();
   }
 
   static get observedAttributes() {
-    return ['month', 'year', 'onlyOneDate', 'modal'];
+    return ['month', 'year', 'onlyonedate', 'modal', 'start-date', 'end-date'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -227,20 +237,30 @@ export class TfCalendar extends TfBase {
 
     calendarElem.innerHTML = '';
 
-    if (name === 'month' || name === 'year') {
-      this.numbersOfDaysInMonth = this.numberOfDaysInMonth(this.month, this.year);
-      span.innerHTML = `<div>${this.month}</div> <div>${this.year}</div>`;
+    if (['month', 'year'].includes(name)) {
+      this.displayMonthAndYear();
+    }
+
+    if (this.onlyonedate) {
+      this.element.endInput.remove();
+      this.shadowRoot?.querySelector('.button-container > span')?.remove();
+      this.shadowRoot?.querySelector('.button-container')?.classList.remove('button-container');
     }
 
     if (this.modal) {
       this.element.allCalendar.classList.add('modal');
       this.eventForModal();
-    }else{
+    } else {
       this.element.allCalendar.classList.remove('modal');
       this.removeEventForModal();
     }
-    
-    
+
+    this.generateMonth();
+    this.generateOtherMonthDays();
+  }
+
+  displayDefaultDate() {
+    this.displayMonthAndYear();
     this.generateMonth();
     this.generateOtherMonthDays();
   }
@@ -250,7 +270,7 @@ export class TfCalendar extends TfBase {
       const inputElement = input.shadowRoot?.querySelector('input');
       inputElement?.addEventListener('keyup', (e) => {
         e.preventDefault();
-        if (e.key === 'Backspace' || e.key === 'ArrowRight' || e.key === 'ArrowLeft') return;
+        if(e.key === 'Backspace' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') return;
         inputElement.value = inputElement.value.replace(/[^0-9]/g, '');
         if (inputElement.value.length >= 2) {
           inputElement.value = inputElement.value.slice(0, 2) + '-' + inputElement.value.slice(2);
@@ -264,45 +284,66 @@ export class TfCalendar extends TfBase {
       });
     });
 
-    this.shadowRoot?.querySelector('#start')?.shadowRoot?.querySelector('input')?.addEventListener('keyup', () => {
-      this.eventForStartInput();
-    }
-    );
+    this.shadowRoot
+      ?.querySelector('#start')
+      ?.shadowRoot?.querySelector('input')
+      ?.addEventListener('keyup', () => {
+        if (this.onlyonedate) {
+          this.eventForStartInputOneDate();
+        } else {
+          this.eventForInput();
+        }
+      });
 
-    this.shadowRoot?.querySelector('#end')?.shadowRoot?.querySelector('input')?.addEventListener('keyup', () => {
-      this.eventForEndInput();
-    }
-    );
+    this.shadowRoot
+      ?.querySelector('#end')
+      ?.shadowRoot?.querySelector('input')
+      ?.addEventListener('keyup', () => {
+        this.eventForInput(false);
+      });
   }
 
-  eventForStartInput() {
-    const startValue = this.shadowRoot?.querySelector('#start')?.shadowRoot?.querySelector('input')?.value as string;
-    const endValue = this.shadowRoot?.querySelector('#end')?.shadowRoot?.querySelector('input')?.value as string;
+  allDayToDefault() {
+    const allTfDay = this.shadowRoot?.querySelectorAll('tf-day');
+    if (!allTfDay) return;
+    for (const day of allTfDay) {
+      const state = day.getAttribute('state');
+      if (
+        state === 'selectedDate' ||
+        state === 'startDate' ||
+        state === 'endDate' ||
+        state === 'startEndDate'
+      ) {
+        day.setAttribute('state', 'default');
+      }
+    }
+  }
 
+  removeAllValue() {
+    this.removeAttribute('start-date');
+    this.removeAttribute('end-date');
+    this.setInputValue(-1, 'start');
+    this.setInputValue(-1, 'end');
+    this.element.daySelected = [];
+  }
+
+  eventForStartInputOneDate() {
+    this.allDayToDefault();
+    const startValue = this.shadowRoot?.querySelector('#start')?.shadowRoot?.querySelector('input')
+      ?.value as string;
     if (startValue.length < 10) return;
-    let start = this.generateDateStamps(parseInt(startValue.slice(0, 2)), startValue.slice(3, 6), startValue.slice(7, 11));
+
+    const start = this.generateDateStamps(
+      parseInt(startValue.slice(0, 2)),
+      startValue.slice(3, 6),
+      startValue.slice(7, 11)
+    );
 
     if (Number.isNaN(start)) {
       this.displayError();
       return;
     } else {
       this.removeError();
-    }
-
-    if(endValue.length >= 10 ){
-      let end = this.generateDateStamps(parseInt(endValue.slice(0, 2)), endValue.slice(3, 6), endValue.slice(7, 11));
-      if (Number.isNaN(end)) {
-        return;
-      } else {
-        if (end < start) {
-          this.setInputValue(start, 'end');
-          this.setInputValue(end, 'start');
-          const temporary = start;
-          start = end;
-          end = temporary;
-          this.eventForEndInput();
-        }
-      }
     }
 
     this.month = this.allMonth[new Date(start).getMonth()];
@@ -312,118 +353,110 @@ export class TfCalendar extends TfBase {
     if (!allTfDay) return;
 
     const tfDayArray = Array.from(allTfDay); // Convertir en tableau
-    const selectedDay = tfDayArray.find(day => parseInt(day.getAttribute('date') as string) === start);
+    const selectedDay = tfDayArray.find(
+      (day) => parseInt(day.getAttribute('date') as string) === start
+    );
+    if (!selectedDay) return;
+    this.element.daySelected = [];
+    selectedDay.setAttribute('state', 'startEndDate');
+    this.element.daySelected.unshift(parseInt(selectedDay.getAttribute('date') as string));
+    this.setInputValue(start, 'end');
+    this.numberClick = 1;
 
-    if (selectedDay) {
-      if (endValue.length < 10 || this.numberClick === 0) {
-        this.element.daySelected = [];
-        selectedDay.setAttribute('state', 'startEndDate');
-        this.element.daySelected.unshift(selectedDay);
-        this.setInputValue(start, 'end');
-        this.numberClick = 1;
-      } else if (endValue !== startValue) {
-        if (this.element.daySelected.length >= 2) this.element.daySelected.shift();
-        selectedDay.setAttribute('state', 'startDate');
-        this.element.daySelected.unshift(selectedDay);
-        this.numberClick = 2;
-      }
-    }
-
-    if (this.element.daySelected.length === 2) {
-      this.displaySelectedDate();
-    }
+    this.displaySelectedDate(true);
   }
 
-  eventForEndInput() {
-    const endValue = this.shadowRoot?.querySelector('#end')?.shadowRoot?.querySelector('input')?.value as string;
+  inputValueToStamp(inputValue: string) {
+    const day = parseInt(inputValue.slice(0, 2));
+    const month = inputValue.slice(3, 6);
+    const year = inputValue.slice(7, 11);
+    return this.generateDateStamps(day, month, year);
+  }
+
+  eventForInput(isStart = true) {
     const startValue = this.shadowRoot?.querySelector('#start')?.shadowRoot?.querySelector('input')?.value as string;
-
-    if (endValue.length < 10) return;
-
-    let end = this.generateDateStamps(parseInt(endValue.slice(0, 2)), endValue.slice(3, 6), endValue.slice(7, 11));
-
-    if (Number.isNaN(end)) {
+    const endValue = this.shadowRoot?.querySelector('#end')?.shadowRoot?.querySelector('input')?.value as string;
+    if (startValue.length < 10 && endValue.length < 10) return;
+    const start = startValue.length >= 10 ? this.inputValueToStamp(startValue) : -1;
+    const end = endValue.length >= 10 ? this.inputValueToStamp(endValue) : -1;
+    if (Number.isNaN(start) || Number.isNaN(end)) {
       this.displayError();
       return;
-    } else {
+    }else{
       this.removeError();
     }
 
-    if(startValue.length >= 10 ){
-      let start = this.generateDateStamps(parseInt(startValue.slice(0, 2)), startValue.slice(3, 6), startValue.slice(7, 11));
-      if (Number.isNaN(end)) {
-        return;
-      } else {
-        if (end < start) {
-          this.setInputValue(start, 'end');
-          this.setInputValue(end, 'start');
-          const temporary = start;
-          start = end;
-          end = temporary;
-          this.eventForStartInput();
-        }
+    if(isStart && start !== -1){
+      this.month = this.allMonth[new Date(start).getMonth()];
+      this.year = new Date(start).getFullYear().toString();
+    }else if (!isStart && end !== -1){
+      this.month = this.allMonth[new Date(end).getMonth()];
+      this.year = new Date(end).getFullYear().toString();
+    }
+
+
+    if(end === -1 && this.numberClick === 0){
+      this.setInputValue(start, 'start');
+      this.setInputValue(start, 'end');
+      this.element.daySelected.push(start);
+      this.displaySelectedDate(true);
+      this.numberClick = 1;
+    }else if(start === -1 && this.numberClick === 0){
+      this.setInputValue(end, 'start');
+      this.setInputValue(end, 'end');
+      this.element.daySelected.push(end);
+      this.displaySelectedDate(true);
+      this.numberClick = 1;
+    }
+
+    if (start !== -1 && end !== -1) {
+      this.element.daySelected = [];
+      this.element.daySelected.push(start);
+      this.element.daySelected.push(end);
+      this.element.daySelected.sort();
+      this.setInputValue(this.element.daySelected[0], 'start');
+      this.setInputValue(this.element.daySelected[1], 'end');
+      if(start === end){
+        this.displaySelectedDate(true);
+      }else{
+        this.displaySelectedDate();
       }
-    }
+    }  
 
-    this.month = this.allMonth[new Date(end).getMonth()];
-    this.year = new Date(end).getFullYear().toString();
-    this.endDate = endValue;
-    const allTfDay = this.shadowRoot?.querySelectorAll('tf-day');
-    if (!allTfDay) return;
-
-    const tfDayArray = Array.from(allTfDay); // Convertir en tableau
-    const selectedDay = tfDayArray.find(day => parseInt(day.getAttribute('date') as string) === end);
-
-    if (selectedDay) {
-      if (startValue.length < 10 || this.numberClick === 0) {
-        this.element.daySelected = [];
-        selectedDay.setAttribute('state', 'startEndDate');
-        this.element.daySelected.push(selectedDay);
-        this.setInputValue(end, 'start');
-        this.numberClick = 1;
-      } else if (startValue !== endValue) {
-        if (this.element.daySelected.length >= 2) this.element.daySelected.pop();
-        selectedDay.setAttribute('state', 'endDate');
-        this.element.daySelected.push(selectedDay);
-        this.numberClick = 2;
-      }
-    }
-
-    if (this.element.daySelected.length === 2) {
-      this.displaySelectedDate();
-    }
   }
 
-  displayError(){
+  displayError() {
     this.removeError();
     this.shadowRoot?.querySelectorAll('tf-text-input').forEach((input) => {
       input.setAttribute('status', 'error');
-      input.insertAdjacentHTML('beforeend', '<p slot="error">Invalid date as to be  JJ/MM/YYYY</p>');
+      input.insertAdjacentHTML(
+        'beforeend',
+        '<p slot="error">Invalid date as to be  JJ/MM/YYYY</p>'
+      );
     });
   }
 
-  removeError(){
+  removeError() {
     this.shadowRoot?.querySelectorAll('tf-text-input').forEach((input) => {
       input.setAttribute('status', 'default');
       input.querySelector('p')?.remove();
     });
   }
-  
+
   eventForModal() {
     this.shadowRoot?.querySelectorAll('tf-text-input').forEach((input) => {
       input.addEventListener('click', () => {
         this.element.allCalendar.style.setProperty('display', 'block');
-        
       });
-      input.addEventListener('blur', (e : any) => {
-        if(!this.element.allCalendar.contains(e.relatedTarget)){
+
+      input.addEventListener('blur', (e: any) => {
+        if (!this.element.allCalendar.contains(e.relatedTarget)) {
           this.element.allCalendar.style.setProperty('display', 'none');
-        }else{
+        } else {
           input.shadowRoot?.querySelector('input')?.focus();
         }
       });
     });
-
   }
 
   removeEventForModal() {
@@ -431,14 +464,13 @@ export class TfCalendar extends TfBase {
       input.removeEventListener('click', () => {
         this.element.allCalendar.style.setProperty('display', 'block');
       });
-      input.removeEventListener('blur', (e : any) => {
-        if(!this.element.allCalendar.contains(e.relatedTarget)){
+      input.removeEventListener('blur', (e: any) => {
+        if (!this.element.allCalendar.contains(e.relatedTarget)) {
           this.element.allCalendar.style.setProperty('display', 'none');
-        }else{
+        } else {
           input.shadowRoot?.querySelector('input')?.focus();
         }
       });
-      
     });
   }
 
@@ -453,23 +485,22 @@ export class TfCalendar extends TfBase {
   }
 
   handleOnClick(next = true) {
-    const nextMonth = next ? 0 : 1;
-    this.numbersOfDaysInMonth = this.numberOfDaysInMonth(this.month + nextMonth , this.year);
+    this.numbersOfDaysInMonth = this.numberOfDaysInMonth(this.month, this.year);
     this.updateMonthAndYear(next);
     const calendarElement = this.createCalendar(next ? 'right' : 'left');
     this.animateCalendarTransition(calendarElement, next ? 'right' : 'left');
-    if (this.element.daySelected.length === 1){
+    if (this.element.daySelected.length === 1) {
       this.displaySelectedDate(true);
-    }else if(this.element.daySelected.length === 2){
+    } else if (this.element.daySelected.length === 2) {
       this.displaySelectedDate();
     }
   }
-  
+
   displaySelectedDate(onlystartDate = false) {
     const allTfDay = this.shadowRoot?.querySelectorAll('tf-day');
     if (!allTfDay) return;
-    const firstDay = parseInt(this.element.daySelected[0].getAttribute('date') as string);
-    if(onlystartDate){
+    const firstDay = Math.min(...this.element.daySelected);
+    if (onlystartDate) {
       for (const day of allTfDay) {
         if (!day.getAttribute('date')) continue;
         const dayTime = parseInt(day.getAttribute('date') as string);
@@ -479,7 +510,7 @@ export class TfCalendar extends TfBase {
       }
       return;
     }
-    const lastDay = parseInt(this.element.daySelected[1].getAttribute('date') as string);
+    const lastDay = Math.max(...this.element.daySelected);
     for (const day of allTfDay) {
       if (!day.getAttribute('date')) continue;
       day.setAttribute('state', 'default');
@@ -495,7 +526,7 @@ export class TfCalendar extends TfBase {
   }
 
   setInputValue(time: number, id: string) {
-    if(time === 0){
+    if (time === -1) {
       this.shadowRoot?.querySelector(`#${id}`)?.setAttribute('value', '');
       return;
     }
@@ -505,6 +536,11 @@ export class TfCalendar extends TfBase {
     const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
     const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
     input.setAttribute('value', `${day}-${month}-${date.getFullYear()}`);
+    if(id === 'start'){
+      this.startDate = input.value;
+    }else{
+      this.endDate = input.value;
+    }
   }
 
   animateCalendarTransition(calendarElem: HTMLElement, position = 'right') {
@@ -516,12 +552,11 @@ export class TfCalendar extends TfBase {
       this.element.calendar = calendarElem;
       setTimeout(() => {
         this.element.calendarMonthContainer?.removeChild(
-               this.element.calendarMonthContainer?.lastElementChild as HTMLElement
+          this.element.calendarMonthContainer?.lastElementChild as HTMLElement
         );
       }, 500);
     }, 10);
   }
-
 
   updateMonthAndYear(next = true) {
     const add = next ? 1 : -1;
@@ -550,11 +585,11 @@ export class TfCalendar extends TfBase {
     return new Date(timeStamp).toLocaleDateString();
   }
   //This part generate a date stamp for a day
-  generateDateStamps( numberDay = 1 , month = this.month , year = this.year) {
+  generateDateStamps(numberDay = 1, month = this.month, year = this.year) {
     return new Date(Date.parse(`${month} ${numberDay}, ${year}`)).getTime();
   }
 
-  //This part create a calendar and return the element
+  //This part create a calendar and return the element and display year and month
   createCalendar(position: string) {
     const calendarElem = document.createElement('div');
     calendarElem.classList.add('calendar-day-container');
@@ -566,9 +601,18 @@ export class TfCalendar extends TfBase {
     return calendarElem;
   }
 
+  //This part display the month and year in the header
+  displayMonthAndYear() {
+    const span = this.shadowRoot?.querySelector('.calendar-header > span');
+    if (!span) return;
+    span.innerHTML = `<div>${this.month}</div> <div>${this.year}</div>`;
+  }
+
+  //This part generate the month
   generateMonth(element = this.element.calendarDayContainer) {
     if (!element) return;
     const startOfMonth = this.getFirstDayOfMonth(this.month, this.year);
+
     for (let i = 0; i < startOfMonth; i++) {
       const day = document.createElement('tf-day');
       day.setAttribute('state', 'disabled');
@@ -583,6 +627,7 @@ export class TfCalendar extends TfBase {
     }
   }
 
+  //This part generate the days of the previous and next month
   generateOtherMonthDays(element = this.element.calendarDayContainer) {
     if (!element) return;
     for (
@@ -599,82 +644,67 @@ export class TfCalendar extends TfBase {
 
   //This part is called when the user click on a day and display wich day is selected
   handleCalendarClick = (e: Event) => {
-    if (!this.element.daySelected) return;
     const target = e.target as HTMLElement;
     if (target.tagName !== 'TF-DAY') return;
-
     switch (this.numberClick) {
     case 0:
       this.handleFirstClick(target);
       break;
     case 1:
+      if (this.onlyonedate) {
+        this.handleThirdClick();
+        this.handleFirstClick(target);
+        return;
+      }
       this.handleSecondClick(target);
       break;
     case 2:
       this.handleThirdClick();
       break;
     }
-
-    if (this.numberClick === 2) {
-      this.displaySelectedDate();
-    }
   };
 
   handleFirstClick(target: HTMLElement) {
-    target.setAttribute('state', 'startEndDate');
     const date = parseInt(target.getAttribute('date') as string);
     const formatedDate = this.generateDateByTimeStamp(date);
     this.setInputValue(date, 'start');
     this.setInputValue(date, 'end');
     this.startDate = formatedDate;
     this.endDate = formatedDate;
-    this.element.daySelected?.push(target);
-    this.numberClick++;
+    this.element.daySelected?.push(date);
+    this.numberClick = 1;
+    this.displaySelectedDate(true);
   }
 
   handleSecondClick(target: HTMLElement) {
     const dayTime = parseInt(target.getAttribute('date') as string);
-    const daySelectedTime = parseInt(this.element.daySelected[0].getAttribute('date') as string);
-
-    if (dayTime < daySelectedTime) {
-      this.element.daySelected[0].setAttribute('state', 'endDate');
-      target.setAttribute('state', 'startDate');
-      this.setInputValue(dayTime, 'start');
-      this.startDate = this.generateDateByTimeStamp(dayTime);
-      this.element.daySelected.unshift(target);
-    } else {
-      this.element.daySelected[0].setAttribute('state', 'startDate');
-      target.setAttribute('state', 'endDate');
-      this.endDate = this.generateDateByTimeStamp(dayTime);
-      this.setInputValue(dayTime, 'end');
-      this.element.daySelected.push(target);
+    this.element.daySelected.push(dayTime);
+    this.element.daySelected.sort();
+    const firstDay = this.element.daySelected[0];
+    const lastDay = this.element.daySelected[1];
+    if (firstDay === lastDay) {
+      this.removeAllValue();
+      this.numberClick = 0;
+    }else{
+      this.setInputValue(firstDay, 'start');
+      this.setInputValue(lastDay, 'end');
+      this.startDate = this.generateDateByTimeStamp(firstDay);
+      this.numberClick = 2;
     }
 
-    this.numberClick++;
+    this.displaySelectedDate();
   }
 
   handleThirdClick() {
-    const allTfDay = this.shadowRoot?.querySelectorAll('tf-day');
-    if (!allTfDay) return;
-
-    for (const day of allTfDay) {
-      const state = day.getAttribute('state');
-      if (state === 'selectedDate' || state === 'startDate' || state === 'endDate') {
-        day.setAttribute('state', 'default');
-      }
-    }
-    this.removeAttribute('start-date');
-    this.removeAttribute('end-date');
-    this.setInputValue(0, 'start');
-    this.setInputValue(0, 'end');
-    this.element.daySelected = [];
+    this.allDayToDefault();
+    this.removeAllValue();
     this.numberClick = 0;
   }
 
   get month() {
     const today = new Date();
     const month = this.allMonth[today.getMonth()];
- 
+
     return this.getAttribute('month') || month;
   }
 
@@ -701,11 +731,11 @@ export class TfCalendar extends TfBase {
     !value && this.removeAttribute('modal');
   }
 
-  get onlyOneDate() {
+  get onlyonedate() {
     return this.hasAttribute('onlyOneDate');
   }
 
-  set onlyOneDate(value) {
+  set onlyonedate(value) {
     value && this.setAttribute('onlyOneDate', '');
     !value && this.removeAttribute('onlyOneDate');
   }
@@ -714,7 +744,7 @@ export class TfCalendar extends TfBase {
     return this.getAttribute('start-date') || '';
   }
 
-  set startDate(value : string) {
+  set startDate(value: string) {
     this.setAttribute('start-date', value);
   }
 
@@ -722,15 +752,15 @@ export class TfCalendar extends TfBase {
     return this.getAttribute('end-date') || '';
   }
 
-  set endDate(value : string) {
+  set endDate(value: string) {
     this.setAttribute('end-date', value);
   }
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-calendar': TfCalendar;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-calendar': TfCalendar;
+  }
 }
 
 customElements.define('tf-calendar', TfCalendar);
