@@ -114,6 +114,7 @@ export class TfInputText extends TfBase {
         input.classList.remove('keep-focus');
       }
       this.value = input.value;
+      this.dispatchEvent(new CustomEvent('keyup', { detail: input.value }));
     });
   }
 
