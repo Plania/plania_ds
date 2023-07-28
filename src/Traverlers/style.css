@@ -1,0 +1,20 @@
+.traverlers-button-container{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.traverlers-container{
+    margin : 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+    width: calc(100% - 4rem);
+}
+
+.traverlers-container > h1 {
+    width: 100%;
+    text-align: center;
+}

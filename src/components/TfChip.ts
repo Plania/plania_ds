@@ -19,15 +19,16 @@ const style = css`
     color: var(--tf-sys-light-onprimary);
   }
 
-  .selected {
-  }
   .primary {
+    background-color: var(--tf-sys-light-primary);
     outline-color: var(--tf-sys-light-primary);
   }
   .secondary {
+    background-color: var(--tf-sys-light-secondary);
     outline-color: var(--tf-sys-light-secondary);
   }
   .tertiary {
+    background-color: var(--tf-sys-light-tertiary);
     outline-color: var(--tf-sys-light-tertiary);
   }
 
@@ -81,20 +82,19 @@ export class TfChip extends TfBase {
     if (!this.selected) {
       chipElem.classList.remove('selected');
       chipElem.classList.add('not-selected');
+    } else {
+      chipElem.classList.remove('not-selected');
+      chipElem.classList.add('selected');
     }
     switch (name) {
-      case 'selected':
-        chipElem.classList.remove('not-selected');
-        chipElem.classList.add('selected');
-        break;
-      case 'symbol':
-        if (!this.icon) return;
-        chipElem.insertAdjacentHTML('afterbegin', '<tf-icon icon="' + newValue + '"></tf-icon>');
-      case 'variant':
-        chipElem.classList.remove(oldValue);
-        chipElem.classList.add(newValue);
-
-        break;
+    case 'symbol':
+      if (!this.icon) return;
+      chipElem.insertAdjacentHTML('afterbegin', '<tf-icon icon="' + newValue + '"></tf-icon>');
+      break;
+    case 'variant':
+      chipElem.classList.remove(oldValue);
+      chipElem.classList.add(newValue);
+      break;
     }
   }
 
