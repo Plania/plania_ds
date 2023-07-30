@@ -192,7 +192,7 @@ const style = css`
 
   .slider-value-text {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -70%);
   }
   .slider-text {
     text-align: center;
@@ -249,7 +249,7 @@ export class TfSimpleSlider extends TfBase {
       `);
   }
   static get observedAttributes() {
-    return ['status', 'text', 'hasLabel'];
+    return ['status', 'text'];
   }
 
   connectedCallback() {
