@@ -27,12 +27,12 @@ const style = css`
     background-color: transparent;
   }
   .value-container input {
-    /* Reset the default input styles */
+   
     border: none;
     outline: none;
     box-shadow: none;
     background-color: transparent;
-    /* Add your custom input styles here */
+   
   }
   .slider-track {
     height: 1rem;
@@ -126,11 +126,9 @@ const style = css`
 
   .values span {
     display: flex;
-
     height: 24px;
     flex-direction: column;
     justify-content: center;
-
     font-family: Nunito;
     font-size: 16px;
     font-style: normal;
