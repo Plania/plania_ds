@@ -122,29 +122,29 @@ export class TfAgeSelector extends TfBase {
     this.eventForNumberInput();
     this.inputRange.addEventListener(
       'input',
-      () => (this.inputNumber.value = this.inputRange.value)
+      () => {this.inputNumber.value = this.inputRange.value; this.value = this.inputRange.value;}
     );
     this.eventForArrowUp();
     this.eventForArrowDown();
-    if (!this.slider) {
-      const slider = this.shadowRoot?.querySelector('.slider-container') as HTMLElement;
-      slider.style.display = 'none';
-    }
+    
   }
 
   static get observedAttributes() {
-    return ['slider', 'status'];
+    return ['slider', 'status', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     const upIconStyle = this.getStyleById('iconUp');
     const downIconStyle = this.getStyleById('iconDown');
     const sectionStyle = this.getSectionStyle();
-    const sliderExists = this.hasSlider();
 
-    if (sliderExists) {
+    if (this.slider) {
       this.showSlider();
+    }else{
+      const slider = this.shadowRoot?.querySelector('.slider-container') as HTMLElement;
+      slider.style.display = 'none';
     }
+    
 
     switch (name) {
     case 'status':
@@ -189,9 +189,11 @@ export class TfAgeSelector extends TfBase {
   eventForNumberInput = () => {
 
     this.inputNumber.value = this.inputRange.value;
+    this.value = this.inputRange.value;
 
     this.inputNumber.addEventListener('change', () => {
       this.inputRange.value = this.inputNumber.value;
+      this.value = this.inputNumber.value;
       this.checkInputValue();
       this.eventListener(this.inputRange.value);
     });
@@ -233,6 +235,7 @@ export class TfAgeSelector extends TfBase {
   handleOnClicked = (value : number) => {
     this.inputNumber.value = (parseInt(this.inputNumber.value) + value).toString();
     this.inputRange.value = this.inputNumber.value;
+    this.value = this.inputNumber.value;
     this.checkInputValue();
     this.eventListener(this.inputRange.value);
   };
@@ -306,6 +309,14 @@ export class TfAgeSelector extends TfBase {
 
   set status(value: string) {
     this.setAttribute('status', value);
+  }
+
+  get value(): string {
+    return this.getAttribute('value') || '';
+  }
+
+  set value(value: string) {
+    this.setAttribute('value', value);
   }
 }
 
