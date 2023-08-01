@@ -122,7 +122,19 @@ export class TfAgeSelector extends TfBase {
     this.eventForNumberInput();
     this.inputRange.addEventListener(
       'input',
-      () => {this.inputNumber.value = this.inputRange.value; this.value = this.inputRange.value;}
+      () => {
+        this.inputNumber.value = this.inputRange.value; 
+        this.value = this.inputRange.value;
+        this.dispatchEvent(new CustomEvent('input', { detail: this.inputRange.value }));
+      }
+    );
+    this.inputNumber.addEventListener(
+      'input',
+      () => {
+        this.inputRange.value = this.inputNumber.value;
+        this.value = this.inputNumber.value;
+        this.dispatchEvent(new CustomEvent('input', { detail: this.inputRange.value }));
+      }
     );
     this.eventForArrowUp();
     this.eventForArrowDown();
@@ -202,6 +214,7 @@ export class TfAgeSelector extends TfBase {
       this.value = this.inputNumber.value;
       this.checkInputValue();
       this.eventListener(this.inputRange.value);
+      this.dispatchEvent(new CustomEvent('change', { detail: this.inputRange.value }));
     });
 
     this.inputNumber.addEventListener('focus', () => {
