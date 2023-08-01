@@ -255,6 +255,7 @@ export class TfAgeSelector extends TfBase {
     this.inputNumber.value = (parseInt(this.inputNumber.value) + value).toString();
     this.inputRange.value = this.inputNumber.value;
     this.value = this.inputNumber.value;
+    this.dispatchEvent(new CustomEvent('click', { detail: this.inputRange.value }));
     this.checkInputValue();
     this.eventListener(this.inputRange.value);
   };
