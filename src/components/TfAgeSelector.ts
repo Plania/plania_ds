@@ -161,6 +161,12 @@ export class TfAgeSelector extends TfBase {
         sectionStyle.setProperty('--tf-font-color', COLORS.errorFont);
       }
       break;
+
+    case 'value':
+      this.inputNumber.value = _newValue;
+      this.inputRange.value = _newValue;
+      this.eventListener(_newValue);
+      break;
     default:
       break;
     }
