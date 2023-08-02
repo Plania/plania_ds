@@ -9,8 +9,6 @@ const TfDropdownIconDefault: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component with icon.',
   data: {
     content: html`
-      <tf-text-input icon="true" status="default" pictogramme="account-circle" label="Label">
-      </tf-text-input>
       <div slot="dropdown-options">
         <tf-dropdown-item>Option 1</tf-dropdown-item>
         <tf-dropdown-item>Option 2</tf-dropdown-item>
@@ -26,7 +24,6 @@ const TfDropdownDefault: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component with no icon.',
   data: {
     content: html`
-      <tf-text-input icon="false" status="default" label="Label"> </tf-text-input>
       <div slot="dropdown-options">
         <tf-dropdown-item>Option 1</tf-dropdown-item>
         <tf-dropdown-item>Option 2</tf-dropdown-item>
@@ -41,17 +38,7 @@ const TfDropdownDisabledIcon: StyleVariantProps<'tf-dropdown'> = {
   tag: 'tf-dropdown',
   description: 'A dropdown component disabled with icon.',
   data: {
-    content: html`
-      <div class="container">
-        <tf-text-input
-          icon="true"
-          status="disabled"
-          pictogramme="account-circle"
-          label="Label"
-        ></tf-text-input>
-      </div>
-    `,
-    disabled: true,
+    disabled: '',
   },
 };
 
@@ -60,14 +47,10 @@ const TfDropdownDisabled: StyleVariantProps<'tf-dropdown'> = {
   tag: 'tf-dropdown',
   description: 'A dropdown component disabled with no icon.',
   data: {
-    content: html`
-      <div class="container">
-        <tf-text-input icon="false" status="disabled" label="Label"></tf-text-input>
-      </div>
-    `,
-    disabled: true,
+    disabled: '',
   },
 };
+
 
 const meta: StyleComponentProps<'tf-dropdown'> = {
   ref: 'tf dropdown',
