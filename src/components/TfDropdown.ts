@@ -20,9 +20,13 @@ const style = css`
   .dropdown-content {
     display: none;
     position: relative;
+    margin-top: -1.5rem;
     background-color: var(--tf-light-surface);
     border-radius: 4px;
-    height: 5rem;
+    min-height: 3.3rem;  /* minimum height */
+    max-height: 20rem;  /* maximum height */
+    height: auto;  /* adaptable height */
+    overflow-y: auto; 
     padding: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -30,6 +34,7 @@ const style = css`
   .dropdown-content.open {
     display: block;
     cursor: pointer;
+    padding-top: 1.65rem;
   }
   .dropdown-content ::slotted(div) {
     position: absolute;
@@ -81,10 +86,33 @@ export class TfDropdown extends TfBase {
 
   connectedCallback() {
     this.addEventListener('click', this.toggleDropdown.bind(this));
+    this.observeSlot();
+  }
+
+  observeSlot() {
+    const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]');
+    const observer = new MutationObserver(() => {
+      this.adjustDropdownHeight();
+    });
+    
+    observer.observe(slot as Node, { childList: true });
   }
 
   disconnectedCallback() {
     this.removeEventListener('click', this.toggleDropdown.bind(this));
+  }
+
+  adjustDropdownHeight() {
+    const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]');
+    const dropdownContent = this.shadowRoot?.querySelector('.dropdown-content') as HTMLElement;
+    
+    if (slot instanceof HTMLSlotElement) {
+      const options = slot.assignedNodes().filter((node: Node) => node.nodeName.toLowerCase() === 'tf-dropdown-item');
+      const itemHeight = 2;  
+      const minHeight = Math.min(options.length, 3) * itemHeight;  // Fit at least 3 items
+
+      dropdownContent.style.minHeight = `${minHeight}rem`;
+    }
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
