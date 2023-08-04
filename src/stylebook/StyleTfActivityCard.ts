@@ -12,10 +12,10 @@ const ActvityCard : StyleVariantProps<'tf-activity-card'> = {
     rating : '2.5',
     address : 'Paris, France',
     liked : '',
-    'start-hours' : '10:00',
-    'end-hours' : '18:00',
+    price : '100 €',
     img : 'https://vivrelemarais.typepad.fr/.a/6a00d8341d8a0f53ef01b8d225c37d970c-pi',
-        
+    interest : ['food', 'culture', 'nature', 'shopping', 'sport', 'nightlife'], 
+    alert : '3 spots left!',  
   },
 };
 

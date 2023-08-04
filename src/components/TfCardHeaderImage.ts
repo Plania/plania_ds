@@ -66,7 +66,7 @@ export class TfCardHeaderImage extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['src', 'badge', 'favorite'];
+    return ['src', 'badge', 'favorite' , 'show_favorite'];
   }
 
   attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {
@@ -77,21 +77,28 @@ export class TfCardHeaderImage extends TfBase {
     case 'src':
       divElem.style.backgroundImage = `url(${_newValue})`;
       break;
-    case 'badge':
-      if (_newValue === _oldValue) return;
-      if (_newValue === 'eco') {
-        divElem.insertAdjacentElement('afterbegin', document.createElement('tf-badge'));
-      } else if (_newValue === 'none') {
-        const badgeElem = divElem.querySelector('tf-badge');
-        badgeElem?.remove();
-      }
-      break;
     }
-    if (this.favorite) {
-      favoriteElem?.removeAttribute('enabled');
+
+    if (this.badge){
+      divElem.insertAdjacentElement('afterbegin', document.createElement('tf-badge'));
     } else {
-      favoriteElem?.setAttribute('enabled', '');
+      const badgeElem = divElem.querySelector('tf-badge');
+      badgeElem?.remove();
     }
+
+    if (this.favorite) {
+      favoriteElem.removeAttribute('enabled');
+    } else {
+      favoriteElem.setAttribute('enabled', '');
+    }
+
+    if (this.showFavorite) {
+      favoriteElem.style.display = 'block';
+    } else {
+      favoriteElem.style.display = 'none';
+    }
+
+
   }
 
   eventForFavorite(attribute: string, value: string) {
@@ -113,11 +120,12 @@ export class TfCardHeaderImage extends TfBase {
   }
 
   get badge() {
-    return this.getAttribute('badge');
+    return this.hasAttribute('badge');
   }
 
   set badge(value) {
-    this.setAttribute('badge', value ?? '');
+    value && this.setAttribute('badge', '');
+    !value && this.removeAttribute('badge');
   }
 
   get favorite() {
@@ -127,6 +135,15 @@ export class TfCardHeaderImage extends TfBase {
   set favorite(value) {
     value && this.setAttribute('favorite', '');
     !value && this.removeAttribute('favorite');
+  }
+
+  set showFavorite(value) {
+    value && this.setAttribute('show_favorite', '');
+    !value && this.removeAttribute('show_favorite');
+  }
+
+  get showFavorite() {
+    return this.hasAttribute('show_favorite');
   }
 }
 

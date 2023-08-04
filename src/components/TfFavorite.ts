@@ -42,7 +42,7 @@ export class TfFavorite extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['enabled'];
+    return ['enabled' , 'color'];
   }
 
   attributeChangedCallback() {
@@ -54,6 +54,12 @@ export class TfFavorite extends TfBase {
     } else {
       favoriteElem.classList.remove('enabled');
     }
+
+    if (this.color) {
+      favoriteElem.style.setProperty('fill', this.color);
+      favoriteElem.style.setProperty('stroke', this.color);
+    }
+
   }
 
   get enabled() {
@@ -63,6 +69,14 @@ export class TfFavorite extends TfBase {
   set enabled(_value) {
     _value && this.setAttribute('enabled', '');
     !_value && this.removeAttribute('enabled');
+  }
+
+  get color() {
+    return this.getAttribute('color');
+  }
+
+  set color(_value) {
+    this.setAttribute('color', _value || 'var(--tf-sys-light-surface)');
   }
 }
 

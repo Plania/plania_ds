@@ -7,7 +7,7 @@ const defaultCardHeaderImage: StyleVariantProps<'tf-card-header-image'> = {
   tag: 'tf-card-header-image',
   description: 'Card header image without eco badge and not in favorite',
   data: {
-    src: '/assets/image.png',
+    src: './assets/image.jpg',
     eco : 'none',
   },
 };
@@ -17,8 +17,9 @@ const ecoNotFavorite: StyleVariantProps<'tf-card-header-image'> = {
   tag: 'tf-card-header-image',
   description: 'Card header image with eco badge and not in favorite',
   data: {
-    src: '/assets/image.png',
+    src: '/assets/image.jpg',
     badge : 'eco',
+    show_favorite : '',
   },
 };
 
@@ -27,7 +28,7 @@ const noEcoFavorite: StyleVariantProps<'tf-card-header-image'> = {
   tag: 'tf-card-header-image',
   description: 'Card header image without eco badge and in favorite',
   data: {
-    src: '/assets/image.png',
+    src: '/assets/image.jpg',
     favorite : '',
   },
 };
@@ -37,7 +38,7 @@ const ecoFavorite: StyleVariantProps<'tf-card-header-image'> = {
   tag: 'tf-card-header-image',
   description: 'Card header image with eco badge and in favorite',
   data: {
-    src: '/assets/image.png',
+    src: '/assets/image.jpg',
     badge : 'eco',
     favorite : '',
   },
