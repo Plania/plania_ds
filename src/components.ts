@@ -39,3 +39,4 @@ export * from './components/TfWeek.js';
 export * from './components/TfWeekDays.js';
 export * from './components/TfWelcomeCard.js';
 export * from './components/TfWelcomeImage.js';
+export * from './components/TfTypeAHeadItem.js';
