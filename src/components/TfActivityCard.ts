@@ -7,7 +7,6 @@ const style = css`
     width: 100%;
     display: block;
     min-height: 10rem;
-    
   }
   .card {
     display: flex;
@@ -16,7 +15,7 @@ const style = css`
     min-height: inherit;
     position: absolute;
     transform-style: preserve-3d;
-    transition: all 1.0s linear;
+    transition: all 0.5s linear;
   }
 
   .flipped {
@@ -158,21 +157,40 @@ const style = css`
   }
 
   .face.back {
-    display: block;
     transform: rotateY(180deg);
     box-sizing: border-box;
-    padding: 10px;
-    color: white;
     text-align: center;
-    background-color: #aaa;
   }
 
   .face.back.flipped {
     transform: rotateY(0deg);
     transform-style: preserve-3d;
-    transition: all 1.0s linear;
-    
-  } 
+    transition: all 0.5s linear;
+  }
+
+  .back {
+    display: flex;
+    padding: 1.25rem 3.125rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.375rem;
+    background: var(--tf-sys-light-surface, #fbfdfd);
+  }
+
+  .back > h3 {
+    font: var(--tf-headline-5);
+  }
+
+  .back > p {
+    font: var(--tf-body1);
+  }
+
+  .back > div {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
 `;
 
 export class TfActivityCard extends TfBase {
@@ -187,6 +205,8 @@ export class TfActivityCard extends TfBase {
     card: Element;
     close: HTMLElement;
     back: HTMLElement;
+    NoButton: HTMLElement;
+    tfFavorite: HTMLElement;
   };
 
   point = html`
@@ -195,6 +215,7 @@ export class TfActivityCard extends TfBase {
     </svg>
   `;
   resizeObserver: ResizeObserver;
+  mutationObserver: MutationObserver;
   constructor() {
     super();
     this.shadowRoot &&
@@ -232,9 +253,13 @@ export class TfActivityCard extends TfBase {
             <tf-favorite color="red"></tf-favorite>
           </section>
         </section>
-        <div class="back face">
-          <p>This is nice for exposing more information about an image.</p>
-          <p>Any content can go here.</p>
+        <section class="back face">
+          <h3>YOU WANT TO DISCARD THIS ACTIVITY ?</h3>
+          <div>
+            <tf-button active type='primary' text id='no'>No</tf-button>
+            <tf-button active type='primary' text>Yes</tf-button>
+          </div>
+          <p>Don’t worry, a new recommendation is on the way</p>
         </div>
       `);
     this.elements = {
@@ -248,12 +273,27 @@ export class TfActivityCard extends TfBase {
       card: this.shadowRoot?.querySelector('.card') as HTMLElement,
       close: this.shadowRoot?.querySelector('tf-icon[icon="close"]') as HTMLElement,
       back: this.shadowRoot?.querySelector('.back') as HTMLElement,
+      NoButton: this.shadowRoot?.querySelector('#no') as HTMLElement,
+      tfFavorite: this.shadowRoot?.querySelector('tf-favorite') as HTMLElement
     };
 
     this.resizeObserver = new ResizeObserver((entries) => {
       const host = this.shadowRoot?.host as HTMLElement;
+      const sectionBack = this.shadowRoot?.querySelector('.back') as HTMLElement;
       host.style.setProperty('height', `${entries[0].contentRect.height}px`);
+      sectionBack.style.setProperty('height', `${entries[0].contentRect.height}px`);
     });
+
+    this.mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'enabled') {
+          this.liked = this.elements.tfFavorite.hasAttribute('enabled');
+        }
+      });
+    }
+    );
+
+
   }
 
   connectedCallback() {
@@ -261,8 +301,9 @@ export class TfActivityCard extends TfBase {
     this.elements.close.addEventListener('click', () => {
       this.elements.card.classList.toggle('flipped');
       this.elements.back.classList.toggle('flipped');
-    }
-    );
+    });
+    this.showBack();
+    this.mutationObserver.observe(this.elements.tfFavorite, { attributes: true });
   }
 
   static get observedAttributes() {
@@ -335,6 +376,16 @@ export class TfActivityCard extends TfBase {
         `${interest} ${index !== _newValue.split(',').length - 1 ? this.point : ''}`
       );
     });
+  };
+
+
+
+  showBack = () => {
+    this.elements.NoButton.addEventListener('click', () => {
+      this.elements.card.classList.toggle('flipped');
+      this.elements.back.classList.toggle('flipped');
+    }
+    );
   };
 
   get img() {
