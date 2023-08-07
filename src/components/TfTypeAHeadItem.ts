@@ -25,12 +25,6 @@ const style = css`
     margin-bottom: -1px;
   }
 
-  .bottom {
-    border-bottom: 1px solid
-      var(--tf-read-only-light-outline-opacity-016, rgba(113, 120, 125, 0.16));
-    margin-top: -1px;
-  }
-
   .content {
     display: flex;
     align-items: center;
