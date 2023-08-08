@@ -333,7 +333,7 @@ export class TfSimpleSlider extends TfBase {
         if (_newValue === 'disabled') {
           this.style.setProperty(
             '--svg-color',
-            '#000'
+            '#71787D'
           ); 
         } else {
           this.style.setProperty(
