@@ -115,6 +115,10 @@ export class TfInputText extends TfBase {
       }
       this.value = input.value;
       this.dispatchEvent(new CustomEvent('keyup', { detail: input.value }));
+      input.addEventListener('focus', () => {
+        this.dispatchEvent(new CustomEvent('focus'));
+      });
+
     });
   }
 
