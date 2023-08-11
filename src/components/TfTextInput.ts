@@ -40,6 +40,12 @@ const style = css`
       font: var(--tf-label-large);
    }
 
+   .keep-focus-status ~ label {
+      top: -10px;
+      left: 2rem;
+      font: var(--tf-label-large);
+   }
+
   .input-icon {
     padding-left: 3rem !important;
     width: calc(100% - 3rem - 2px);
@@ -140,6 +146,11 @@ export class TfInputText extends TfBase {
       input.disabled = _newValue === 'disabled';
       if (_newValue === 'error') {
         label.insertAdjacentHTML('afterend', '<div class="error-message"><slot name="error"></slot></div>');
+      }
+      if (_newValue === 'label') {
+        input.classList.add('keep-focus-status');
+      }else{
+        input.classList.remove('keep-focus-status');
       }
       break;
 
