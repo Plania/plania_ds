@@ -22,6 +22,7 @@ const style = css`
   input:focus ~ label,
   .error ~ label {
     top: -10px;
+    font : var(--tf-label-large);
   }
 
   .input-icon ~ label {
@@ -36,6 +37,7 @@ const style = css`
   .keep-focus ~ label {
       top: -10px;
       left: 2rem;
+      font: var(--tf-label-large);
    }
 
   .input-icon {
@@ -63,7 +65,7 @@ const style = css`
   }
 
   .default {
-    background-color: var(--tf-sys-light-primary-container);
+    background-color: var(--tf-sys-light-surface);
   }
 
   .disabled {
@@ -107,13 +109,17 @@ export class TfInputText extends TfBase {
   connectedCallback() {
     const input = this.shadowRoot?.querySelector('input');
     if(!input) return;
-    input.addEventListener('change', () => {
+    input.addEventListener('input', () => {
       if (input.value.length > 0) {
         input.classList.add('keep-focus');
       }else{
         input.classList.remove('keep-focus');
       }
       this.value = input.value;
+      this.dispatchEvent(new CustomEvent('keyup', { detail: input.value }));
+      input.addEventListener('focus', () => {
+        this.dispatchEvent(new CustomEvent('focus'));
+      });
     });
   }
 

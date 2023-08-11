@@ -162,6 +162,7 @@ const style = css`
       --tf-body-small: var(--body-small, 400 0.75rem/1rem Nunito, sans-serif);
       --tf-button: var(--button, 700 1rem Nunito, sans-serif);
       --tf-body1: var(--body1, 400 1rem/1.5rem Nunito, sans-serif);
+      --tf-label-large : var(--label-large, 600 1rem/1.5rem Nunito, sans-serif);
    }
 
    .primary {
