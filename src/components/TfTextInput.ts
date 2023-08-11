@@ -22,6 +22,7 @@ const style = css`
   input:focus ~ label,
   .error ~ label {
     top: -10px;
+    left: 0;
     font : var(--tf-label-large);
   }
 
@@ -31,18 +32,18 @@ const style = css`
 
   .input-icon:focus ~ label,
   .error ~ label {
-    left: 2rem;
+    left: 0;
   }
 
   .keep-focus ~ label {
       top: -10px;
-      left: 2rem;
+      left: 0;
       font: var(--tf-label-large);
    }
 
    .keep-focus-status ~ label {
       top: -10px;
-      left: 2rem;
+      left: 0;
       font: var(--tf-label-large);
    }
 
