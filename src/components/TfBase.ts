@@ -147,23 +147,24 @@ const style = css`
     --tf-sys-light-outline: var(--light-outline, #71787d);
     --tf-sys-light-background: var(--light-background, #f3f3f3);
 
-    --tf-subhead1: var(--subhead1, 700 1rem/2rem Nunito, sans-serif);
-    --tf-caption: var(--caption, 400 0.75rem/1rem Nunito, sans-serif);
-    --tf-body-medium: var(--body-medium, 400 0.875rem/1.25rem Nunito, sans-serif);
-    --tf-body-small: var(--body-small, 400 0.75rem/1rem Nunito, sans-serif);
-    --tf-button: var(--button, 700 1rem Nunito, sans-serif);
-    --tf-body1: var(--body1, 400 1rem/1.5rem Nunito, sans-serif);
-  }
+      --tf-subhead1: var(--subhead1, 700 1rem/2rem Nunito, sans-serif);
+      --tf-caption: var(--caption, 400 0.75rem/1rem Nunito, sans-serif);
+      --tf-body-medium: var(--body-medium, 400 0.875rem/1.25rem Nunito, sans-serif);
+      --tf-body-small: var(--body-small, 400 0.75rem/1rem Nunito, sans-serif);
+      --tf-button: var(--button, 700 1rem Nunito, sans-serif);
+      --tf-body1: var(--body1, 400 1rem/1.5rem Nunito, sans-serif);
+      --tf-label-large : var(--label-large, 600 1rem/1.5rem Nunito, sans-serif);
+   }
 
   .primary {
     background-color: var(--tf-sys-light-primary);
     color: var(--tf-sys-light-onprimary);
   }
 
-  .secondary {
-    background-color: var(--tf-sys-light-secondary);
-    color: var(--tf-sys-light-onsecondary);
-  }
+   .secondary {
+      background-color: var(--tf-sys-light-secondary);
+      color: var(--tf-sys-light-onsecondary);
+   }
 
   .tertiary {
     background-color: var(--tf-sys-light-tertiary);

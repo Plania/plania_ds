@@ -22,6 +22,7 @@ const style = css`
   input:focus ~ label,
   .error ~ label {
     top: -10px;
+    font : var(--tf-label-large);
   }
 
   .input-icon ~ label {
@@ -36,6 +37,7 @@ const style = css`
   .keep-focus ~ label {
       top: -10px;
       left: 2rem;
+      font: var(--tf-label-large);
    }
 
   .input-icon {
@@ -63,7 +65,7 @@ const style = css`
   }
 
   .default {
-    background-color: var(--tf-sys-light-primary-container);
+    background-color: var(--tf-sys-light-surface);
   }
 
   .disabled {
