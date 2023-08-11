@@ -120,7 +120,6 @@ export class TfInputText extends TfBase {
       input.addEventListener('focus', () => {
         this.dispatchEvent(new CustomEvent('focus'));
       });
-
     });
   }
 
