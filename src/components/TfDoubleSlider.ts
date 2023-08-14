@@ -7,6 +7,9 @@ const style = css`
     --tf-outline-color: var(--tf-sys-light-outline);
   }
 
+  tf-text-input {
+    width: 100%;
+  }
   .container {
     position: relative;
     width: 100%;
@@ -121,7 +124,7 @@ const style = css`
   .values {
     flex-direction: row;
     display: flex;
-    margin-top: -60px;
+    gap: 0.625rem;
   }
 
   .values span {
@@ -143,9 +146,9 @@ export class TfDoubleSlider extends TfBase {
   private sliderTwo!: HTMLInputElement;
   private displayValOne!: HTMLElement | null;
   private displayValTwo!: HTMLElement | null;
-  private minGap: number = 0;
+  private minGap = 0;
   private sliderTrack!: HTMLElement | null;
-  private sliderMaxValue: number = 10000;
+  private sliderMaxValue = 10000;
   private inputOne!: HTMLInputElement | null;
   private inputTwo!: HTMLInputElement | null;
 
@@ -166,42 +169,8 @@ export class TfDoubleSlider extends TfBase {
             <input type="range" min="0" id="slider-2" max="${this.sliderMaxValue.toString()}" />
           </div>
           <div class="values">
-            <span>Min</span>
-            <div class="value-container">
-              <div class="input-container">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M15.5 18.5C12.99 18.5 10.82 17.08 9.74 15H15.5L16.5 13H9.08C9.03 12.67 9 12.34 9 12C9 11.66 9.03 11.33 9.08 11H15.5L16.5 9H9.74C10.82 6.92 13 5.5 15.5 5.5C17.11 5.5 18.59 6.09 19.73 7.07L21.5 5.3C19.91 3.87 17.8 3 15.5 3C11.58 3 8.26 5.51 7.02 9H3.5L2.5 11H6.56C6.52 11.33 6.5 11.66 6.5 12C6.5 12.34 6.52 12.67 6.56 13H3.5L2.5 15H7.02C8.26 18.49 11.58 21 15.5 21C17.81 21 19.91 20.13 21.5 18.7L19.72 16.93C18.59 17.91 17.12 18.5 15.5 18.5Z"
-                    fill="#250127"
-                  />
-                </svg>
-                <input type="number" id="input-1" value="3000" min="0" max="10000" />
-              </div>
-            </div>
-            <span>Max </span>
-            <div class="value-container">
-              <div class="input-container">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M15.5 18.5C12.99 18.5 10.82 17.08 9.74 15H15.5L16.5 13H9.08C9.03 12.67 9 12.34 9 12C9 11.66 9.03 11.33 9.08 11H15.5L16.5 9H9.74C10.82 6.92 13 5.5 15.5 5.5C17.11 5.5 18.59 6.09 19.73 7.07L21.5 5.3C19.91 3.87 17.8 3 15.5 3C11.58 3 8.26 5.51 7.02 9H3.5L2.5 11H6.56C6.52 11.33 6.5 11.66 6.5 12C6.5 12.34 6.52 12.67 6.56 13H3.5L2.5 15H7.02C8.26 18.49 11.58 21 15.5 21C17.81 21 19.91 20.13 21.5 18.7L19.72 16.93C18.59 17.91 17.12 18.5 15.5 18.5Z"
-                    fill="#250127"
-                  />
-                </svg>
-                <input type="number" id="input-2" value="7000" min="0" max="10000" />
-              </div>
-            </div>
+          <tf-text-input icon="true" status="label" pictogramme="euro-symbol" label="Min" id='input-1'></tf-text-input>
+          <tf-text-input icon="true" status="label" pictogramme="euro-symbol" label="Max" id='input-2'></tf-text-input>
           </div>
         </div>
       `);
@@ -239,7 +208,8 @@ export class TfDoubleSlider extends TfBase {
 
       this.sliderOne.value = this.inputOne.value;
       this.sliderTwo.value = this.inputTwo.value;
-
+      this.minValue = this.inputOne.value;
+      this.maxValue = this.inputTwo.value;
       this.fillColor();
     }
   }
@@ -256,54 +226,56 @@ export class TfDoubleSlider extends TfBase {
 
       if (thumbOne && thumbTwo && sliderTrack) {
         switch (newValue) {
-          case 'default':
-            thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-secondary)');
-            thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-secondary)');
-            sliderTrack.style.setProperty(
-              '--tf-track-fill-color',
-              'var(--tf-sys-light-secondary-container)'
-            );
-            break;
-          case 'focus':
-            thumbOne.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
-            thumbTwo.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
-            sliderTrack.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
-            break;
-          case 'disabled':
-            thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
-            thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
-            thumbOne.style.setProperty(
-              '--tf-track-fill-color',
-              'var(--tf-sys-light-surface-variant'
-            );
-            thumbTwo.style.setProperty(
-              '--tf-track-fill-color',
-              'var(--tf-sys-light-surface-variant'
-            );
+        case 'default':
+          thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-secondary)');
+          thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-secondary)');
+          sliderTrack.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-secondary-container)'
+          );
+          break;
+        case 'focus':
+          thumbOne.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
+          thumbTwo.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
+          sliderTrack.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
+          break;
+        case 'disabled':
+          thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
+          thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
+          thumbOne.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-surface-variant'
+          );
+          thumbTwo.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-surface-variant'
+          );
 
-            thumbOne.disabled = true;
-            thumbTwo.disabled = true;
-            break;
-          case 'error':
-            thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
-            thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
-            thumbOne.style.setProperty(
-              '--tf-track-fill-color',
-              'var(--tf-sys-light-error-container)'
-            );
-            thumbTwo.style.setProperty(
-              '--tf-track-fill-color',
-              'var(--tf-sys-light-error-container)'
-            );
-            thumbOne.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
-            thumbTwo.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
-            break;
+          thumbOne.disabled = true;
+          thumbTwo.disabled = true;
+          break;
+        case 'error':
+          thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
+          thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
+          thumbOne.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-error-container)'
+          );
+          thumbTwo.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-error-container)'
+          );
+          thumbOne.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
+          thumbTwo.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
+          break;
         }
       }
     }
   }
 
   connectedCallback() {
+    
+
     this.displayValOne = this.shadowRoot!.getElementById('input-1') as HTMLInputElement;
     this.displayValTwo = this.shadowRoot!.getElementById('input-2') as HTMLInputElement;
 
@@ -332,7 +304,7 @@ export class TfDoubleSlider extends TfBase {
   }
   private slideOne() {
     if (this.sliderOne && this.displayValOne) {
-      let valueOne = parseInt(this.sliderOne.value);
+      const valueOne = parseInt(this.sliderOne.value);
       this.displayValOne.textContent = valueOne.toString();
 
       if (this.inputOne) {
@@ -345,7 +317,7 @@ export class TfDoubleSlider extends TfBase {
 
   private slideTwo() {
     if (this.sliderTwo && this.displayValTwo) {
-      let valueTwo = parseInt(this.sliderTwo.value);
+      const valueTwo = parseInt(this.sliderTwo.value);
       this.displayValTwo.textContent = valueTwo.toString();
 
       if (this.inputTwo) {
@@ -368,25 +340,25 @@ export class TfDoubleSlider extends TfBase {
         this.sliderTwo.matches(':active');
 
       switch (status) {
-        case 'default':
-          if (thumbsInteracted) {
-            this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
-          } else {
-            this.sliderTrack.style.background = `linear-gradient(to right,var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary-container) ${percent1}%, var(--tf-sys-light-secondary-container) ${percent2}%,var(--tf-sys-light-surface-variant)  ${percent2}%)`;
-          }
-          break;
-        case 'focus':
+      case 'default':
+        if (thumbsInteracted) {
           this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
-          break;
-        case 'disabled':
-          this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent2}%, var(--tf-sys-light-surface-variant) ${percent2}%)`;
+        } else {
+          this.sliderTrack.style.background = `linear-gradient(to right,var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary-container) ${percent1}%, var(--tf-sys-light-secondary-container) ${percent2}%,var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+        }
+        break;
+      case 'focus':
+        this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+        break;
+      case 'disabled':
+        this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent2}%, var(--tf-sys-light-surface-variant) ${percent2}%)`;
 
-          break;
-        case 'error':
-          this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-error-container) ${percent1}%, var(--tf-sys-light-error-container) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
-          break;
-        default:
-          break;
+        break;
+      case 'error':
+        this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-error-container) ${percent1}%, var(--tf-sys-light-error-container) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+        break;
+      default:
+        break;
       }
     }
   }
@@ -404,6 +376,22 @@ export class TfDoubleSlider extends TfBase {
 
   set userInput(value) {
     this.setAttribute('userinput', value);
+  }
+
+  get minValue() {
+    return this.getAttribute('min') || '0';
+  }
+
+  set minValue(value) {
+    this.setAttribute('min', value);
+  }
+
+  get maxValue() {
+    return this.getAttribute('max') || '100';
+  }
+
+  set maxValue(value) {
+    this.setAttribute('max', value);
   }
 }
 
