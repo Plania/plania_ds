@@ -52,16 +52,20 @@ const style = css`
 export class TfDropdown extends TfBase {
   private _disabled = false;
   private _isDropdownOpen = false;
+  private _hasIcon = true;
+  private _pictogramme = '';
+  private _label = '';
 
   constructor() {
     super();
+    this._hasIcon = this.hasAttribute('icon');
     this.shadowRoot && 
     (this.shadowRoot.innerHTML += html`
     <style>
       ${style}
     </style>
     <div class="container">
-    <tf-text-input icon="true" status="default" pictogramme="account-circle" label="Label"> </tf-text-input>
+    <tf-text-input icon="${this._hasIcon ? 'true' : 'false'}" status="default" pictogramme="${this._pictogramme}" label="${this._label}"></tf-text-input>
       <svg
         width="13"
         height="9"
@@ -81,7 +85,7 @@ export class TfDropdown extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['disabled','label'];
+    return ['disabled','label', 'icon', 'pictogramme', 'open'];
   }
 
   connectedCallback() {
@@ -121,10 +125,22 @@ export class TfDropdown extends TfBase {
       this._disabled = newValue !== null;
       this.updateDisabledState();
       textInput.setAttribute('status', 'disabled');
+    }else if (name === 'open') {
+      this._isDropdownOpen = newValue === 'true';
+      this.isDropdownOpen = this._isDropdownOpen;
     }
     switch (name) {
-    case 'label': 
+    case 'label':
       textInput.setAttribute('label', newValue || '');
+      break;
+    case 'icon':
+      this._hasIcon = newValue === 'true';
+      this._hasIcon ? textInput.setAttribute('icon', 'true') : textInput.removeAttribute('icon');
+      break;
+    case 'pictogramme':
+      this._pictogramme = newValue || '';
+      textInput.setAttribute('pictogramme', newValue || '');
+      break;
     }
   }
 

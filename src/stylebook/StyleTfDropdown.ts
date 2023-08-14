@@ -15,6 +15,9 @@ const TfDropdownIconDefault: StyleVariantProps<'tf-dropdown'> = {
         <tf-dropdown-item>Option 3</tf-dropdown-item>
       </div>
     `,
+    icon: 'true',
+    pictogramme: 'account-circle',
+    label: 'Label',
   },
 };
 
@@ -30,6 +33,9 @@ const TfDropdownDefault: StyleVariantProps<'tf-dropdown'> = {
         <tf-dropdown-item>Option 3</tf-dropdown-item>
       </div>
     `,
+    icon: 'false',
+    pictogramme: '',
+    label: 'Label',
   },
 };
 
@@ -39,6 +45,9 @@ const TfDropdownDisabledIcon: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component disabled with icon.',
   data: {
     disabled: '',
+    icon: 'true',
+    pictogramme: 'account-circle',
+    label: 'Label',
   },
 };
 
@@ -48,6 +57,9 @@ const TfDropdownDisabled: StyleVariantProps<'tf-dropdown'> = {
   description: 'A dropdown component disabled with no icon.',
   data: {
     disabled: '',
+    icon: 'false',
+    pictogramme: '',
+    label: 'Label',
   },
 };
 
