@@ -81,7 +81,6 @@ const style = css`
     background: var(--tf-thumb-color);
     border: 1px solid var(--tf-outline-color);
     box-shadow: none;
-    margin-top: -60px;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
     background-size: cover;
     background-position: center;
@@ -99,6 +98,8 @@ const style = css`
     background-size: cover;
     background-position: center;
   }
+  
+
 
   .input-container {
     display: flex;
@@ -138,6 +139,9 @@ const style = css`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: 0.1px;
+  }
+  #slider-1,#slider-2{
+    margin-top:2px;
   }
 `;
 
@@ -189,6 +193,8 @@ export class TfDoubleSlider extends TfBase {
       this.sliderOne.addEventListener('input', () => this.slideOne());
       this.sliderTwo.addEventListener('input', () => this.slideTwo());
     }
+    
+   
   }
   private updateSliderValues() {
     if (this.inputOne && this.inputTwo && this.sliderOne && this.sliderTwo) {
@@ -201,7 +207,10 @@ export class TfDoubleSlider extends TfBase {
       if (clampedValueTwo - clampedValueOne <= this.minGap) {
         this.inputOne.value = (clampedValueTwo - this.minGap).toString();
         this.inputTwo.value = (clampedValueOne + this.minGap).toString();
+        
+       
       }
+      
 
       this.displayValOne!.textContent = this.inputOne.value;
       this.displayValTwo!.textContent = this.inputTwo.value;
@@ -213,7 +222,7 @@ export class TfDoubleSlider extends TfBase {
       this.fillColor();
     }
   }
-
+  
   static get observedAttributes() {
     return ['status', 'userinput'];
   }
