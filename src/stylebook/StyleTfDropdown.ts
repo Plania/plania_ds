@@ -13,6 +13,7 @@ const TfDropdownIconDefault: StyleVariantProps<'tf-dropdown'> = {
         <tf-dropdown-item>Option 1</tf-dropdown-item>
         <tf-dropdown-item>Option 2</tf-dropdown-item>
         <tf-dropdown-item>Option 3</tf-dropdown-item>
+        <tf-dropdown-item>Option 4</tf-dropdown-item>
       </div>
     `,
     icon: 'true',

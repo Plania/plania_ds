@@ -7,6 +7,10 @@ const style = css`
 
   .container tf-text-input {
     flex: 1 0 auto;
+    border-radius: 4px 4px 0 0;
+    box-sizing: border-box; 
+    width: auto;
+    border-bottom: none; 
   }
   .container svg {
     position: absolute;
@@ -19,16 +23,18 @@ const style = css`
 
   .dropdown-content {
     display: none;
-    position: relative;
+    position: relative; 
+    width: 100%;
     margin-top: -1.5rem;
     background-color: var(--tf-light-surface);
-    border-radius: 4px;
-    min-height: 3.3rem;  /* minimum height */
-    max-height: 20rem;  /* maximum height */
-    height: auto;  /* adaptable height */
+    border-radius: 0 0 4px 4px;
+    min-height: 3.3rem;  
+    max-height: calc(3.3rem * 3);
     overflow-y: auto; 
-    padding: 8px;
+    padding: 0;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    z-index: 2;
   }
 
   .dropdown-content.open {
@@ -37,7 +43,8 @@ const style = css`
     padding-top: 1.65rem;
   }
   .dropdown-content ::slotted(div) {
-    position: absolute;
+    position: relative;
+    padding: 8px;
   }
   .tf-dropdown[disabled] .container svg {
     pointer-events: none;
@@ -56,9 +63,16 @@ export class TfDropdown extends TfBase {
   private _pictogramme = '';
   private _label = '';
 
+  boundToggleDropdown: any;
+  boundFilterOptions: any;
+  boundOnOptionClick: any;
+
   constructor() {
     super();
     this._hasIcon = this.hasAttribute('icon');
+    this.boundToggleDropdown = this.toggleDropdown.bind(this);
+    this.boundFilterOptions = this.filterOptions.bind(this);
+    this.boundOnOptionClick = this.onOptionClick.bind(this);
     this.shadowRoot && 
     (this.shadowRoot.innerHTML += html`
     <style>
@@ -89,10 +103,36 @@ export class TfDropdown extends TfBase {
   }
 
   connectedCallback() {
-    this.addEventListener('click', this.toggleDropdown.bind(this));
+    this.addEventListener('click', this.boundToggleDropdown);
+    
+    const textInput = this.shadowRoot?.querySelector('tf-text-input');
+    if (textInput) {
+      textInput.addEventListener('input', this.boundFilterOptions);
+    }
+  
+    const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]');
+    slot?.addEventListener('click', this.boundOnOptionClick);
+
     this.observeSlot();
   }
 
+  onOptionClick(event: Event) {
+    const clickedOption = event.target as HTMLElement;
+    
+    // Ensure that the clicked target is a tf-dropdown-item
+    if (clickedOption.nodeName.toLowerCase() === 'tf-dropdown-item') {
+      const textValue = clickedOption.textContent || '';
+      this.setInputValue(textValue);
+      this.isDropdownOpen = false;  // Close the dropdown
+    }
+  }
+
+  setInputValue(value: string) {
+    const textInput = this.shadowRoot?.querySelector('tf-text-input');
+    if (textInput) {
+      textInput.setAttribute('value', value); // set the value of text input to selected option
+    }
+  }
   observeSlot() {
     const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]');
     const observer = new MutationObserver(() => {
@@ -103,7 +143,36 @@ export class TfDropdown extends TfBase {
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', this.toggleDropdown.bind(this));
+    this.removeEventListener('click', this.boundToggleDropdown);
+    
+    const textInput = this.shadowRoot?.querySelector('tf-text-input');
+    if (textInput) {
+      textInput.removeEventListener('input', this.boundFilterOptions);
+    }
+  
+    const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]');
+    slot?.removeEventListener('click', this.boundOnOptionClick);
+  }
+
+  filterOptions() {
+    const textInputComponent = this.shadowRoot?.querySelector('tf-text-input');
+    if (!textInputComponent) return;
+    
+    const actualInput = textInputComponent.shadowRoot?.querySelector('input');
+    const actualInputValue = actualInput?.value ?? '';
+  
+    const options = Array.from(this.querySelectorAll('tf-dropdown-item'));
+    options.forEach((option) => {
+      if (option.textContent?.trim().toLowerCase().includes(actualInputValue.trim().toLowerCase())) {
+        option.style.display = '';
+      } else {
+        option.style.display = 'none';
+      }
+    });
+    
+    if (!this.isDropdownOpen) {
+      this.isDropdownOpen = true;
+    }
   }
 
   adjustDropdownHeight() {
@@ -118,6 +187,7 @@ export class TfDropdown extends TfBase {
       dropdownContent.style.minHeight = `${minHeight}rem`;
     }
   }
+  
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     const textInput = this.shadowRoot?.querySelector('tf-text-input') as HTMLElement;
@@ -189,9 +259,23 @@ export class TfDropdown extends TfBase {
 
   toggleDropdown(event: MouseEvent) {
     event.stopPropagation();
-    if (!this._disabled) {
-      this._isDropdownOpen = !this._isDropdownOpen;
-      this.isDropdownOpen = this._isDropdownOpen;
+    const clickedElem = event.target as HTMLElement;
+
+    if (clickedElem.nodeName.toLowerCase() !== 'tf-dropdown-item') {
+      if (!this._disabled) {
+        this._isDropdownOpen = !this._isDropdownOpen;
+        this.isDropdownOpen = this._isDropdownOpen;
+
+        if (!this._isDropdownOpen) {
+          const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]') as HTMLSlotElement;
+          const options = slot.assignedNodes().filter((node: Node) => node.nodeName.toLowerCase() === 'tf-dropdown-item');
+
+          // Reset option visibility when dropdown is closed
+          options.forEach(option => {
+            (option as HTMLElement).style.display = 'block';
+          });
+        }
+      }
     }
   }
 }  
