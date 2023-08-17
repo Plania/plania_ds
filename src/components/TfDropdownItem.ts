@@ -11,6 +11,7 @@ const style = css`
    .text {
       color: var(--tf-sys-light-on-primary);
       font: var(--tf-body-medium);
+      margin-bottom: 4px;
    }
 `;
 
