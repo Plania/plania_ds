@@ -136,7 +136,6 @@ export class TfTypeAHead extends TfBase {
       const slot = this.shadowRoot?.querySelector('slot');
       const listOfTfHead = slot?.assignedElements().filter((e) => e.nodeName === 'TF-TYPEAHEAD-ITEM') as HTMLElement[];
       listOfTfHead?.forEach((e) => {
-        console.log(input.value.toLowerCase());
         if (e.textContent?.toLowerCase().match(input.value.toLowerCase())) {
           e.style.display = 'flex';
           find += 1;

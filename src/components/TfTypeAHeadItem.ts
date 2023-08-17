@@ -77,4 +77,4 @@ declare global {
   }
 }
 
-customElements.define('tf-typeahead-item', TfTypeAHeadItem);
+customElements.define('tf-type-a-head-item', TfTypeAHeadItem);
