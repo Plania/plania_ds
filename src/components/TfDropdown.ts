@@ -12,11 +12,11 @@ const style = css`
     width: auto;
     border-bottom: none; 
   }
-  .container svg {
+  .container tf-icon {
     position: absolute;
     cursor: pointer;
     right: 8px;
-    top: 46%;
+    top: 25%;
     transition: transform 0.2s ease;
     transform-origin: center;
   }
@@ -27,11 +27,11 @@ const style = css`
     width: 100%;
     margin-top: -1.5rem;
     background-color: var(--tf-light-surface);
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 24px 24px;
     min-height: 3.3rem;  
     max-height: calc(3.3rem * 3);
     overflow-y: auto; 
-    padding: 0;
+    padding: 0 0 16px 0;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-top: none;
     z-index: 2;
@@ -44,9 +44,9 @@ const style = css`
   }
   .dropdown-content ::slotted(div) {
     position: relative;
-    padding: 8px;
+    padding: 10px 18px 0 18px;
   }
-  .tf-dropdown[disabled] .container svg {
+  .tf-dropdown[disabled] .container tf-icon {
     pointer-events: none;
     opacity: 0.5;
   }
@@ -80,18 +80,7 @@ export class TfDropdown extends TfBase {
     </style>
     <div class="container">
     <tf-text-input icon="${this._hasIcon ? 'true' : 'false'}" status="default" pictogramme="${this._pictogramme}" label="${this._label}"></tf-text-input>
-      <svg
-        width="13"
-        height="9"
-        viewBox="0 0 8 6"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0.706237 2.41374L3.29624 5.00374C3.68624 5.39374 4.31624 5.39374 4.70624 5.00374L7.29624 2.41374C7.92624 1.78374 7.47624 0.703735 6.58624 0.703735H1.40624C0.516237 0.703735 0.0762368 1.78374 0.706237 2.41374Z"
-          fill="black"
-        />
-      </svg>
+      <tf-icon id="toggleIcon" icon="keyboard-arrow-right"></tf-icon>
     </div>
     ${this._disabled ? '' : '<div class="dropdown-content"><slot name="dropdown-options"></slot></div>'}
     `);
@@ -229,7 +218,7 @@ export class TfDropdown extends TfBase {
 
   set isDropdownOpen(value: boolean) {
     this._isDropdownOpen = value;
-    const dropdownIcon = this.shadowRoot?.querySelector('.container svg') as HTMLElement;
+    const dropdownIcon = this.shadowRoot?.getElementById('toggleIcon') as HTMLElement;
     if (dropdownIcon) {
       dropdownIcon.style.transform = value ? 'rotate(0deg)' : 'rotate(-90deg)';
     }
@@ -266,6 +255,13 @@ export class TfDropdown extends TfBase {
         this._isDropdownOpen = !this._isDropdownOpen;
         this.isDropdownOpen = this._isDropdownOpen;
 
+        const toggleIcon = this.shadowRoot?.getElementById('toggleIcon') as HTMLElement;
+        if (toggleIcon && this._isDropdownOpen) {
+          toggleIcon.setAttribute('icon', 'keyboard-arrow-down');
+        } else if (toggleIcon) {
+          toggleIcon.setAttribute('icon', 'keyboard-arrow-right');
+        }
+        
         if (!this._isDropdownOpen) {
           const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]') as HTMLSlotElement;
           const options = slot.assignedNodes().filter((node: Node) => node.nodeName.toLowerCase() === 'tf-dropdown-item');
