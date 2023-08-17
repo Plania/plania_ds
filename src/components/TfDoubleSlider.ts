@@ -13,8 +13,7 @@ const style = css`
   .container {
     position: relative;
     width: 100%;
-    height: 100px;
-    margin-top: 30px;
+   
   }
 
   input[type='range'] {
@@ -29,6 +28,7 @@ const style = css`
     bottom: 0;
     background-color: transparent;
   }
+ 
   .value-container input {
    
     border: none;
@@ -64,7 +64,7 @@ const style = css`
     background: var(--tf-thumb-color);
     border: 1px solid var(--tf-outline-color);
     box-shadow: none;
-    margin-top: -60px;
+    margin-top: -20px;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
     background-size: cover;
     background-position: center;
@@ -72,6 +72,28 @@ const style = css`
   input[type='range']:disabled::-webkit-slider-thumb {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%2371787D'/></svg>");
   }
+  input[type='range'].error-status::-webkit-slider-thumb {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
+    background-size: cover;
+    background-position: center;
+
+    
+  }
+  input[type='range'].error-status::-moz-range-thumb {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
+    background-size: cover;
+    background-position: center;
+
+    
+  }
+  input[type='range'].error-status::-ms-thumb  {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
+    background-size: cover;
+    background-position: center;
+
+    
+  }
+  
 
   input[type='range']::-moz-range-thumb {
     -webkit-appearance: none;
@@ -126,6 +148,7 @@ const style = css`
     flex-direction: row;
     display: flex;
     gap: 0.625rem;
+    margin-top:50px;
   }
 
   .values span {
@@ -143,6 +166,7 @@ const style = css`
   #slider-1,#slider-2{
     margin-top:2px;
   }
+  
 `;
 
 export class TfDoubleSlider extends TfBase {
@@ -264,6 +288,8 @@ export class TfDoubleSlider extends TfBase {
           thumbTwo.disabled = true;
           break;
         case 'error':
+          thumbOne.classList.add('error-status');
+            thumbTwo.classList.add('error-status');
           thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
           thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
           thumbOne.style.setProperty(
@@ -274,6 +300,7 @@ export class TfDoubleSlider extends TfBase {
             '--tf-track-fill-color',
             'var(--tf-sys-light-error-container)'
           );
+        
           thumbOne.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
           thumbTwo.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
           break;
@@ -411,3 +438,4 @@ declare global {
 }
 
 customElements.define('tf-double-slider', TfDoubleSlider);
+
