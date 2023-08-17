@@ -39,3 +39,5 @@ export * from './components/TfSearchCardHeaderImage.js';
 export * from './components/TfSearchCardDetails.js';
 export * from './components/TfSearchChip.js';
 export * from './components/TfSearchFavorite.js';
+export * from './components/TfStepper.js';
+export * from './components/TfStep.js';

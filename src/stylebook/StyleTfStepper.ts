@@ -2,43 +2,57 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-// Define the different style variants for the TfStepper component
-
-const stepperStart: StyleVariantProps<'tf-stepper'> = {
-  name: 'Start Step',
+const variant1: StyleVariantProps<'tf-stepper'> = {
+  name: 'Stepper at Step 1',
   tag: 'tf-stepper',
-  description: 'Indicate the starting step of a sequence.',
+  description: 'Indicates that we are on step 1',
   data: {
-    step: 'start',
-  },
+    variant: '1'
+  }
 };
 
-const stepperIntermediate: StyleVariantProps<'tf-stepper'> = {
-  name: 'Intermediate Step',
+const variant2: StyleVariantProps<'tf-stepper'> = {
+  name: 'Stepper at Step 2',
   tag: 'tf-stepper',
-  description: 'Indicate a step in the middle of a sequence.',
+  description: 'Indicates that we are on step 2',
   data: {
-    step: 'intermediate',
-  },
+    variant: '2'
+  }
 };
 
-const stepperEnd: StyleVariantProps<'tf-stepper'> = {
-  name: 'End Step',
+const variant3: StyleVariantProps<'tf-stepper'> = {
+  name: 'Stepper at Step 3',
   tag: 'tf-stepper',
-  description: 'Indicate the ending step of a sequence.',
+  description: 'Indicates that we are on step 3',
   data: {
-    step: 'end',
-  },
+    variant: '3'
+  }
 };
 
-// Metadata for the TfStepper component
+const variant4: StyleVariantProps<'tf-stepper'> = {
+  name: 'Stepper at Step 4',
+  tag: 'tf-stepper',
+  description: 'Indicates that we are on step 4',
+  data: {
+    variant: '4'
+  }
+};
+
+const variant5: StyleVariantProps<'tf-stepper'> = {
+  name: 'Stepper at Step 5',
+  tag: 'tf-stepper',
+  description: 'Indicates that we are on step 5',
+  data: {
+    variant: '5'
+  }
+};
+
 const meta: StyleComponentProps<'tf-stepper'> = {
   ref: 'tf-stepper',
   tag: 'tf-stepper',
-  description: 'A component that showcases steps in a sequence.',
+  description: 'A stepper component indicating the current step.',
   component: 'Tourisfair Stepper',
-  variants: [stepperStart, stepperIntermediate, stepperEnd],
+  variants: [variant1, variant2, variant3, variant4, variant5]
 };
 
-// Function to add the Stepper component to the StyleBook
 export const styleTfStepper = (styleBook: StyleBook) => styleBook.addComponent(meta);
