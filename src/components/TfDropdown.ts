@@ -1,8 +1,13 @@
 import {html, css, TfBase } from './TfBase.js';
 
 const style = css`
+
+  .dropdown-wrapper {
+      position: relative;
+  }
   .container {
     position: relative;
+    z-index: 1001;
   }
 
   .container tf-text-input {
@@ -10,7 +15,7 @@ const style = css`
     border-radius: 4px 4px 0 0;
     box-sizing: border-box; 
     width: auto;
-    border-bottom: none; 
+    border-bottom: 1px solid transparent; 
   }
   .container tf-icon {
     position: absolute;
@@ -23,10 +28,13 @@ const style = css`
 
   .dropdown-content {
     display: none;
-    position: relative; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    margin-top: -1rem;
     width: 100%;
-    margin-top: -1.5rem;
-    background-color: var(--tf-light-surface);
+    background-color: var(--tf-light-surface, #F9F9F8);
     border-radius: 0 0 24px 24px;
     min-height: 3.3rem;  
     max-height: calc(3.3rem * 3);
@@ -34,7 +42,6 @@ const style = css`
     padding: 0 0 16px 0;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-top: none;
-    z-index: 2;
   }
 
   .dropdown-content.open {
@@ -78,11 +85,13 @@ export class TfDropdown extends TfBase {
     <style>
       ${style}
     </style>
-    <div class="container">
-    <tf-text-input icon="${this._hasIcon ? 'true' : 'false'}" status="default" pictogramme="${this._pictogramme}" label="${this._label}"></tf-text-input>
-      <tf-icon id="toggleIcon" icon="keyboard-arrow-right"></tf-icon>
+    <div class="dropdown-wrapper">
+      <div class="container">
+      <tf-text-input icon="${this._hasIcon ? 'true' : 'false'}" status="default" pictogramme="${this._pictogramme}" label="${this._label}"></tf-text-input>
+        <tf-icon id="toggleIcon" icon="keyboard-arrow-right"></tf-icon>
+      </div>
+      ${this._disabled ? '' : '<div class="dropdown-content"><slot name="dropdown-options"></slot></div>'}
     </div>
-    ${this._disabled ? '' : '<div class="dropdown-content"><slot name="dropdown-options"></slot></div>'}
     `);
 
   }
@@ -220,7 +229,7 @@ export class TfDropdown extends TfBase {
     this._isDropdownOpen = value;
     const dropdownIcon = this.shadowRoot?.getElementById('toggleIcon') as HTMLElement;
     if (dropdownIcon) {
-      dropdownIcon.style.transform = value ? 'rotate(0deg)' : 'rotate(-90deg)';
+      dropdownIcon.style.transform = value ? 'rotate(90deg)' : 'rotate(0deg)';
     }
 
     const dropdownContent = this.shadowRoot?.querySelector('.dropdown-content') as HTMLElement;
@@ -234,7 +243,7 @@ export class TfDropdown extends TfBase {
   }
 
   updateDisabledState() {
-    const dropdownIcon = this.shadowRoot?.querySelector('.container svg') as HTMLElement;
+    const dropdownIcon = this.shadowRoot?.querySelector('.container tf-icon') as HTMLElement;
     if (dropdownIcon) {
       if (this._disabled) {
         dropdownIcon.style.pointerEvents = 'none';
@@ -254,13 +263,6 @@ export class TfDropdown extends TfBase {
       if (!this._disabled) {
         this._isDropdownOpen = !this._isDropdownOpen;
         this.isDropdownOpen = this._isDropdownOpen;
-
-        const toggleIcon = this.shadowRoot?.getElementById('toggleIcon') as HTMLElement;
-        if (toggleIcon && this._isDropdownOpen) {
-          toggleIcon.setAttribute('icon', 'keyboard-arrow-down');
-        } else if (toggleIcon) {
-          toggleIcon.setAttribute('icon', 'keyboard-arrow-right');
-        }
         
         if (!this._isDropdownOpen) {
           const slot = this.shadowRoot?.querySelector('slot[name="dropdown-options"]') as HTMLSlotElement;
