@@ -240,7 +240,7 @@ export class TfSimpleSlider extends TfBase {
                   <path d="M9.99967 13.3334V2.66671H8.66634V13.3334H9.99967ZM12.6663
                   13.3334V2.66671H11.333V13.3334H12.6663ZM7.33301 13.3334L7.33301
                   2.66671H5.99967V13.3334H7.33301ZM3.33301 13.3334H4.66634L4.66634
-                  2.66671H3.33301L3.33301 13.3334Z" fill="var(--svg-color)""/>
+                  2.66671H3.33301L3.33301 13.3334Z" fill="#F9F9F8"/>
                 </svg>
               </div>
             </div>
@@ -303,7 +303,17 @@ export class TfSimpleSlider extends TfBase {
         }
       }
     }
+    const pathElement = svgElement.querySelector('path');
+        if (pathElement) {
+          if (this.status === 'error') {
+            pathElement.setAttribute('fill', '#BA1B1B'); // Set the desired color
+          } else if (this.status === 'disabled') {
+            pathElement.setAttribute('fill', '#71787D'); // Set the desired color
+          } else {
+            pathElement.setAttribute('fill', '#F9F9F8');
+          }
   }
+}
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     if (name === 'status') {
@@ -330,17 +340,7 @@ export class TfSimpleSlider extends TfBase {
             host.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
             break;
         }
-        if (_newValue === 'disabled') {
-          this.style.setProperty(
-            '--svg-color',
-            '#71787D'
-          ); 
-        } else {
-          this.style.setProperty(
-            '--svg-color',
-            '#F9F9F8'
-          ); 
-        }
+      
       }
     }
 
