@@ -34,7 +34,7 @@ const style = css`
     z-index: 1000;
     margin-top: -1rem;
     width: 100%;
-    background-color: var(--tf-light-surface, #F9F9F8);
+    background-color: var(--light-surface);
     border-radius: 0 0 24px 24px;
     min-height: 3.3rem;  
     max-height: calc(3.3rem * 3);
