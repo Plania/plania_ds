@@ -9,9 +9,9 @@ const sliderThumbPrimaryTextBubbleBorder : StyleVariantProps<'tf-slider-thumb'> 
   description: 'The Slider Thumb is  with text,border,bubble and based on the primary variant.',
   data: {
     variant: 'primary',
-    outline:'true',
-    bubble:'true' ,
-    hasLabel:'true',
+    outline:'',
+    bubble:'' ,
+    hasLabel:'',
     label:'18'
   },
 };
@@ -21,9 +21,8 @@ const sliderThumbPrimaryTextBorder : StyleVariantProps<'tf-slider-thumb'> = {
   description: 'The Slider Thumb is  with text,border,no bubble and based on the primary variant.',
   data: {
     variant: 'primary',
-    outline:'true',
-    bubble:'false' ,
-    hasLabel:'true',
+    outline:'',
+    hasLabel:'',
     label:'18'
   },
 };
@@ -34,9 +33,8 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
     description: 'The Slider Thumb is  with text,bubble,no border and based on the primary variant.',
     data: {
       variant: 'primary',
-      outline:'false',
-      bubble:'true' ,
-      hasLabel:'true',
+      bubble:'' ,
+      hasLabel:'',
       label:'18'
     },
   };
@@ -46,9 +44,7 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
     description: 'The Slider Thumb is  with text,no border,no bubble and based on the primary variant.',
     data: {
       variant: 'primary',
-      outline:'false',
-      bubble:'false' ,
-      hasLabel:'true',
+      hasLabel:'',
       label:'18'
     },
   };
@@ -58,9 +54,9 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
     description: 'The Slider Thumb is  with text,border,bubble and based on the secondary variant.',
     data: {
       variant: 'secondary',
-      outline:'true',
-      bubble:'true' ,
-      hasLabel:'true',
+      outline:'',
+      bubble:'' ,
+      hasLabel:'',
       label:'18'
     },
   };
@@ -70,9 +66,8 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
     description: 'The Slider Thumb is  with text,border,no bubble and based on the secondary variant.',
     data: {
       variant: 'secondary',
-      outline:'true',
-      bubble:'false' ,
-      hasLabel:'true',
+      outline:'',
+      hasLabel:'',
       label:'18'
     },
   };
@@ -83,9 +78,8 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
       description: 'The Slider Thumb is  with text,bubble,no border and based on the secondary variant.',
       data: {
         variant: 'secondary',
-        outline:'false',
-        bubble:'true' ,
-        hasLabel:'true',
+        bubble:'' ,
+        hasLabel:'',
         label:'18'
       },
     };
@@ -95,9 +89,7 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
       description: 'The Slider Thumb is  with text,no border,no bubble and based on the secondary variant.',
       data: {
         variant: 'secondary',
-        outline:'false',
-        bubble:'false' ,
-        hasLabel:'true',
+        hasLabel:'',
         label:'18'
       },
     };
@@ -107,9 +99,9 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
       description: 'The Slider Thumb is  with text,border,bubble and based on the tertiary variant.',
       data: {
         variant: 'tertiary',
-        outline:'true',
-        bubble:'true' ,
-        hasLabel:'true',
+        outline:'',
+        bubble:'' ,
+        hasLabel:'',
         label:'18'
       },
     };
@@ -119,9 +111,8 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
       description: 'The Slider Thumb is  with text,border,no bubble and based on the primary variant.',
       data: {
         variant: 'tertiary',
-        outline:'true',
-        bubble:'false' ,
-        hasLabel:'true',
+        outline:'',
+        hasLabel:'',
         label:'18'
       },
     };
@@ -132,9 +123,8 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
         description: 'The Slider Thumb is  with text,bubble,no border and based on the tertiary variant.',
         data: {
           variant: 'tertiary',
-          outline:'false',
-          bubble:'true' ,
-          hasLabel:'true',
+          bubble:'' ,
+          hasLabel:'',
           label:'18'
         },
       };
@@ -144,9 +134,7 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
         description: 'The Slider Thumb is  with text,no border,no bubble and based on the tertiary variant.',
         data: {
           variant: 'tertiary',
-          outline:'false',
-          bubble:'false' ,
-          hasLabel:'true',
+          hasLabel:'',
           label:'18'
         },
       };
@@ -154,139 +142,112 @@ const sliderThumbPrimaryTextBubble : StyleVariantProps<'tf-slider-thumb'> = {
       const sliderThumbPrimaryBubbleBorder : StyleVariantProps<'tf-slider-thumb'> = {
         name: 'Slider Thumb ',
         tag: 'tf-slider-thumb',
-        description: 'The Slider Thumb is  with text,border,bubble and based on the primary variant.',
+        description: 'The Slider Thumb is  with border,bubble,no text and based on the primary variant.',
         data: {
           variant: 'primary',
-          outline:'true',
-          bubble:'true' ,
-          hasLabel:'false',
+          outline:'',
+          bubble:'' ,
         },
       };
       const sliderThumbPrimaryBorder : StyleVariantProps<'tf-slider-thumb'> = {
         name: 'Slider Thumb ',
         tag: 'tf-slider-thumb',
-        description: 'The Slider Thumb is  with text,border,no bubble and based on the primary variant.',
+        description: 'The Slider Thumb is  with border,no text,no bubble and based on the primary variant.',
         data: {
           variant: 'primary',
-          outline:'true',
-          bubble:'false' ,
-          hasLabel:'false',
+          outline:'',
         },
       };
       
       const sliderThumbPrimaryBubble : StyleVariantProps<'tf-slider-thumb'> = {
           name: 'Slider Thumb ',
           tag: 'tf-slider-thumb',
-          description: 'The Slider Thumb is  with text,bubble,no border and based on the primary variant.',
+          description: 'The Slider Thumb is  with bubble,no text,no border and based on the primary variant.',
           data: {
             variant: 'primary',
-            outline:'false',
-            bubble:'true' ,
-            hasLabel:'false',
+            bubble:'' ,
           },
         };
         const sliderThumbPrimary : StyleVariantProps<'tf-slider-thumb'> = {
           name: 'Slider Thumb ',
           tag: 'tf-slider-thumb',
-          description: 'The Slider Thumb is  with text,no border,no bubble and based on the primary variant.',
+          description: 'The Slider Thumb is  with no text,no border,no bubble and based on the primary variant.',
           data: {
             variant: 'primary',
-            outline:'false',
-            bubble:'false' ,
-            hasLabel:'false',
           },
         };
         const sliderThumbSecondaryBubbleBorder : StyleVariantProps<'tf-slider-thumb'> = {
           name: 'Slider Thumb ',
           tag: 'tf-slider-thumb',
-          description: 'The Slider Thumb is  with text,border,bubble and based on the secondary variant.',
+          description: 'The Slider Thumb is  with no text,border,bubble and based on the secondary variant.',
           data: {
             variant: 'secondary',
-            outline:'true',
-            bubble:'true' ,
-            hasLabel:'false',
+            outline:'',
+            bubble:'' ,
           },
         };
         const sliderThumbSecondaryBorder : StyleVariantProps<'tf-slider-thumb'> = {
           name: 'Slider Thumb ',
           tag: 'tf-slider-thumb',
-          description: 'The Slider Thumb is  with text,border,no bubble and based on the secondary variant.',
+          description: 'The Slider Thumb is  with no text,border,no bubble and based on the secondary variant.',
           data: {
             variant: 'secondary',
-            outline:'true',
-            bubble:'false' ,
-            hasLabel:'false',
+            outline:'',
           },
         };
         
         const sliderThumbSecondaryBubble : StyleVariantProps<'tf-slider-thumb'> = {
             name: 'Slider Thumb ',
             tag: 'tf-slider-thumb',
-            description: 'The Slider Thumb is  with text,bubble,no border and based on the secondary variant.',
+            description: 'The Slider Thumb is  with no text,bubble,no border and based on the secondary variant.',
             data: {
               variant: 'secondary',
-              outline:'false',
-              bubble:'true' ,
-              hasLabel:'false',
+              bubble:'' ,
             },
           };
           const sliderThumbSecondary : StyleVariantProps<'tf-slider-thumb'> = {
             name: 'Slider Thumb ',
             tag: 'tf-slider-thumb',
-            description: 'The Slider Thumb is  with text,no border,no bubble and based on the secondary variant.',
+            description: 'The Slider Thumb is  with no text,no border,no bubble and based on the secondary variant.',
             data: {
               variant: 'secondary',
-              outline:'false',
-              bubble:'false' ,
-              hasLabel:'false',
             },
           };
           const sliderThumbTertiaryBubbleBorder : StyleVariantProps<'tf-slider-thumb'> = {
             name: 'Slider Thumb ',
             tag: 'tf-slider-thumb',
-            description: 'The Slider Thumb is  with text,border,bubble and based on the tertiary variant.',
+            description: 'The Slider Thumb is  with no text,border,bubble and based on the tertiary variant.',
             data: {
               variant: 'tertiary',
-              outline:'true',
-              bubble:'true' ,
-              hasLabel:'false',
+              outline:'',
+              bubble:'' ,
             },
           };
           const sliderThumbTertiaryBorder : StyleVariantProps<'tf-slider-thumb'> = {
             name: 'Slider Thumb ',
             tag: 'tf-slider-thumb',
-            description: 'The Slider Thumb is  with text,border,no bubble and based on the primary variant.',
+            description: 'The Slider Thumb is  with no text,border,no bubble and based on the primary variant.',
             data: {
               variant: 'tertiary',
-              outline:'true',
-              bubble:'false' ,
-              hasLabel:'false',
-              
+              outline:'',
             },
           };
           
           const sliderThumbTertiaryBubble : StyleVariantProps<'tf-slider-thumb'> = {
               name: 'Slider Thumb ',
               tag: 'tf-slider-thumb',
-              description: 'The Slider Thumb is  with text,bubble,no border and based on the tertiary variant.',
+              description: 'The Slider Thumb is  with no text,bubble,no border and based on the tertiary variant.',
               data: {
                 variant: 'tertiary',
-                outline:'false',
-                bubble:'true' ,
-                hasLabel:'false',
-                
+                bubble:'' ,
               },
             };
             const sliderThumbTertiary : StyleVariantProps<'tf-slider-thumb'> = {
               name: 'Slider Thumb ',
               tag: 'tf-slider-thumb',
-              description: 'The Slider Thumb is  with text,no border,no bubble and based on the tertiary variant.',
+              description: 'The Slider Thumb is  with no text,no border,no bubble and based on the tertiary variant.',
               data: {
                 variant: 'tertiary',
-                outline:'false',
-                bubble:'false' ,
-                hasLabel:'false',
-                
               },
             };
            

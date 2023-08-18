@@ -91,8 +91,8 @@ export class TfSliderThumb extends TfBase {
   render() {
     const hasLabel = this.getAttribute('haslabel');
     const label = this.getAttribute('label');
-    const variant = this.getAttribute('variant') || 'primary'; // Adjusted
-    const outline = this.getAttribute('outline') === 'true' ? 'outline' : ''; 
+    const variant = this.getAttribute('variant') || 'primary'; 
+    const outline = this.getAttribute('outline') === '' ? 'outline' : ''; 
     const bubble = this.getAttribute('bubble');
 
     this.shadowRoot &&
@@ -100,16 +100,15 @@ export class TfSliderThumb extends TfBase {
         <style>
           ${style}
         </style>
-        <div class="thumb ${variant} ${outline}"> <!-- Adjusted -->
-          ${hasLabel === 'true' ? html`
-            <label class="text-label">${label || ''}</label>
-          ` : ''}
-          ${hasLabel === 'false' ? html`
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"  >
-              <path d="M9.99967 13.3334V2.66671H8.66634V13.3334H9.99967ZM12.6663 13.3334V2.66671H11.333V13.3334H12.6663ZM7.33301 13.3334L7.33301 2.66671H5.99967V13.3334H7.33301ZM3.33301 13.3334H4.66634L4.66634 2.66671H3.33301L3.33301 13.3334Z" fill="#F9F9F8"/>
-            </svg>
-          ` : ''}
-          ${bubble === 'true' ? html`<tf-info-bubble></tf-info-bubble>` : ''}
+        <div class="thumb ${variant} ${outline}"> 
+        ${hasLabel === '' ? html`
+        <label class="text-label">${label || ''}</label>
+      ` : html`
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+          <path d="M9.99967 13.3334V2.66671H8.66634V13.3334H9.99967ZM12.6663 13.3334V2.66671H11.333V13.3334H12.6663ZM7.33301 13.3334L7.33301 2.66671H5.99967V13.3334H7.33301ZM3.33301 13.3334H4.66634L4.66634 2.66671H3.33301L3.33301 13.3334Z" fill="#F9F9F8"/>
+        </svg>
+      ` }
+          ${bubble === '' ? html`<tf-info-bubble></tf-info-bubble>` : ''}
         </div>
       `);
   }
