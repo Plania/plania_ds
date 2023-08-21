@@ -43,3 +43,4 @@ export * from './components/TfWelcomeCard.js';
 export * from './components/TfWelcomeImage.js';
 export * from './components/TfTypeAHeadItem.js';
 export * from './components/TfTypeAHead.js';
+export * from './components/TfInfoBubble.js';

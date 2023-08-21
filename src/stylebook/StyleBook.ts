@@ -45,7 +45,7 @@ import { styleTfWeek } from './StyleTfWeek.js';
 import { styleTfWeekDays } from './StyleTfWeekDays.js';
 import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
 import { styleTfWelcomeImage } from './StyleTfWelcomeImage.js';
-
+import { styleTfInfoBubble } from './StyleTfInfoBubble.js';
 export const styleBookCSS: string = css`
   @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
@@ -264,5 +264,5 @@ styleTfWeek(styleBook);
 styleTfWeekDays(styleBook);
 styleTfWelcomeCard(styleBook);
 styleTfWelcomeImage(styleBook);
-
+styleTfInfoBubble(styleBook);
 document.body.appendChild(styleBook);
