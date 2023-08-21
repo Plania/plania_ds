@@ -3,96 +3,97 @@ import { tfIconNameMap } from './TfIcon.js';
 
 const style = css`
   :host {
-    width:fit-content;
-    display:block;
+    width: fit-content;
+    display: block;
   }
 
-   button {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      text-align: center;
-      border: none;
-      justify-content: center;
-      font: var(--tf-button);
-      width:100%;
-   }
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    text-align: center;
+    border: none;
+    justify-content: center;
+    font: var(--tf-button);
+    width: 100%;
+  }
 
-   button:hover , .hover {
-      cursor: pointer;
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-   }
+  button:hover,
+  .hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  }
 
-   button:active , .focus {
-      outline: none;
-      box-shadow: none;
-   }
+  button:active,
+  .focus {
+    outline: none;
+    box-shadow: none;
+  }
 
-   .disabled:hover {
-      cursor: default;
-      box-shadow: none;
-   }
+  .disabled:hover {
+    cursor: default;
+    box-shadow: none;
+  }
 
-   .disabled:active {
-      cursor: default;
-      box-shadow: none;
-   }
+  .disabled:active {
+    cursor: default;
+    box-shadow: none;
+  }
 
-   .only-icon {
-      padding:6px !important;
-      border-radius: 50%;
-   }
+  .only-icon {
+    padding: 6px !important;
+    border-radius: 50%;
+  }
 
-   .small {
-      padding: 6px 1rem;
-      font-size: 11px;
-   }
+  .small {
+    padding: 6px 1rem;
+    font-size: 11px;
+  }
 
-   .small svg {
-      width: 1rem;
-      height: 1rem;
-   }
+  .small svg {
+    width: 1rem;
+    height: 1rem;
+  }
 
-   .large {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-   }
+  .large {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
 
-   .medium {
-      padding: 4px 1rem;
-      font-size: 1rem;
-   }
+  .medium {
+    padding: 4px 1rem;
+    font-size: 1rem;
+  }
 
-   svg {
-      width: 1.5rem;
-      height: 1.5rem;
-   }
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 
-   .disabled {
-      opacity: 0.4;
-      color: #fff;
-   }
+  .disabled {
+    opacity: 0.4;
+    color: #fff;
+  }
 `;
 
 export class TfButton extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <button class="primary">
-              <slot></slot>
-              </button>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <button class="primary">
+          <slot></slot>
+        </button>
+      `);
   }
 
-
   static get observedAttributes() {
-    return ['variant', 'state', 'size', 'active','icon','text'];
+    return ['variant', 'state', 'size', 'active', 'icon', 'text'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -104,17 +105,16 @@ export class TfButton extends TfBase {
     this.setButtonContent(buttonElem);
 
     switch (name) {
-    case 'variant':
-    case 'state':
-    case 'size':
-      this.updateButtonClass(buttonElem, oldValue, newValue);
-      break;
+      case 'variant':
+      case 'state':
+      case 'size':
+        this.updateButtonClass(buttonElem, oldValue, newValue);
+        break;
     }
 
     if (name === 'icon') {
       this.insertIcon(buttonElem, newValue);
     }
-         
   }
 
   setButtonState(buttonElem: HTMLButtonElement) {
@@ -136,7 +136,7 @@ export class TfButton extends TfBase {
   }
 
   updateButtonClass(buttonElem: HTMLButtonElement, oldValue: string, newValue: string) {
-    buttonElem.classList.remove(oldValue);
+    buttonElem.classList.remove(oldValue === '' ? 'primary' : oldValue);
     buttonElem.classList.add(newValue);
   }
 
@@ -197,15 +197,15 @@ export class TfButton extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-button': TfButton;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-button': TfButton;
+  }
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-button': TfButton;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-button': TfButton;
+  }
 }
 
 customElements.define('tf-button', TfButton);
