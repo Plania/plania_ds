@@ -1,6 +1,10 @@
 import { html, css, TfBase } from './TfBase.js';
 
 const tfActivityCardStyle = css`
+  :host {
+    width: 30rem;
+  }
+
   .container {
     display: flex;
     gap: 0px;
@@ -10,7 +14,7 @@ const tfActivityCardStyle = css`
   }
 
   .header-image {
-    width: 100%;
+    width: 40%;
     height: 100%;
   }
 
@@ -19,6 +23,7 @@ const tfActivityCardStyle = css`
     flex-direction: column;
     gap: 0.25rem;
     padding: 0.5rem;
+    width: 60%;
   }
 
   .subtitle {
@@ -60,9 +65,9 @@ export class TfSearchActivityCard extends TfBase {
             <slot name="image"></slot>
           </section>
           <section class="details">
-            <h2>
+            <h3>
               <slot name="title"></slot>
-            </h2>
+            </h3>
             <p class="subtitle ">
               <slot name="subtitle"></slot>
             </p>
