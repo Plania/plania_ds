@@ -11,7 +11,6 @@ const tfInputTextIconDefault: StyleVariantProps<'tf-text-input'> = {
     status: 'default',
     pictogramme: 'account-circle',
     label: 'Default Icon',
-
   },
 };
 
@@ -25,6 +24,31 @@ const tfInputTextDefault: StyleVariantProps<'tf-text-input'> = {
     label: 'Default',
   },
 };
+
+const tfInputTextDefaultFocus: StyleVariantProps<'tf-text-input'> = {
+  name: 'tf input text',
+  tag: 'tf-text-input',
+  description: 'A text input component no icon.Focussed.',
+  data: {
+    icon: 'false',
+    status: 'label',
+    label: 'Default',
+  },
+};
+
+const tfInputTextIconDefaultFocus: StyleVariantProps<'tf-text-input'> = {
+  name: 'tf input text',
+  tag: 'tf-text-input',
+  description: 'A text input component with icon. Focussed.',
+  data: {
+    icon: 'true',
+    status: 'label',
+    pictogramme: 'account-circle',
+    label: 'Default Icon',
+  },
+};
+
+
 
 const tfInputTextIconDisabled: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
@@ -84,7 +108,9 @@ const meta: StyleComponentProps<'tf-text-input'> = {
   component: 'Tourisfair Input Text',
   variants: [
     tfInputTextIconDefault,
+    tfInputTextIconDefaultFocus,
     tfInputTextDefault,
+    tfInputTextDefaultFocus,
     tfInputTextIconDisabled,
     tfInputTextDisabled,
     tfInputTextIconError,
