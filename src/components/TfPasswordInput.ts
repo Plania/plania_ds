@@ -128,7 +128,7 @@ export class TfInputPassword extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['icon', 'status', 'show', 'pictogramme', 'label' , 'value'];
+    return ['icon', 'status', 'show', 'pictogramme', 'label', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
@@ -166,7 +166,7 @@ export class TfInputPassword extends TfBase {
           input?.insertAdjacentHTML('afterend', '<tf-icon icon="lock" class="icon"></tf-icon>');
       input?.classList.add('input-icon');
       break;
-    
+
     case 'value':
       input.value = _newValue;
       if (input.value.length <= 0) return;
