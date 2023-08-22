@@ -1,14 +1,11 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   .slider-age-container {
-      --tf-border-color: var(--tf-sys-light-outline);
-      --tf-color-background: var(--tf-sys-light-primary-container);
-      --tf-font-color: var(--tf-sys-light-on-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-   }
+  * {
+    --tf-thumb-color: var(--tf-sys-light-secondary);
+    --tf-track-fill-color: var(--tf-sys-light-secondary-container);
+    --tf-outline-color: var(--tf-sys-light-outline);
+  }
 
   :host {
     width: 100%;
@@ -75,6 +72,7 @@ const style = css`
       var(--tf-sys-light-surface-variant) var(--color-stop)
     );
   }
+
   input[type='range'].styled-slider[status='default']::-webkit-slider-runnable-track {
     background: linear-gradient(
       to right,
@@ -82,6 +80,7 @@ const style = css`
       var(--tf-sys-light-surface-variant) var(--color-stop)
     );
   }
+
   input[type='range'].styled-slider[status='disabled']::-webkit-slider-thumb {
     background: var(--tf-sys-light-surface-variant);
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%2371787D'/></svg>");
@@ -275,82 +274,70 @@ const style = css`
   .slider-container {
     display: flex;
     width: 100%;
-   }
+  }
 
-   .input-container {
-      display: flex;
-      margin-left: 0.5rem;
-   }
+  .input-container {
+    display: flex;
+  }
 
-   label {
+  label {
     color: var(--tf-font-color);
-   }
+  }
 
-   tf-simple-slider {
-      margin: 0 0.5rem;
-   }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-   input[type='number']::-webkit-inner-spin-button,
-   input[type='number']::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-   }
+  input[type='number'],
+  .icon-container {
+    background-color: var(--tf-color-background);
+    height: calc(2rem - 0.5rem);
+    color: var(--tf-font-color);
+  }
 
-   input[type='number'],
-   .icon-container {
-      background-color: var(--tf-color-background);
-      height: calc(2rem - 0.5rem);
-      color: var(--tf-font-color);
-   }
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 
-   input[type='number'] {
-      -moz-appearance: textfield;
-      appearance: textfield;
-      width: calc(4rem - 0.5rem);
-      border-right: none !important;
-      border: 1px solid var(--tf-border-color);
-      border-radius: 1.5rem 0 0 1.5rem;
-   }
+    border-right: none !important;
 
-   .icon-container {
-      width: 1rem;
-      height: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border: 1px solid var(--tf-border-color);
-      border-radius: 0 1.5rem 1.5rem 0;
-      color: var(--tf-font-color);
-   }
+    border-radius: 1.5rem 0 0 1.5rem;
+  }
 
-   input[type='number'] {
-      padding: 0.25rem 0 0.25rem 0.5rem;
-      font-size: 1rem;
-   }
+  input[type='number'] {
+    font-size: 1rem;
+  }
 
-   input[type='number']:focus {
-      outline: none;
-      border-color: var(--tf-border-color);
-   }
+  input[type='number']:focus {
+    outline: none;
+    border-color: var(--tf-border-color);
+  }
 
-   .icon {
-      width: 10px;
-      height: 6px;
-      padding: 0.25rem 0 0.25rem 2px;
-   }
+  .bar:after {
+    content: '';
+    display: block;
+    border-top: 1px solid var(--tf-border-color);
+  }
 
-   .bar:after {
-      content: '';
-      display: block;
-      border-top: 1px solid var(--tf-border-color);
-   }
+  .slider-age-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: relative; /* Add this */
+  }
+  .icon-container {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const COLORS = {
-  disabledBackground: 'var(--tf-sys-light-surface-variant)',
   disabledFont: 'var(--tf-sys-light-outline)',
-  errorBackground: 'var(--tf-sys-light-error-container)',
   errorFont: 'var(--tf-sys-light-error)',
+  focusedFont: 'var(--tf-sys-light-secondary)',
 };
 
 export class TfAgeSelector extends TfBase {
@@ -419,13 +406,32 @@ export class TfAgeSelector extends TfBase {
   }
 
   connectedCallback() {
+    const range = this.shadowRoot?.querySelector('.styled-slider') as HTMLInputElement;
+    const updateGradient = () => {
+      const rangeValue = parseInt(range.value);
+      const rangeMin = parseInt(range.min);
+      const rangeMax = parseInt(range.max);
+      const percentage = ((rangeValue - rangeMin) / (rangeMax - rangeMin)) * 100;
+      range.style.setProperty('--color-stop', `${percentage}%`);
+    };
+
+    updateGradient();
+
+    range.addEventListener('input', updateGradient);
     this.eventForNumberInput();
-    this.inputRange.addEventListener(
-      'input',
-      () => (this.inputNumber.value = this.inputRange.value)
-    );
+    this.inputRange.addEventListener('input', () => {
+      this.inputNumber.value = this.inputRange.value;
+      this.value = this.inputRange.value;
+      this.dispatchEvent(new CustomEvent('input', { detail: this.inputRange.value }));
+    });
+    this.inputNumber.addEventListener('input', () => {
+      this.inputRange.value = this.inputNumber.value;
+      this.value = this.inputNumber.value;
+      this.dispatchEvent(new CustomEvent('input', { detail: this.inputRange.value }));
+    });
     this.eventForArrowUp();
     this.eventForArrowDown();
+
     if (!this.slider) {
       const slider = this.shadowRoot?.querySelector('.slider-container') as HTMLElement;
       slider.style.display = 'none';
@@ -433,10 +439,11 @@ export class TfAgeSelector extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['slider', 'status'];
+    return ['slider', 'status', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
+    const sectionStyle = this.getSectionStyle();
     const upIconStyle = this.getStyleById('iconUp');
     const downIconStyle = this.getStyleById('iconDown');
     const host = this.shadowRoot?.querySelector(
@@ -473,12 +480,8 @@ export class TfAgeSelector extends TfBase {
 
         break;
       }
-      break;
-    default:
-      break;
     }
   }
-
 
   changeColorIcon = (remove: boolean) => {
     const icon = this.shadowRoot?.querySelectorAll('.icon') as NodeListOf<HTMLElement>;
@@ -486,7 +489,8 @@ export class TfAgeSelector extends TfBase {
       if (remove) {
         element.style.color = '';
       } else {
-        element.style.color = this.status === 'error' ? 'var(--tf-font-color)' : 'var(--tf-sys-light-primary)';
+        element.style.color =
+          this.status === 'error' ? 'var(--tf-font-color)' : 'var(--tf-sys-light-primary)';
       }
     });
   };
@@ -500,17 +504,22 @@ export class TfAgeSelector extends TfBase {
   };
 
   eventForNumberInput = () => {
-
     this.inputNumber.value = this.inputRange.value;
+    this.value = this.inputRange.value;
 
     this.inputNumber.addEventListener('change', () => {
       this.inputRange.value = this.inputNumber.value;
+      this.value = this.inputNumber.value;
       this.checkInputValue();
       this.eventListener(this.inputRange.value);
+      this.dispatchEvent(new CustomEvent('change', { detail: this.inputRange.value }));
     });
 
     this.inputNumber.addEventListener('focus', () => {
-      this.getSectionStyle().setProperty('--tf-border-color', this.status === 'error' ? 'var(--tf-font-color)' : 'var(--tf-sys-light-primary)');
+      this.getSectionStyle().setProperty(
+        '--tf-border-color',
+        this.status === 'error' ? 'var(--tf-font-color)' : 'var(--tf-sys-light-primary)'
+      );
       this.changeColorIcon(false);
     });
 
@@ -529,23 +538,27 @@ export class TfAgeSelector extends TfBase {
     const icon = this.shadowRoot?.querySelector('#iconDown') as HTMLElement;
     this.eventForArrow(icon, -1);
   };
-  
+
   eventForArrow = (icon: HTMLElement, value: number) => {
     icon.addEventListener('click', () => this.handleOnClicked(value));
     icon.addEventListener('mousedown', () => {
-      this.status === 'error' ? icon.style.color = 'black' : icon.style.color = 'var(--tf-sys-light-primary)';
+      this.status === 'error'
+        ? (icon.style.color = 'black')
+        : (icon.style.color = 'var(--tf-sys-light-primary)');
     });
-    
+
     icon.addEventListener('mouseup', () => {
       icon.style.setProperty('color', 'var(--tf-font-color)');
-      
+
       this.getSectionStyle().setProperty('--tf-border-color', 'var(--tf-sys-light-outline)');
     });
   };
-  
-  handleOnClicked = (value : number) => {
+
+  handleOnClicked = (value: number) => {
     this.inputNumber.value = (parseInt(this.inputNumber.value) + value).toString();
     this.inputRange.value = this.inputNumber.value;
+    this.value = this.inputNumber.value;
+    this.dispatchEvent(new CustomEvent('click', { detail: this.inputRange.value }));
     this.checkInputValue();
     this.eventListener(this.inputRange.value);
   };
@@ -568,29 +581,23 @@ export class TfAgeSelector extends TfBase {
     );
   };
 
-  private getStyleById(id: string): CSSStyleDeclaration{
+  private getStyleById(id: string): CSSStyleDeclaration {
     return this.shadowRoot?.getElementById(id)?.style as CSSStyleDeclaration;
   }
-  
-  private getSectionStyle(): CSSStyleDeclaration{
+
+  private getSectionStyle(): CSSStyleDeclaration {
     return this.shadowRoot?.querySelector('section')?.style as CSSStyleDeclaration;
   }
-  
-  private hasSlider(): boolean {
-    return !!this.shadowRoot?.querySelector('.slider-container');
-  }
-  
-  private showSlider(): void {
-    const slider = this.shadowRoot?.querySelector('.slider-container') as HTMLElement;
-    slider.style.display = 'flex';
-  }
-  
+
   private disableInputNumber(): void {
     this.inputNumber.disabled = true;
   }
-  
+
   private setAttributeOnSlider(name: string, value: string): void {
-    this.shadowRoot?.querySelector('tf-simple-slider')?.setAttribute(name, value);
+    const inputRange = this.shadowRoot?.querySelector('input[type="range"]') as HTMLInputElement;
+    if (inputRange) {
+      inputRange.setAttribute(name, value);
+    }
   }
 
   get inputNumber(): HTMLInputElement {
@@ -598,12 +605,8 @@ export class TfAgeSelector extends TfBase {
   }
 
   get inputRange(): HTMLInputElement {
-    const tfSlider = this.shadowRoot?.querySelector(
-      'tf-simple-slider'
-    ) as unknown as HTMLInputElement;
-    return tfSlider?.shadowRoot?.querySelector('input') as HTMLInputElement;
+    return this.shadowRoot?.querySelector('input[type="range"]') as HTMLInputElement;
   }
-
   get slider(): boolean {
     return this.hasAttribute('slider');
   }
@@ -620,12 +623,20 @@ export class TfAgeSelector extends TfBase {
   set status(value: string) {
     this.setAttribute('status', value);
   }
+
+  get value(): string {
+    return this.getAttribute('value') || '';
+  }
+
+  set value(value: string) {
+    this.setAttribute('value', value);
+  }
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-age-selector': TfAgeSelector;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-age-selector': TfAgeSelector;
+  }
 }
 
 customElements.define('tf-age-selector', TfAgeSelector);
