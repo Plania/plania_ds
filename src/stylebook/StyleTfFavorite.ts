@@ -7,7 +7,6 @@ const notFavorite: StyleVariantProps<'tf-favorite'> = {
   tag: 'tf-favorite',
   description: 'Favorite icon not enabled',
   data: {
-    enabled: false,
   },
 };
 
@@ -16,7 +15,7 @@ const favorite: StyleVariantProps<'tf-favorite'> = {
   tag: 'tf-favorite',
   description: 'Favorite icon enabled',
   data: {
-    enabled: true,
+    enabled: '',
   },
 };
 

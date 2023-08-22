@@ -20,6 +20,24 @@ const SliderOnDefaultOnlyNumberInput: StyleVariantProps<'tf-age-selector'> = {
     slider:'',
   },
 };
+const SliderOnFocus: StyleVariantProps<'tf-age-selector'> = {
+  name: 'Slider age on default with slider',
+  tag: 'tf-age-selector',
+  description: 'Slider on default',
+  data: {
+    status: 'focus',
+  },
+};
+
+const SliderOnFocusOnlyNumberInput: StyleVariantProps<'tf-age-selector'> = {
+  name: 'Slider age on default no slider',
+  tag: 'tf-age-selector',
+  description: 'Slider on default',
+  data: {
+    status: 'focus',
+    slider:'',
+  },
+};
 
 const SliderDisabled: StyleVariantProps<'tf-age-selector'> = {
   name: 'Slider age disabled',
@@ -65,7 +83,7 @@ const meta: StyleComponentProps<'tf-age-selector'> = {
   tag: 'tf-age-selector',
   description: 'Tourisfair slider component',
   component: 'Tourisfair Slider Component',
-  variants: [ SliderOnDefault , SliderOnDefaultOnlyNumberInput , SliderDisabled , SliderDisabledWithSlider , SliderError , SliderErrorWithSlider],
+  variants: [ SliderOnDefault , SliderOnDefaultOnlyNumberInput , SliderOnFocus , SliderOnFocusOnlyNumberInput , SliderDisabled , SliderDisabledWithSlider , SliderError , SliderErrorWithSlider],
 };
   
 export const styleTfAgeSelector = (styleBook: StyleBook) => styleBook.addComponent(meta);
