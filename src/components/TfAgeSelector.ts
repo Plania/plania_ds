@@ -10,7 +10,269 @@ const style = css`
       justify-content: center;
    }
 
-   .slider-container{
+  :host {
+    width: 100%;
+  }
+
+  input[type='range'].styled-slider {
+    -webkit-appearance: none;
+    width: 100%;
+  }
+
+  /*webkit*/
+  input[type='range'].styled-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--tf-thumb-color);
+    border: 1px solid var(--tf-outline-color);
+    box-shadow: none;
+    margin-top: -15px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+
+  input[type='range'].styled-slider::-webkit-slider-thumb::before {
+    content: var(--value);
+  }
+
+  input[type='range'].styled-slider::-webkit-slider-runnable-track {
+    height: 1rem;
+    border: 1px solid var(--tf-outline-color);
+    border-radius: 1em;
+    background: var(--tf-track-fill-color);
+    box-shadow: none;
+
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='disabled']::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-surface-variant) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='error']::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-error-container) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='focus']::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+  input[type='range'].styled-slider[status='default']::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary-container) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+  input[type='range'].styled-slider[status='disabled']::-webkit-slider-thumb {
+    background: var(--tf-sys-light-surface-variant);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%2371787D'/></svg>");
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+  }
+
+  input[type='range'].styled-slider[status='error']::-webkit-slider-thumb {
+    background: var(--tf-sys-light-error-container);
+    border: 1px solid var(--tf-sys-light-error);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* For Mozilla Firefox */
+  input[type='range'].styled-slider::-moz-range-thumb {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--tf-thumb-color);
+    border: 1px solid var(--tf-outline-color);
+    box-shadow: none;
+    margin-top: -15px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+
+  input[type='range'].styled-slider::-moz-range-thumb::before {
+    content: var(--value);
+  }
+
+  input[type='range'].styled-slider::-moz-range-track {
+    height: 1rem;
+    border: 1px solid var(--tf-outline-color);
+    border-radius: 1em;
+    background: var(--tf-track-fill-color);
+    box-shadow: none;
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='disabled']::-moz-range-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-surface-variant) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='error']::-moz-range-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-error-container) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='focus']::-moz-range-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='default']::-moz-range-track {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary-container) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='disabled']::-moz-range-thumb {
+    background: var(--tf-sys-light-surface-variant);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%2371787D'/></svg>");
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+  }
+
+  input[type='range'].styled-slider[status='error']::-moz-range-thumb {
+    background: var(--tf-sys-light-error-container);
+    border: 1px solid var(--tf-sys-light-error);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* For Microsoft Edge */
+  input[type='range'].styled-slider::-ms-thumb {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--tf-thumb-color);
+    border: 1px solid var(--tf-outline-color);
+    box-shadow: none;
+    margin-top: -15px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+
+  input[type='range'].styled-slider::-ms-fill-lower {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='disabled']::-ms-fill-lower {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-surface-variant) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='error']::-ms-fill-lower {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-error-container) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='focus']::-ms-fill-lower {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='default']::-ms-fill-lower {
+    background: linear-gradient(
+      to right,
+      var(--tf-sys-light-secondary-container) var(--color-stop),
+      var(--tf-sys-light-surface-variant) var(--color-stop)
+    );
+  }
+
+  input[type='range'].styled-slider[status='disabled']::-ms-thumb {
+    background: var(--tf-sys-light-surface-variant);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%2371787D'/></svg>");
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+  }
+
+  input[type='range'].styled-slider[status='error']::-ms-thumb {
+    background: var(--tf-sys-light-error-container);
+    border: 1px solid var(--tf-sys-light-error);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
+    background-size: cover;
+    background-position: center;
+  }
+
+  input[type='number'] {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+
+    color: var(--tf-sys-light-on-primary, var(--theme-sys-light-on-primary, #250127));
+    text-align: center;
+
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.5px;
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slider-container {
     display: flex;
     width: 100%;
    }
@@ -95,27 +357,65 @@ export class TfAgeSelector extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <section class="slider-age-container">
-               <label> Age </label>
-               <div class="input-container">
-                  <input type="number" />
-                  <div class="icon-container">
-                     <tf-icon icon="arrow-drop-up" class="icon" id="iconUp"></tf-icon>
-                     <span class="bar"></span>
-                     <tf-icon icon="arrow-drop-down" class="icon" id="iconDown"></tf-icon>
-                  </div>
-               </div>
-               <div class="slider-container">
-                  <tf-icon icon="child-friendly"></tf-icon>
-                  <tf-simple-slider status="default"></tf-simple-slider>
-                  <tf-icon icon="man"></tf-icon>
-               </div>
-            </section>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <section class="slider-age-container">
+          <label> Age </label>
+          <div class="input-container">
+            <svg
+              class="minus"
+              id="iconDown"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="var(--icon-fill-color, #FF805E)"
+            >
+              <path
+                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
+              />
+            </svg>
+            <div class="input-wrapper">
+              <input type="number" value="18" id="ageInput" />
+            </div>
+            <svg
+              class="plus"
+              id="iconUp"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="var(--icon-fill-color, #FF805E)"
+            >
+              <path
+                d="M11 5H9V9H5V11H9V15H11V11H15V9H11V5ZM10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10C20 4.49 15.51 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
+              />
+            </svg>
+          </div>
+
+          <div class="slider-container">
+            <tf-icon icon="child-friendly"></tf-icon>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="18"
+              class="styled-slider slider-progress"
+              id="myRange"
+            />
+
+            <tf-icon icon="man"></tf-icon>
+          </div>
+        </section>
+      `);
+    const ageInput = this.shadowRoot?.querySelector('#ageInput') as HTMLInputElement;
+    ageInput.style.width = ageInput.value.length + 1 + 'ch';
+
+    ageInput.addEventListener('input', () => {
+      ageInput.style.width = ageInput.value.length + 1 + 'ch';
+    });
   }
 
   connectedCallback() {
@@ -139,26 +439,39 @@ export class TfAgeSelector extends TfBase {
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     const upIconStyle = this.getStyleById('iconUp');
     const downIconStyle = this.getStyleById('iconDown');
-    const sectionStyle = this.getSectionStyle();
-    const sliderExists = this.hasSlider();
-
-    if (sliderExists) {
-      this.showSlider();
-    }
-
-    switch (name) {
-    case 'status':
-      if (_newValue === 'disabled') {
+    const host = this.shadowRoot?.querySelector(
+      'input[type="range"].slider-progress'
+    ) as HTMLInputElement;
+    if (name === 'status') {
+      switch (_newValue) {
+      case 'disabled':
         this.disableInputNumber();
         this.setAttributeOnSlider('status', 'disabled');
-        sectionStyle.setProperty('--tf-color-background', COLORS.disabledBackground);
         sectionStyle.setProperty('--tf-font-color', COLORS.disabledFont);
+        upIconStyle.setProperty('--icon-fill-color', COLORS.disabledFont);
+        downIconStyle.setProperty('--icon-fill-color', COLORS.disabledFont);
         upIconStyle.setProperty('pointer-events', 'none');
         downIconStyle.setProperty('pointer-events', 'none');
-      } else if (_newValue === 'error') {
+        host.disabled = true;
+        break;
+      case 'error':
         this.setAttributeOnSlider('status', 'error');
-        sectionStyle.setProperty('--tf-color-background', COLORS.errorBackground);
         sectionStyle.setProperty('--tf-font-color', COLORS.errorFont);
+        upIconStyle.setProperty('--icon-fill-color', COLORS.errorFont);
+        downIconStyle.setProperty('--icon-fill-color', COLORS.errorFont);
+        break;
+      case 'focus':
+        this.setAttributeOnSlider('status', 'focus');
+        sectionStyle.setProperty('--tf-font-color', COLORS.focusedFont);
+        upIconStyle.setProperty('--icon-fill-color', COLORS.focusedFont);
+        downIconStyle.setProperty('--icon-fill-color', COLORS.focusedFont);
+        break;
+      case 'default':
+        this.setAttributeOnSlider('status', 'default');
+        upIconStyle.setProperty('--icon-fill-color', '#FF805E');
+        downIconStyle.setProperty('--icon-fill-color', '#FF805E');
+
+        break;
       }
       break;
     default:
