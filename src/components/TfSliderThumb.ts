@@ -4,14 +4,16 @@ const style = css`
   .thumb {
     width: fit-content;
     display: inline-flex;
-    padding: 8px 9px;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
     background: var(--theme-sys-light-primary, #00AAE3);
-    width: 16px;
-    height: 16px;
     position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid var(--tf-outline-color);
+  
+    
   }
 
   .thumb.primary {
@@ -104,7 +106,9 @@ export class TfSliderThumb extends TfBase {
         ${hasLabel === '' ? html`
         <label class="text-label">${label || ''}</label>
       ` : html`
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg"  width="20"
+        height="20"
+        viewBox="0 0 16 16">
           <path d="M9.99967 13.3334V2.66671H8.66634V13.3334H9.99967ZM12.6663 13.3334V2.66671H11.333V13.3334H12.6663ZM7.33301 13.3334L7.33301 2.66671H5.99967V13.3334H7.33301ZM3.33301 13.3334H4.66634L4.66634 2.66671H3.33301L3.33301 13.3334Z" fill="#F9F9F8"/>
         </svg>
       ` }
