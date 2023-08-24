@@ -36,6 +36,11 @@ export class TfStep extends TfBase {
         background: ${variant === 'selected'
     ? 'var(--light-tertiary)'
     : 'var(--light-surface-variant)'};
+    color: ${variant === 'selected'
+    ? 'var(--light-surface)'  
+    : variant === 'not-selected'
+    ? 'var(--light-outline)'  
+    : 'initial'};
       }
     `;
 
