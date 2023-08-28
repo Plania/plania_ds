@@ -7,8 +7,8 @@ const checkboxDefault: StyleVariantProps<'tf-checkbox'> = {
   tag: 'tf-checkbox',
   description: 'Checkbox',
   data: {
-    status : 'default',
-    content : 'Checkbox',
+    status: 'default',
+    content: 'Checkbox',
   },
 };
 
@@ -17,9 +17,9 @@ const checkboxDefaultChecked: StyleVariantProps<'tf-checkbox'> = {
   tag: 'tf-checkbox',
   description: 'Checkbox',
   data: {
-    status : 'default',
-    checked : 'true',
-    content : 'Checkbox',
+    status: 'default',
+    checked: 'true',
+    content: 'Checkbox',
   },
 };
 
@@ -28,8 +28,8 @@ const checkboxDisabled: StyleVariantProps<'tf-checkbox'> = {
   tag: 'tf-checkbox',
   description: 'Checkbox',
   data: {
-    status : 'disabled',
-    content : 'Checkbox',
+    status: 'disabled',
+    content: 'Checkbox',
   },
 };
 
@@ -38,25 +38,18 @@ const checkboxDisabledChecked: StyleVariantProps<'tf-checkbox'> = {
   tag: 'tf-checkbox',
   description: 'Checkbox',
   data: {
-    status : 'disabled',
-    checked : 'true',
-    content : 'Checkbox',
+    status: 'disabled',
+    checked: 'true',
+    content: 'Checkbox',
   },
 };
 
-
-
-const meta : StyleComponentProps<'tf-checkbox'> = {
+const meta: StyleComponentProps<'tf-checkbox'> = {
   ref: 'tf-checkbox',
-  description: 'Tourisfair checkbox component. It is used to show a checkbox.',
+  description: 'Plania checkbox component. It is used to show a checkbox.',
   tag: 'tf-checkbox',
-  component: 'Tourisfair Checkbox',
-  variants: [
-    checkboxDefault, 
-    checkboxDefaultChecked,
-    checkboxDisabled,
-    checkboxDisabledChecked,
-  ],
+  component: 'Plania Checkbox',
+  variants: [checkboxDefault, checkboxDefaultChecked, checkboxDisabled, checkboxDisabledChecked],
 };
 
 export const styleTfCheckbox = (styleBook: StyleBook) => styleBook.addComponent(meta);

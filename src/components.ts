@@ -37,6 +37,7 @@ export * from './components/TfSearchCardHeaderImage.js';
 export * from './components/TfSearchCardDetails.js';
 export * from './components/TfSimpleSlider.js';
 export * from './components/TfSliderThumb.js';
+export * from './components/TfStep.js';
 export * from './components/TfTextButton.js';
 export * from './components/TfTextInput.js';
 export * from './components/TfTypeAHeadItem.js';
