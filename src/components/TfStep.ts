@@ -2,7 +2,7 @@ import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
   .container {
-    --tf-step-variant: var(--light-surface-variant);
+    --tf-step: var(--light-surface-variant);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@ const style = css`
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 100%;
-    background: var(--tf-step-variant);
+    background: var(--tf-step);
   }
 `;
 export class TfStep extends TfBase {
@@ -27,7 +27,7 @@ export class TfStep extends TfBase {
   }
 
   static get observedAttributes(): string[] {
-    return ['variant'];
+    return ['selected'];
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
@@ -36,17 +36,21 @@ export class TfStep extends TfBase {
     // Step variant
     container &&
       container.style.setProperty(
-        '--tf-step-variant',
-        this.variant === 'selected' ? 'var(--light-tertiary)' : 'var(--light-surface-variant)'
+        '--tf-step',
+        this.selected ? 'var(--light-tertiary)' : 'var(--light-surface-variant)'
       );
   }
 
-  get variant(): string {
-    return this.getAttribute('variant') || 'not-selected';
+  get selected(): boolean {
+    return this.hasAttribute('selected');
   }
 
-  set variant(value: string) {
-    this.setAttribute('variant', value);
+  set selected(value: boolean) {
+    if (value) {
+      this.setAttribute('selected', '');
+    } else {
+      this.removeAttribute('selected');
+    }
   }
 }
 declare global {
