@@ -7,121 +7,40 @@ const style = css`
     --tf-outline-color: var(--tf-sys-light-outline);
   }
 
+  .default {
+    --tf-thumb-color: var(--tf-sys-light-secondary);
+    --tf-track-fill-color: var(--tf-sys-light-secondary-container);
+    --tf-outline-color: var(--tf-sys-light-outline); 
+  }
+
+  .focus {
+    --tf-thumb-color: var(--tf-sys-light-secondary);
+    --tf-track-fill-color: var(--tf-sys-light-secondary);
+    --tf-outline-color: var(--tf-sys-light-outline);
+  }
+
+  .disabled {
+    --tf-thumb-color: var(--tf-sys-light-surface-variant);
+    --tf-track-fill-color: var(--tf-sys-light-surface-variant);
+    --tf-outline-color: var(--tf-sys-light-outline);
+  }
+
+  .error {
+    --tf-thumb-color: var(--tf-sys-light-error-container);
+    --tf-track-fill-color: var(--tf-sys-light-error-container);
+    --tf-outline-color: var(--tf-sys-light-error);
+  }
+
   tf-text-input {
     width: 100%;
   }
-  .container {
-    position: relative;
-    width: 100%;
-   
-  }
 
-  input[type='range'] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 100%;
-    outline: none;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    background-color: transparent;
-  }
- 
   .value-container input {
-   
     border: none;
     outline: none;
     box-shadow: none;
     background-color: transparent;
-   
   }
-  .slider-track {
-    height: 1rem;
-    border: 1px solid var(--tf-outline-color);
-    border-radius: 0.5em;
-    background: var(--tf-sys-light-surface-variant);
-    box-shadow: none;
-  }
-  input[type='range']::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    height: 5px;
-  }
-  input[type='range']::-moz-range-track {
-    -moz-appearance: none;
-    height: 5px;
-  }
-  input[type='range']::-ms-track {
-    appearance: none;
-    height: 5px;
-  }
-  input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--tf-thumb-color);
-    border: 1px solid var(--tf-outline-color);
-    box-shadow: none;
-    margin-top: -20px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
-    background-size: cover;
-    background-position: center;
-  }
-  input[type='range']:disabled::-webkit-slider-thumb {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%2371787D'/></svg>");
-  }
-  input[type='range'].error-status::-webkit-slider-thumb {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
-    background-size: cover;
-    background-position: center;
-
-    
-  }
-  input[type='range'].error-status::-moz-range-thumb {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
-    background-size: cover;
-    background-position: center;
-
-    
-  }
-  input[type='range'].error-status::-ms-thumb  {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23BA1B1B'/></svg>");
-    background-size: cover;
-    background-position: center;
-
-    
-  }
-  
-
-  input[type='range']::-moz-range-thumb {
-    -webkit-appearance: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--tf-thumb-color);
-    border: 1px solid var(--tf-outline-color);
-    box-shadow: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
-    background-size: cover;
-    background-position: center;
-  }
-  input[type='range']::-ms-thumb {
-    -webkit-appearance: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--tf-thumb-color);
-    border: 1px solid var(--tf-outline-color);
-    box-shadow: none;
-    margin-top: -60px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 -7 16 30' ><path d='M9.99967 13.3333V2.66659H8.66634V13.3333H9.99967ZM12.6663 13.3333V2.66659H11.333V13.3333H12.6663ZM7.33301 13.3333L7.33301 2.66659H5.99967V13.3333H7.33301ZM3.33301 13.3333H4.66634L4.66634 2.66659H3.33301L3.33301 13.3333Z' fill='%23F9F9F8'/></svg>");
-    background-size: cover;
-    background-position: center;
-  }
-  
-
 
   .input-container {
     display: flex;
@@ -148,7 +67,7 @@ const style = css`
     flex-direction: row;
     display: flex;
     gap: 0.625rem;
-    margin-top:50px;
+    margin-top: 50px;
   }
 
   .values span {
@@ -163,22 +82,62 @@ const style = css`
     line-height: 24px;
     letter-spacing: 0.1px;
   }
-  #slider-1,#slider-2{
-    margin-top:2px;
+
+  .container {
+    --min-value: 0%;
+    --max-value: 100%;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 2.25rem;
   }
-  
+
+  .background {
+    position: absolute;
+    top: calc(50% - 0.5rem);
+    left: 1.125rem;
+    height: 1rem;
+    width: calc(100% - 2.25rem);
+    border-radius: 0.5rem;
+    background: var(--tf-sys-light-surface-variant);
+  }
+
+  #thumb-min {
+    position: absolute;
+    left: calc(var(--min-value));
+    z-index: 1;
+  }
+
+  #slider-track {
+    background: var(--tf-thumb-color);
+    border: 1px solid var(--tf-outline-color);
+    left: calc(var(--min-value) + 1.125rem);
+    position: absolute;
+    height: 1rem;
+    top: calc(50% - 0.5rem);
+    width: calc(var(--max-value) - var(--min-value) - 2.25rem);
+  }
+
+  #thumb-max {
+    position: absolute;
+    left: calc(var(--max-value) - 2.25rem);
+    z-index: 1;
+  }
 `;
 
 export class TfDoubleSlider extends TfBase {
-  private sliderOne!: HTMLInputElement;
-  private sliderTwo!: HTMLInputElement;
-  private displayValOne!: HTMLElement | null;
-  private displayValTwo!: HTMLElement | null;
-  private minGap = 0;
-  private sliderTrack!: HTMLElement | null;
-  private sliderMaxValue = 10000;
-  private inputOne!: HTMLInputElement | null;
-  private inputTwo!: HTMLInputElement | null;
+  private _container: HTMLElement | null;
+  private _inputMin: HTMLInputElement | null;
+  private _inputMax: HTMLInputElement | null;
+  private _sliderTrack: HTMLElement | null;
+  private _thumbMin: HTMLElement | null;
+  private _thumbMax: HTMLElement | null;
+  private _focused: HTMLElement | null;
+  private _mouseStarted = false;
+  private _minGap = 0;
+  private _sliderMaxValue = 10000;
+  private _mouseX = 0;
+  private _disabled = false;
 
   constructor() {
     super();
@@ -190,208 +149,219 @@ export class TfDoubleSlider extends TfBase {
         </style>
         <div class="wrapper">
           <div class="container">
-            <div class="slider-track"></div>
-
-            <input type="range" min="0" id="slider-1" max="${this.sliderMaxValue.toString()}" />
-
-            <input type="range" min="0" id="slider-2" max="${this.sliderMaxValue.toString()}" />
+            <div class="background"></div>
+            <tf-slider-thumb id="thumb-min" variant="secondary" outline></tf-slider-thumb>
+            <div id="slider-track"></div>
+            <tf-slider-thumb id="thumb-max" variant="secondary" outline></tf-slider-thumb>
           </div>
           <div class="values">
-          <tf-text-input icon="true" status="label" pictogramme="euro-symbol" label="Min" id='input-1'></tf-text-input>
-          <tf-text-input icon="true" status="label" pictogramme="euro-symbol" label="Max" id='input-2'></tf-text-input>
+            <tf-text-input
+              icon="true"
+              status="label"
+              pictogramme="euro-symbol"
+              label="Min"
+              id="input-min"
+            ></tf-text-input>
+            <tf-text-input
+              icon="true"
+              status="label"
+              pictogramme="euro-symbol"
+              label="Max"
+              id="input-max"
+            ></tf-text-input>
           </div>
         </div>
       `);
-    this.displayValOne = this.shadowRoot!.getElementById('input-1') as HTMLInputElement;
-    this.displayValTwo = this.shadowRoot!.getElementById('input-2') as HTMLInputElement;
 
-    this.inputOne = this.shadowRoot!.getElementById('input-1') as HTMLInputElement;
-    this.inputTwo = this.shadowRoot!.getElementById('input-2') as HTMLInputElement;
-
-    if (this.inputOne && this.inputTwo) {
-      this.inputOne.addEventListener('input', () => this.updateSliderValues());
-      this.inputTwo.addEventListener('input', () => this.updateSliderValues());
-    }
-
-    if (this.sliderOne && this.sliderTwo) {
-      this.sliderOne.addEventListener('input', () => this.slideOne());
-      this.sliderTwo.addEventListener('input', () => this.slideTwo());
-    }
-    
-   
-  }
-  private updateSliderValues() {
-    if (this.inputOne && this.inputTwo && this.sliderOne && this.sliderTwo) {
-      const valueOne = parseInt(this.inputOne.value);
-      const valueTwo = parseInt(this.inputTwo.value);
-
-      const clampedValueOne = Math.min(Math.max(valueOne, 0), this.sliderMaxValue);
-      const clampedValueTwo = Math.min(Math.max(valueTwo, 0), this.sliderMaxValue);
-
-      if (clampedValueTwo - clampedValueOne <= this.minGap) {
-        this.inputOne.value = (clampedValueTwo - this.minGap).toString();
-        this.inputTwo.value = (clampedValueOne + this.minGap).toString();
-        
-       
-      }
-      
-
-      this.displayValOne!.textContent = this.inputOne.value;
-      this.displayValTwo!.textContent = this.inputTwo.value;
-
-      this.sliderOne.value = this.inputOne.value;
-      this.sliderTwo.value = this.inputTwo.value;
-      this.minValue = this.inputOne.value;
-      this.maxValue = this.inputTwo.value;
-      this.fillColor();
-    }
-  }
+    this._container = this.shadowRoot!.querySelector('.container') as HTMLElement;
+    this._inputMin = this.shadowRoot!.querySelector('#input-min') as HTMLInputElement || null;
+    this._inputMax = this.shadowRoot!.querySelector('#input-max') as HTMLInputElement;
   
+    this._sliderTrack = this.shadowRoot!.querySelector('#slider-track') as HTMLElement;
+  
+    this._thumbMin = this.shadowRoot!.querySelector('#thumb-min') as HTMLElement;
+    this._thumbMax = this.shadowRoot!.querySelector('#thumb-max') as HTMLElement;
+    this._focused = null;
+  }
+
+  connectedCallback() {
+    this.onmousedown = this._mouseDown.bind(this);
+    this.onmousemove = this._mouseMove.bind(this);
+    this.onmouseup = this._mouseUp.bind(this);
+    if (this._thumbMin && this._thumbMax) {
+      this._thumbMin.onmousedown = this._selectThumb.bind(this);
+      this._thumbMax.onmousedown = this._selectThumb.bind(this);
+    }
+
+    this.displayValuesAndLabels(this.userInput);
+  }
+
   static get observedAttributes() {
-    return ['status', 'userinput'];
+    return ['status', 'user-input', 'min', 'max', 'valueMin', 'valueMax'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
     if (name === 'status') {
-      const thumbOne = this.shadowRoot?.getElementById('slider-1') as HTMLInputElement;
-      const thumbTwo = this.shadowRoot?.getElementById('slider-2') as HTMLInputElement;
-      const sliderTrack = this.shadowRoot?.querySelector('.slider-track') as HTMLElement;
-
-      if (thumbOne && thumbTwo && sliderTrack) {
+      if (this._thumbMin && this._thumbMax && this._sliderTrack) {
+        // Remove all status classes
+        this._thumbMin.classList.remove('default', 'focus', 'disabled', 'error');
+        this._thumbMax.classList.remove('default', 'focus', 'disabled', 'error');
+        this._sliderTrack.classList.remove('default', 'focus', 'disabled', 'error');
+        // Enable slider
+        this._disabled = false;
         switch (newValue) {
         case 'default':
-          thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-secondary)');
-          thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-secondary)');
-          sliderTrack.style.setProperty(
-            '--tf-track-fill-color',
-            'var(--tf-sys-light-secondary-container)'
-          );
+          this._thumbMin.classList.add('default');
+          this._thumbMax.classList.add('default');
+          this._sliderTrack.classList.add('default');
           break;
         case 'focus':
-          thumbOne.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
-          thumbTwo.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
-          sliderTrack.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-secondary)');
+          this._thumbMin.classList.add('focus');
+          this._thumbMax.classList.add('focus');
+          this._sliderTrack.classList.add('focus');
           break;
         case 'disabled':
-          thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
-          thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
-          thumbOne.style.setProperty(
-            '--tf-track-fill-color',
-            'var(--tf-sys-light-surface-variant'
-          );
-          thumbTwo.style.setProperty(
-            '--tf-track-fill-color',
-            'var(--tf-sys-light-surface-variant'
-          );
-
-          thumbOne.disabled = true;
-          thumbTwo.disabled = true;
+          this._thumbMin.classList.add('disabled');
+          this._thumbMax.classList.add('disabled');
+          this._sliderTrack.classList.add('disabled');
+          this._disabled = true;
           break;
         case 'error':
-          thumbOne.classList.add('error-status');
-            thumbTwo.classList.add('error-status');
-          thumbOne.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
-          thumbTwo.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
-          thumbOne.style.setProperty(
-            '--tf-track-fill-color',
-            'var(--tf-sys-light-error-container)'
-          );
-          thumbTwo.style.setProperty(
-            '--tf-track-fill-color',
-            'var(--tf-sys-light-error-container)'
-          );
-        
-          thumbOne.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
-          thumbTwo.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
+          this._thumbMin.classList.add('error');
+          this._thumbMax.classList.add('error');
+          this._sliderTrack.classList.add('error');
           break;
         }
       }
     }
   }
 
-  connectedCallback() {
-    
+  /**
+   * Select thumb
+   * @param e Captured mouse event on thumb
+   */
+  private _selectThumb (e: MouseEvent): void {
+    // `this` is the host element.
+    this._focused && this._focused.removeAttribute('focus');
+    this._focused = e.target as HTMLElement;
+    this._focused.setAttribute('focus', '');
+  }
 
-    this.displayValOne = this.shadowRoot!.getElementById('input-1') as HTMLInputElement;
-    this.displayValTwo = this.shadowRoot!.getElementById('input-2') as HTMLInputElement;
+  private _getMousePosition(mouseOffset: number, thumbWidth: number, clientWidth: number) {
+    return Math.min(Math.max(mouseOffset - thumbWidth / 2, 0), clientWidth - thumbWidth);
+  }
 
-    this.sliderTrack = this.shadowRoot!.querySelector('.slider-track');
+  /**
+   * Mouse down on the host
+   * @param e Captured mouse event on host
+   */
+  private _mouseDown (e: MouseEvent): void {
+    // `this` is the host element.
+    this._mouseStarted = true;
+    this._mouseX = this._getMousePosition(e.offsetX, this._thumbMin!.clientWidth, this.clientWidth);
+    this._compute();
+  }
 
-    this.sliderOne = this.shadowRoot!.getElementById('slider-1') as HTMLInputElement;
-    this.sliderTwo = this.shadowRoot!.getElementById('slider-2') as HTMLInputElement;
+  /**
+   * Mouse move on the host
+   * @param e Captured mouse event on the host
+   */
+  private _mouseUp (): void {
+    // `this` is the host element.
+    this._focused && this._focused.removeAttribute('focus');
+    this._mouseStarted = false;
+  }
 
-    if (this.sliderOne && this.sliderTwo) {
-      this.sliderOne.addEventListener('input', () => this.slideOne());
-      this.sliderTwo.addEventListener('input', () => this.slideTwo());
+  /**
+   * Mouse move on the host
+   * @param e Captured mouse event on the host
+   */
+  private _mouseMove (e: MouseEvent): void {
+    // `this` is the host element.
+    if(!this._mouseStarted || !this._focused) return;
+
+    this._mouseX = this._getMousePosition(e.offsetX, this._thumbMin!.clientWidth, this.clientWidth);
+    this._compute();
+  }
+
+  private _compute() {
+    if (!this._focused) return;
+
+    const thumbWidth = this._focused.clientWidth;
+    const totalSpan = this.clientWidth - thumbWidth;
+    const totalValueSpan = +this.max - +this.min;
+    const mouseOffset = this._mouseX - thumbWidth / 2;
+
+    let percent = mouseOffset / totalSpan;
+    percent = percent < 0 ? 0 : percent > 1 ? 1 : percent;
+
+    const value = +this.min + totalValueSpan * percent;
+
+    this._focused.id === 'thumb-min' && (this.valueMin = '' + (value > +this.valueMax ? +this.valueMax : value));
+    this._focused.id === 'thumb-max' && (this.valueMax = '' + (value < +this.valueMin ? +this.valueMin : value));
+
+    this._updateSlider();
+  }
+
+  private _updateSlider() {
+    if (this._container) {
+      const percentMin = (+this.valueMin / this._sliderMaxValue) * 100;
+      const percentMax = (+this.valueMax / this._sliderMaxValue) * 100;
+      this._container.style.setProperty('--min-value', `${percentMin}%`);
+      this._container.style.setProperty('--max-value', `${percentMax}%`);
     }
+  }
 
-    this.slideOne();
-    this.slideTwo();
-    const userInputAttribute = this.getAttribute('userinput');
-    const isUserInput = userInputAttribute === 'true';
-    this.displayValuesAndLabels(isUserInput);
+  private _updateSliderValuesFromInputs() {
+    if (this._thumbMin && this._thumbMax) {
+      const valueMin = parseInt(this._inputMin!.value || '0');
+      const valueMax = parseInt(this._inputMax!.value || '100');
+
+      const clampedValueOne = Math.min(Math.max(valueMin, 0), this._sliderMaxValue);
+      const clampedValueTwo = Math.min(Math.max(valueMax, 0), this._sliderMaxValue);
+
+      if (clampedValueTwo - clampedValueOne <= this._minGap) {
+        this._inputMin!.value = (clampedValueTwo - this._minGap).toString();
+        this._inputMax!.value = (clampedValueOne + this._minGap).toString();
+      }
+      
+      this.fillColor();
+    }
   }
 
   private displayValuesAndLabels(show: boolean) {
     const valuesContainer = this.shadowRoot!.querySelector('.values') as HTMLElement;
-    if (valuesContainer) {
-      valuesContainer.style.display = show ? 'flex' : 'none';
-    }
-  }
-  private slideOne() {
-    if (this.sliderOne && this.displayValOne) {
-      const valueOne = parseInt(this.sliderOne.value);
-      this.displayValOne.textContent = valueOne.toString();
-
-      if (this.inputOne) {
-        this.inputOne.value = valueOne.toString();
-      }
-
-      this.updateSliderValues();
-    }
-  }
-
-  private slideTwo() {
-    if (this.sliderTwo && this.displayValTwo) {
-      const valueTwo = parseInt(this.sliderTwo.value);
-      this.displayValTwo.textContent = valueTwo.toString();
-
-      if (this.inputTwo) {
-        this.inputTwo.value = valueTwo.toString();
-      }
-
-      this.updateSliderValues();
-    }
+    valuesContainer && (valuesContainer!.style.display = show ? 'flex' : 'none');
   }
 
   private fillColor() {
-    if (this.sliderOne && this.sliderTwo && this.sliderTrack) {
-      const percent1 = (parseInt(this.sliderOne.value) / this.sliderMaxValue) * 100;
-      const percent2 = (parseInt(this.sliderTwo.value) / this.sliderMaxValue) * 100;
+    if (this._thumbMin && this._thumbMax && this._inputMin && this._inputMax && this._sliderTrack) {
+      const percent1 = (parseInt(this._inputMin.value) / this._sliderMaxValue) * 100;
+      const percent2 = (parseInt(this._inputMax.value) / this._sliderMaxValue) * 100;
       const status = this.status;
       const thumbsInteracted =
-        this.sliderOne.matches(':hover') ||
-        this.sliderOne.matches(':active') ||
-        this.sliderTwo.matches(':hover') ||
-        this.sliderTwo.matches(':active');
+        this._thumbMin.matches(':hover') ||
+        this._thumbMin.matches(':active') ||
+        this._thumbMax.matches(':hover') ||
+        this._thumbMax.matches(':active');
 
       switch (status) {
       case 'default':
         if (thumbsInteracted) {
-          this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+          this._sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
         } else {
-          this.sliderTrack.style.background = `linear-gradient(to right,var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary-container) ${percent1}%, var(--tf-sys-light-secondary-container) ${percent2}%,var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+          this._sliderTrack.style.background = `linear-gradient(to right,var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary-container) ${percent1}%, var(--tf-sys-light-secondary-container) ${percent2}%,var(--tf-sys-light-surface-variant)  ${percent2}%)`;
         }
         break;
       case 'focus':
-        this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+        this._sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-secondary) ${percent1}%, var(--tf-sys-light-secondary) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
         break;
       case 'disabled':
-        this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent2}%, var(--tf-sys-light-surface-variant) ${percent2}%)`;
+        this._sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent1}%, var(--tf-sys-light-surface-variant) ${percent2}%, var(--tf-sys-light-surface-variant) ${percent2}%)`;
 
         break;
       case 'error':
-        this.sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-error-container) ${percent1}%, var(--tf-sys-light-error-container) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
+        this._sliderTrack.style.background = `linear-gradient(to right, var(--tf-sys-light-surface-variant)  ${percent1}%, var(--tf-sys-light-error-container) ${percent1}%, var(--tf-sys-light-error-container) ${percent2}%, var(--tf-sys-light-surface-variant)  ${percent2}%)`;
         break;
       default:
         break;
@@ -407,27 +377,43 @@ export class TfDoubleSlider extends TfBase {
     this.setAttribute('status', value);
   }
   get userInput() {
-    return this.getAttribute('userinput') || 'false';
+    return this.hasAttribute('user-input');
   }
 
   set userInput(value) {
-    this.setAttribute('userinput', value);
+    value && this.setAttribute('user-input', '');
   }
 
-  get minValue() {
+  get min() {
     return this.getAttribute('min') || '0';
   }
 
-  set minValue(value) {
+  set min(value) {
     this.setAttribute('min', value);
   }
 
-  get maxValue() {
-    return this.getAttribute('max') || '100';
+  get max() {
+    return this.getAttribute('max') || '10000';
   }
 
-  set maxValue(value) {
+  set max(value) {
     this.setAttribute('max', value);
+  }
+
+  get valueMin() {
+    return this.getAttribute('valueMin') || this.min;
+  }
+
+  set valueMin(value) {
+    this.setAttribute('valueMin', '' + Math.max(+this.min, +value));
+  }
+
+  get valueMax() {
+    return this.getAttribute('valueMax') || this.max;
+  }
+
+  set valueMax(value) {
+    this.setAttribute('valueMax', '' + Math.min(+this.max, +value));
   }
 }
 
@@ -438,4 +424,3 @@ declare global {
 }
 
 customElements.define('tf-double-slider', TfDoubleSlider);
-
