@@ -40,6 +40,7 @@ import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js'
 import { styleTfSimpleSlider } from './StyleTfSimpleSlider.js';
 import { styleTfSliderThumb } from './StyleTfSliderThumb.js';
 import { styleTfStep } from './StyleTfStep.js';
+import { styleTfStepper } from './StyleTfStepper.js';
 import { styleTfTextButton } from './StyleTfTextButton.js';
 import { styleTfTypeAHeadItem } from './StyleTfTypeAHeadItem.js';
 import { styleTfTypeAHead } from './StyleTfTypeAHead.js';
@@ -261,6 +262,7 @@ styleTfSearchCardHeaderImage(styleBook);
 styleTfSimpleSlider(styleBook);
 styleTfSliderThumb(styleBook);
 styleTfStep(styleBook);
+styleTfStepper(styleBook);
 styleTfTextButton(styleBook);
 styleTfTypeAHead(styleBook);
 styleTfTypeAHeadItem(styleBook);
