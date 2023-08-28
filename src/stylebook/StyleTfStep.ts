@@ -3,22 +3,22 @@ import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
 const notSelectedStep: StyleVariantProps<'tf-step'> = {
-  name: ' Inactive Step 1',
+  name: 'Small Inactive Step 1',
   tag: 'tf-step',
   description: 'Not selected step',
   data: {
-    step: 1,
     variant: 'not-selected',
+    content: '1',
   },
 };
 
 const selectedStep: StyleVariantProps<'tf-step'> = {
-  name: 'Active Step 1',
+  name: 'Small Active Step 1',
   tag: 'tf-step',
-  description: ' Selected step ',
+  description: 'A small, active step circle',
   data: {
-    step: 1,
     variant: 'selected',
+    content: '1',
   },
 };
 
@@ -26,7 +26,7 @@ const meta: StyleComponentProps<'tf-step'> = {
   ref: 'tf-step',
   tag: 'tf-step',
   description: 'A generic step with 2 variants: not selected and selected.',
-  component: 'Tourisfair Step',
+  component: 'Plania Step',
   variants: [notSelectedStep, selectedStep],
 };
 

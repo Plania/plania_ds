@@ -33,7 +33,7 @@ const meta: StyleComponentProps<'tf-carrousel-indicator'> = {
   ref: 'tf-carrousel-indicator',
   tag: 'tf-carrousel-indicator',
   description: 'Indicate the current step of a carrousel.',
-  component: 'Tourisfair Carrousel Indicator',
+  component: 'Plania Carrousel Indicator',
   variants: [carrouselFirst, carrouselIntermediate, carrouselFinal],
 };
 
