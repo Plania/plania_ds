@@ -7,7 +7,6 @@ const notSelectedStep: StyleVariantProps<'tf-step'> = {
   tag: 'tf-step',
   description: 'Not selected step',
   data: {
-    variant: 'not-selected',
     content: '1',
   },
 };
@@ -17,7 +16,7 @@ const selectedStep: StyleVariantProps<'tf-step'> = {
   tag: 'tf-step',
   description: 'A small, active step circle',
   data: {
-    variant: 'selected',
+    selected: '',
     content: '1',
   },
 };

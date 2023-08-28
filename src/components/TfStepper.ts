@@ -1,67 +1,112 @@
-import { css, TfBase } from './TfBase.js';
+import { css, html, TfBase } from './TfBase.js';
 
-export class TfStepper extends TfBase {
-  static get observedAttributes(): string[] {
-    return ['variant'];
+const style = css`
+  .container {
+    position: relative;
+    height: 2rem;
   }
 
+  .steps {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .connectors {
+    position: absolute;
+    top: 0;
+    left: 0.25rem;
+    height: 100%;
+    width: calc(100% - 0.5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+  }
+
+  .connector {
+    height: 0.25rem;
+    width: 100%;
+    background-color: var(--light-surface-variant);
+  }
+
+  .connector.selected {
+    background-color: var(--light-tertiary);
+  }
+`;
+
+export class TfStepper extends TfBase {
   constructor() {
     super();
 
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: 'open' });
-      this.render();
-    }
+    this.shadowRoot &&
+      (this.shadowRoot.innerHTML = html`
+        <style>
+          ${style}
+        </style>
+        <div class="container"></div>
+      `);
+
+    this.render();
+  }
+
+  static get observedAttributes(): string[] {
+    return ['steps', 'current'];
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
-    if (name === 'variant') {
-      this.render();
-    }
+    this.render();
   }
 
   render() {
-    const variant = parseInt(this.getAttribute('variant') || '1', 10);
-
     // Initial steps with not-selected variant
-    const steps: string[] = Array(5).fill(0).map((_, index) => {
-      if (index < variant) {
-        return `<tf-step step="${index + 1}" variant="selected"></tf-step>`;
-      } else {
-        return `<tf-step step="${index + 1}" variant="not-selected"></tf-step>`;
-      }
-    });
+    const steps: string = Array(this.steps)
+      .fill(0)
+      .map(
+        (_, index) => html`
+          <tf-step ${index < this.current ? 'selected' : ''}>${'' + (index + 1)}</tf-step>
+        `
+      )
+      .join('');
 
-    // Creating connectors between steps based on the variant.
-    const connectors: string[] = [];
-    for (let i = 0; i < 4; i++) {
-      const color = i + 1 < variant ? 'var(--light-tertiary)' : 'var(--light-surface-variant)';
-      connectors.push(`<div style='height: 4px; width: 32px; background-color: ${color};'></div>`);
-    }
+    const connectors: string = Array(this.steps - 1)
+      .fill(0)
+      .map(
+        (_, index) =>
+          html` <div class="connector ${index < this.current - 1 ? 'selected' : ''}"></div> `
+      )
+      .join('');
 
-    // Combine steps and connectors for final output
-    const combinedContent: string[] = [];
-    for (let i = 0; i < 5; i++) {
-      combinedContent.push(steps[i]);
-      if (i !== 4) {
-        combinedContent.push(connectors[i]);
-      }
-    }
+    const container = this.shadowRoot?.querySelector('.container');
+    container &&
+      (container.innerHTML = html`
+        <div class="connectors">${connectors}</div>
+        <div class="steps">${steps}</div>
+      `);
+  }
 
-    const style = css`
-      .stepper-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    `;
+  get steps(): number {
+    return parseInt(this.getAttribute('steps') || '5', 10);
+  }
 
-    if (this.shadowRoot) {
-      this.shadowRoot.innerHTML = `
-                <style>${style}</style>
-                <div class="stepper-container">${combinedContent.join('')}</div>
-            `;
-    }
+  set steps(value: number) {
+    value = value < 1 ? 1 : value;
+    this.setAttribute('steps', value.toString());
+  }
+
+  get current(): number {
+    return parseInt(this.getAttribute('current') || '1', 10);
+  }
+
+  set current(value: number) {
+    value = value < 1 ? 1 : value;
+    value = value > this.steps ? this.steps : value;
+    this.setAttribute('current', value.toString());
   }
 }
 
