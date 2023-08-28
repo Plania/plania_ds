@@ -26,7 +26,7 @@ const meta: StyleComponentProps<'tf-step'> = {
   ref: 'tf-step',
   tag: 'tf-step',
   description: 'A generic step with 2 variants: not selected and selected.',
-  component: 'Tourisfair Step',
+  component: 'Plania Step',
   variants: [notSelectedStep, selectedStep],
 };
 

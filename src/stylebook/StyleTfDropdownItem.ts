@@ -15,7 +15,7 @@ const meta: StyleComponentProps<'tf-dropdown-item'> = {
   ref: 'tf-dropdown-item',
   tag: 'tf-dropdown-item',
   description: 'A dropdown item.',
-  component: 'Tourisfair Dropdown Item',
+  component: 'Plania Dropdown Item',
   variants: [dropdownItem],
 };
 

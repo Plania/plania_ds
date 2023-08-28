@@ -75,8 +75,8 @@ const mantraMonoLogo: StyleVariantProps<'tf-logo'> = {
 const meta: StyleComponentProps<'tf-logo'> = {
   ref: 'tf-logo',
   tag: 'tf-logo',
-  description: 'Tourisfair Logo component',
-  component: 'Logo Tourisfair',
+  description: 'Plania Logo component',
+  component: 'Logo Plania',
   variants: [
     defaultLogo,
     textColorLogo,

@@ -9,7 +9,7 @@ const TypeAHeadItemTop: StyleVariantProps<'tf-typeahead-item'> = {
   data: {
     content: 'Typeahead Item Top',
     thumb: 'https://picsum.photos/48/48',
-    side : 'top'
+    side: 'top',
   },
 };
 
@@ -20,7 +20,7 @@ const TypeAHeadItemBottom: StyleVariantProps<'tf-typeahead-item'> = {
   data: {
     content: 'Typeahead Item Bottom',
     thumb: 'https://picsum.photos/48/48',
-    side : 'bottom'
+    side: 'bottom',
   },
 };
 
@@ -28,9 +28,8 @@ const meta: StyleComponentProps<'tf-typeahead-item'> = {
   ref: 'tf-typeahead-item',
   tag: 'tf-typeahead-item',
   description: 'A typeahead item.',
-  component: 'Tourisfair Typeahead Item',
+  component: 'Plania Typeahead Item',
   variants: [TypeAHeadItemTop, TypeAHeadItemBottom],
 };
 
 export const styleTfTypeAHeadItem = (styleBook: StyleBook) => styleBook.addComponent(meta);
-    

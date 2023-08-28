@@ -8,7 +8,7 @@ const defaultCardHeaderImage: StyleVariantProps<'tf-card-header-image'> = {
   description: 'Card header image without eco badge and not in favorite',
   data: {
     src: '/assets/image.png',
-    eco : 'none',
+    eco: 'none',
   },
 };
 
@@ -18,7 +18,7 @@ const ecoNotFavorite: StyleVariantProps<'tf-card-header-image'> = {
   description: 'Card header image with eco badge and not in favorite',
   data: {
     src: '/assets/image.png',
-    badge : 'eco',
+    badge: 'eco',
   },
 };
 
@@ -28,7 +28,7 @@ const noEcoFavorite: StyleVariantProps<'tf-card-header-image'> = {
   description: 'Card header image without eco badge and in favorite',
   data: {
     src: '/assets/image.png',
-    favorite : '',
+    favorite: '',
   },
 };
 
@@ -38,22 +38,17 @@ const ecoFavorite: StyleVariantProps<'tf-card-header-image'> = {
   description: 'Card header image with eco badge and in favorite',
   data: {
     src: '/assets/image.png',
-    badge : 'eco',
-    favorite : '',
+    badge: 'eco',
+    favorite: '',
   },
 };
 
 const meta: StyleComponentProps<'tf-card-header-image'> = {
   ref: 'tf-card-header-image',
   tag: 'tf-card-header-image',
-  description: 'Tourisfair card header image component, showing the header image of a card.',
-  component: 'Tourisfair Card Header Image',
-  variants: [
-    defaultCardHeaderImage,
-    ecoNotFavorite,
-    noEcoFavorite,
-    ecoFavorite
-  ],
+  description: 'Plania card header image component, showing the header image of a card.',
+  component: 'Plania Card Header Image',
+  variants: [defaultCardHeaderImage, ecoNotFavorite, noEcoFavorite, ecoFavorite],
 };
 
 export const styleTfCardHeaderImage = (styleBook: StyleBook) => styleBook.addComponent(meta);
