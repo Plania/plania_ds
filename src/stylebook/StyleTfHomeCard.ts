@@ -20,7 +20,7 @@ const meta: StyleComponentProps<'tf-home-card'> = {
   ref: 'tf-home-card',
   tag: 'tf-home-card',
   description: 'A card for home page.',
-  component: 'Tourisfair Home Card',
+  component: 'Plania Home Card',
   variants: [homeCard],
 };
 

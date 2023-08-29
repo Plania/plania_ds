@@ -2,49 +2,127 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const ChipNotSelectedIcon: StyleVariantProps<'tf-chip'> = {
+const ChipPrimaryNotSelectedIcon: StyleVariantProps<'tf-chip'> = {
   name: 'Chip',
   tag: 'tf-chip',
-  description: 'Chip no selected with iconl',
+  description: 'Chip with a primary color not selected with icon',
   data: {
+    variant: 'primary',
     active: '',
     icon: '',
     symbol: 'add',
-    content: 'History',
+    content: 'label',
+  },
+};
+const ChipSecondaryNotSelectedIcon: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a secondary color not selected with icon',
+  data: {
+    ...ChipPrimaryNotSelectedIcon.data,
+    variant: 'secondary',
+  },
+};
+const ChipTertiaryNotSelectedIcon: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a tertiary color not selected with icon',
+  data: {
+    ...ChipPrimaryNotSelectedIcon.data,
+    variant: 'tertiary',
   },
 };
 
-const ChipNotSelected: StyleVariantProps<'tf-chip'> = {
+const ChipPrimaryNotSelected: StyleVariantProps<'tf-chip'> = {
   name: 'Chip',
   tag: 'tf-chip',
-  description: 'Chip no selected without icon',
+  description: 'Chip with a primary color not selected without icon',
   data: {
+    variant: 'primary',
     active: '',
-    content: 'Churches',
+    content: 'label',
+  },
+};
+const ChipSecondaryNotSelected: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a secondary color not selected without icon',
+  data: {
+    ...ChipPrimaryNotSelected.data,
+    variant: 'secondary',
   },
 };
 
-const ChipSelectedIcon: StyleVariantProps<'tf-chip'> = {
+const ChipTertiaryNotSelected: StyleVariantProps<'tf-chip'> = {
   name: 'Chip',
   tag: 'tf-chip',
-  description: 'Chip selected with icon',
+  description: 'Chip with a tertiary color not selected without icon',
   data: {
+    ...ChipPrimaryNotSelected.data,
+    variant: 'tertiary',
+  },
+};
+
+const ChipPrimarySelectedIcon: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a primary color selected with icon',
+  data: {
+    variant: 'primary',
     active: '',
     icon: '',
     symbol: 'add',
-    content: 'History',
-    selected : '',
+    content: 'label',
+    selected: '',
+  },
+};
+const ChipSecondarySelectedIcon: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a secondary color selected with icon',
+  data: {
+    ...ChipPrimarySelectedIcon.data,
+    variant: 'secondary',
+  },
+};
+const ChipTertiarySelectedIcon: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a tertiary color selected with icon',
+  data: {
+    ...ChipPrimarySelectedIcon.data,
+    variant: 'tertiary',
   },
 };
 
-const ChipSelected: StyleVariantProps<'tf-chip'> = {
+const ChipPrimarySelected: StyleVariantProps<'tf-chip'> = {
   name: 'Chip',
   tag: 'tf-chip',
-  description: 'Chip no selected without icon',
+  description: 'Chip with a primary color selected without icon',
   data: {
+    variant: 'primary',
     active: '',
-    content: 'History',
-    selected : '',
+    content: 'label',
+    selected: '',
+  },
+};
+
+const ChipSecondarySelected: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a secondary color selected without icon',
+  data: {
+    ...ChipPrimarySelected.data,
+    variant: 'secondary',
+  },
+};
+const ChipTertiarySelected: StyleVariantProps<'tf-chip'> = {
+  name: 'Chip',
+  tag: 'tf-chip',
+  description: 'Chip with a tertiary color selected without icon',
+  data: {
+    ...ChipPrimarySelected.data,
+    variant: 'tertiary',
   },
 };
 
@@ -53,9 +131,9 @@ const ChipDisabledIcon: StyleVariantProps<'tf-chip'> = {
   tag: 'tf-chip',
   description: 'Chip disabled with icon',
   data: {
-    content : 'History',
-    icon : '',
-    symbol : 'add',
+    content: 'label',
+    icon: '',
+    symbol: 'add',
   },
 };
 
@@ -64,23 +142,29 @@ const ChipDisabled: StyleVariantProps<'tf-chip'> = {
   tag: 'tf-chip',
   description: 'Chip disabled without icon',
   data: {
-    content : 'History',
+    content: 'label',
   },
 };
-
-
 
 const meta: StyleComponentProps<'tf-chip'> = {
   ref: 'tf-chip',
   tag: 'tf-chip',
   description:
-      'A chip is used to tag an information or title, to give a labelled meaning, to categorize.',
-  component: 'Tourisfair Chip',
+    'A chip is used to tag an information or title, to give a labelled meaning, to categorize.',
+  component: 'Plania Chip',
   variants: [
-    ChipNotSelectedIcon,
-    ChipNotSelected,
-    ChipSelectedIcon,
-    ChipSelected,
+    ChipPrimaryNotSelectedIcon,
+    ChipSecondaryNotSelectedIcon,
+    ChipTertiaryNotSelectedIcon,
+    ChipPrimaryNotSelected,
+    ChipSecondaryNotSelected,
+    ChipTertiaryNotSelected,
+    ChipPrimarySelectedIcon,
+    ChipSecondarySelectedIcon,
+    ChipTertiarySelectedIcon,
+    ChipPrimarySelected,
+    ChipSecondarySelected,
+    ChipTertiarySelected,
     ChipDisabledIcon,
     ChipDisabled,
   ],

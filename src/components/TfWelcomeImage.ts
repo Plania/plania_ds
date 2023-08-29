@@ -1260,7 +1260,6 @@ export class TfWelcomeImage extends TfBase {
   
 
   displayImage(image = this.step) {
-    console.log('displayImage', image);
     const divElement = this.shadowRoot?.querySelector('div');
     if (divElement) {
       if (step[image] === undefined) {
