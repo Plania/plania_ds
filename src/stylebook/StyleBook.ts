@@ -1,5 +1,6 @@
 import { StyleComponent, StyleComponentProps } from './StyleComponent.js';
 import { css, html } from '../components/TfBase.js';
+import { styleTfActionBar } from './StyleTfActionBar.js';
 import { StyleTfActivityCard } from './StyleTfActivityCard.js';
 import { styleTfAgeSelector } from './StyleTfAgeSelector.js';
 import { styleTfBackground } from './StyleBackground.js';
@@ -222,6 +223,7 @@ customElements.define('style-book', StyleBook);
 // const styleBook = document.createElement('style-book') as StyleBook;
 const styleBook = new StyleBook();
 document.body.appendChild(styleBook);
+styleTfActionBar(styleBook);
 StyleTfActivityCard(styleBook);
 styleTfAgeSelector(styleBook);
 styleTfBackground(styleBook);

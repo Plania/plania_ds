@@ -1,3 +1,4 @@
+export * from './components/TfActionBar.js';
 export * from './components/TfActivityCard.js';
 export * from './components/TfAgeSelector.js';
 export * from './components/TfBackground.js';
