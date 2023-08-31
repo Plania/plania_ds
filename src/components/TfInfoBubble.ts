@@ -46,9 +46,24 @@ export class TfInfoBubble extends TfBase {
               fill="#D4D4D4"
             />
           </svg>
-          <p class="text">Age</p>
+          <p class="text"><slot></slot></p>
         </div>
       `);
+  }
+
+  connectedCallback() {
+    const slotted = this.shadowRoot?.querySelector('slot') as HTMLSlotElement;
+    if (slotted) {
+      slotted.addEventListener('slotchange', () => {
+        const assignedNodes = slotted.assignedNodes() as HTMLElement[];
+        if (assignedNodes.length > 1) {
+          console.warn(
+            'tf-info-bubble can have only one text-node child - only the first one is kept'
+          );
+          slotted.assign(assignedNodes.filter((n) => n.nodeType === Node.TEXT_NODE)[0]);
+        }
+      });
+    }
   }
 }
 declare global {

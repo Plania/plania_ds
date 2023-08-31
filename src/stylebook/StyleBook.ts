@@ -25,6 +25,7 @@ import { styleTfFavorite } from './StyleTfFavorite.js';
 import { styleTfFavoritePlan } from './StyleTfFavoritePlan.js';
 import { styleTfHomeCard } from './StyleTfHomeCard.js';
 import { styleTfIcon } from './StyleTfIcon.js';
+import { styleTfInfoBubble } from './StyleTfInfoBubble.js';
 import { styleTfInputPassword } from './StyleTfInputPassword.js';
 import { styleTfInputText } from './StyleTfInputText.js';
 import { styleTfLogo } from './StyleTfLogo.js';
@@ -49,7 +50,7 @@ import { styleTfWeek } from './StyleTfWeek.js';
 import { styleTfWeekDays } from './StyleTfWeekDays.js';
 import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
 import { styleTfWelcomeImage } from './StyleTfWelcomeImage.js';
-import { styleTfInfoBubble } from './StyleTfInfoBubble.js';
+
 export const styleBookCSS: string = css`
   @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
@@ -248,6 +249,7 @@ styleTfFavorite(styleBook);
 styleTfFavoritePlan(styleBook);
 styleTfHomeCard(styleBook);
 styleTfIcon(styleBook);
+styleTfInfoBubble(styleBook);
 styleTfInputText(styleBook);
 styleTfInputPassword(styleBook);
 styleTfLogo(styleBook);
@@ -272,5 +274,5 @@ styleTfWeek(styleBook);
 styleTfWeekDays(styleBook);
 styleTfWelcomeCard(styleBook);
 styleTfWelcomeImage(styleBook);
-styleTfInfoBubble(styleBook);
+
 document.body.appendChild(styleBook);
