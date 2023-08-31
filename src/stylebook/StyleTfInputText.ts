@@ -11,7 +11,6 @@ const tfInputTextIconDefault: StyleVariantProps<'tf-text-input'> = {
     status: 'default',
     pictogramme: 'account-circle',
     label: 'Default Icon',
-
   },
 };
 
@@ -23,6 +22,29 @@ const tfInputTextDefault: StyleVariantProps<'tf-text-input'> = {
     icon: 'false',
     status: 'default',
     label: 'Default',
+  },
+};
+
+const tfInputTextDefaultFocus: StyleVariantProps<'tf-text-input'> = {
+  name: 'tf input text',
+  tag: 'tf-text-input',
+  description: 'A text input component no icon.Focussed.',
+  data: {
+    icon: 'false',
+    status: 'label',
+    label: 'Default',
+  },
+};
+
+const tfInputTextIconDefaultFocus: StyleVariantProps<'tf-text-input'> = {
+  name: 'tf input text',
+  tag: 'tf-text-input',
+  description: 'A text input component with icon. Focussed.',
+  data: {
+    icon: 'true',
+    status: 'label',
+    pictogramme: 'account-circle',
+    label: 'Default Icon',
   },
 };
 
@@ -58,7 +80,7 @@ const tfInputTextIconError: StyleVariantProps<'tf-text-input'> = {
     status: 'error',
     pictogramme: 'account-circle',
     label: 'Error',
-    value : 'old value',
+    value: 'old value',
     content: '<span slot="error">Error message</span>',
   },
 };
@@ -71,7 +93,7 @@ const tfInputTextError: StyleVariantProps<'tf-text-input'> = {
     icon: 'false',
     status: 'error',
     label: 'Error',
-    value : 'old value',
+    value: 'old value',
     content: '<span slot="error">Error message</span>',
   },
 };
@@ -79,12 +101,13 @@ const tfInputTextError: StyleVariantProps<'tf-text-input'> = {
 const meta: StyleComponentProps<'tf-text-input'> = {
   ref: 'tf-text-input',
   tag: 'tf-text-input',
-  description:
-    'Tourisfair input text component. It is used to showcase an input text',
-  component: 'Tourisfair Input Text',
+  description: 'Plania input text component. It is used to showcase an input text',
+  component: 'Plania Input Text',
   variants: [
     tfInputTextIconDefault,
+    tfInputTextIconDefaultFocus,
     tfInputTextDefault,
+    tfInputTextDefaultFocus,
     tfInputTextIconDisabled,
     tfInputTextDisabled,
     tfInputTextIconError,
@@ -92,5 +115,4 @@ const meta: StyleComponentProps<'tf-text-input'> = {
   ],
 };
 
-export const styleTfInputText = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfInputText = (styleBook: StyleBook) => styleBook.addComponent(meta);

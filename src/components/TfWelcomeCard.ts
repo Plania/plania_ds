@@ -8,8 +8,8 @@ const style = css`
     justify-content: space-between;
     align-items: center;
     background-color: var(--tf-sys-light-background);
-    border-radius: 32px;
-    padding: 16px;
+    border-radius: 2rem;
+    padding: 1rem;
   }
 
   .welcome-card__title {
@@ -20,13 +20,13 @@ const style = css`
   }
 
   .welcome-card__content {
-    line-height: 24px;
+    line-height: 1.5rem;
     text-align: center;
     width: 100%;
   }
 
   .welcome-card__actions {
-    margin-top: 12px;
+    margin-top: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,16 +38,7 @@ const style = css`
     justify-content: flex-end;
     width: 100%;
   }
-
-  /*
-   .action-button {
-      margin: 0 auto;
-   }
-
-   .transform {
-      transform: translateX(85%);
-      }
-    */
+    
 `;
 
 export class TfWelcomeCard extends TfBase {
@@ -86,21 +77,22 @@ export class TfWelcomeCard extends TfBase {
   }
 
   attributeChangedCallback(name: string, _oldValue: string | null, newValue: string) {
-    const div = this.shadowRoot?.querySelector('.welcome-card__actions') as HTMLDivElement;
-    const carrousel = this.shadowRoot?.querySelector(
-      'tf-carrousel-indicator'
-    ) as TfCarrouselIndicator;
+    const carrousel = this.shadowRoot?.querySelector('tf-carrousel-indicator') as TfCarrouselIndicator;
+    const button = this.shadowRoot?.querySelector('tf-button') as HTMLElement;
+    let tfTextButton = this.shadowRoot?.querySelector('tf-text-button');
+    if(!tfTextButton){
+      tfTextButton = document.createElement('tf-text-button');
+      tfTextButton.setAttribute('suffix-icon', '<tf-icon icon="arrow-forward-ios"></tf-icon>');
+      tfTextButton.textContent = 'Skip';
+    }
     carrousel.setAttribute('step', newValue);
     if (name === 'step' && newValue === 'final') {
-      const button = document.createElement('tf-button');
-      button.setAttribute('variant', 'primary');
-      button.setAttribute('size', 'medium');
-      button.setAttribute('text', 'active');
-      button.classList.add('action-button');
+      this.shadowRoot?.querySelector('tf-text-button')?.remove();
       button.textContent = 'Start';
-
-      div.innerHTML = '';
-      div.appendChild(button);
+    }else if(name === 'step'){
+      this.shadowRoot?.querySelector('tf-button')?.classList.add('transform');
+      button.textContent = 'Next';
+      this.shadowRoot?.querySelectorAll('.spacer')[1].appendChild(tfTextButton);
     }
   }
 

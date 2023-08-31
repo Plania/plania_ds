@@ -1,134 +1,142 @@
 import { StyleComponent, StyleComponentProps } from './StyleComponent.js';
 import { css, html } from '../components/TfBase.js';
+import { styleTfActionBar } from './StyleTfActionBar.js';
+import { StyleTfActivityCard } from './StyleTfActivityCard.js';
+import { styleTfAgeSelector } from './StyleTfAgeSelector.js';
+import { styleTfBackground } from './StyleBackground.js';
 import { styleTfBadge } from './StyleTfBadge.js';
 import { styleTfBudget } from './StyleTfBudget.js';
 import { styleTfButton } from './StyleTfButton.js';
+import { styleTfCalendar } from './StyleTfCalendar.js';
 import { styleTfCardDetails } from './StyleTfCardDetails.js';
 import { styleTfCardHeaderImage } from './StyleTfCardHeaderImage.js';
 import { styleTfCarrouselIndicator } from './StyleTfCarrousselIndicator.js';
+import { styleTfCheckbox } from './StyleTfCheckbox.js';
 import { styleTfChip } from './StyleTfChip.js';
+import { styleTfCityOfTheWeek } from './StyleTfCityOfTheWeek.js';
 import { styleTfCitySwiper } from './StyleTfCitySwiper.js';
 import { styleTfCitySwiperItem } from './StyleTfCitySwiperItem.js';
+import { styleTfDateSelector } from './StyleTfDateSelector.js';
+import { styleTfDay } from './StyleTfDay.js';
+import { styleTfDropdown } from './StyleTfDropdown.js';
+import { styleTfDropdownItem } from './StyleTfDropdownItem.js';
 import { styleTfDropDownListButton } from './StyleTfDropDownListButton.js';
 import { styleTfFavorite } from './StyleTfFavorite.js';
+import { styleTfFavoritePlan } from './StyleTfFavoritePlan.js';
 import { styleTfHomeCard } from './StyleTfHomeCard.js';
 import { styleTfIcon } from './StyleTfIcon.js';
+import { styleTfInfoBubble } from './StyleTfInfoBubble.js';
+import { styleTfInputPassword } from './StyleTfInputPassword.js';
 import { styleTfInputText } from './StyleTfInputText.js';
 import { styleTfLogo } from './StyleTfLogo.js';
+import { styleTfLogoNotch } from './StyleTfLogoNotch.js';
 import { styleTfMainContainer } from './StyleTfMainContainer.js';
-import { styleTfTextButton } from './StyleTfTextButton.js';
-import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
-import { styleTfProgressBar } from './StyleTfProgressBar.js';
+import { StyleTfMonthHeader } from './StyleMonthHeader.js';
 import { styleTfNavigationItem } from './StyleTfNavigationItem.js';
 import { styleTfNavigationBar } from './StyleTfNavigationBar.js';
-import { styleTfInputPassword } from './StyleTfInputPassword.js';
-import { styleTfLogoNotch } from './StyleTfLogoNotch.js';
-import { styleTfCheckbox } from './StyleTfCheckbox.js';
-import { styleTfSimpleSlider } from './StyleTfSimpleSlider.js';
-import { styleTfAgeSelector } from './StyleTfAgeSelector.js';
-import { styleTfCityOfTheWeek } from './StyleTfCityOfTheWeek.js';
-import { styleTfFavoritePlan } from './StyleTfFavoritePlan.js';
-import { StyleTfActivityCard } from './StyleTfActivityCard.js';
-import { styleTfCalendar } from './StyleTfCalendar.js';
-import { styleTfDay } from './StyleTfDay.js';
-import { styleTfWelcomeImage } from './StyleTfWelcomeImage.js';
-import { styleTfBackground } from './StyleBackground.js';
+import { styleTfProgressBar } from './StyleTfProgressBar.js';
+import { styleTfRadioButton } from './StyleTfRadioButton.js';
 import { styleTfSearchActivityCard } from './StyleTfSearchActivityCard.js';
 import { styleTfSearchBadge } from './StyleTfSearchBadge.js';
-import { styleTfSearchBudget } from './StyleTfSearchBudget.js';
-import { styleTfSearchButton } from './StyleTfSearchButton.js';
-import { styleTfSearchChip } from './StyleTfSearchChip.js';
-import { styleTfSearchFavorite } from './StyleTfSearchFavorite.js';
 import { styleTfSearchCardDetails } from './StyleTfSearchCardDetails.js';
 import { styleTfSearchCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
-import { styleTfRadioButton } from './StyleTfRadioButton.js';
-
+import { styleTfSimpleSlider } from './StyleTfSimpleSlider.js';
+import { styleTfSliderThumb } from './StyleTfSliderThumb.js';
+import { styleTfStep } from './StyleTfStep.js';
+import { styleTfStepper } from './StyleTfStepper.js';
+import { styleTfTextButton } from './StyleTfTextButton.js';
+import { styleTfTypeAHeadItem } from './StyleTfTypeAHeadItem.js';
+import { styleTfTypeAHead } from './StyleTfTypeAHead.js';
+import { styleTfWeek } from './StyleTfWeek.js';
+import { styleTfWeekDays } from './StyleTfWeekDays.js';
+import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
+import { styleTfWelcomeImage } from './StyleTfWelcomeImage.js';
 
 export const styleBookCSS: string = css`
-   @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+  @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
-   * {
-      --sb-color: 255, 255, 255;
-      --sb-background: rgb(var(--sb-color));
-      --sb-on-color: 32, 32, 32;
-      --sb-on-background: rgb(var(--sb-on-color));
-      --sb-error: #fdd;
-      --sb-on-error: #f00;
-      --sb-alpha-1: 0.1;
-      --sb-alpha-2: 0.2;
-      --sb-alpha-3: 0.3;
-      --sb-alpha-4: 0.4;
-      --sb-alpha-5: 0.5;
-      --sb-alpha-6: 0.6;
-      --sb-alpha-7: 0.7;
-      --sb-alpha-8: 0.8;
-      --sb-alpha-9: 0.9;
-   }
+  * {
+    --sb-color: 255, 255, 255;
+    --sb-background: rgb(var(--sb-color));
+    --sb-on-color: 32, 32, 32;
+    --sb-on-background: rgb(var(--sb-on-color));
+    --sb-error: #fdd;
+    --sb-on-error: #f00;
+    --sb-alpha-1: 0.1;
+    --sb-alpha-2: 0.2;
+    --sb-alpha-3: 0.3;
+    --sb-alpha-4: 0.4;
+    --sb-alpha-5: 0.5;
+    --sb-alpha-6: 0.6;
+    --sb-alpha-7: 0.7;
+    --sb-alpha-8: 0.8;
+    --sb-alpha-9: 0.9;
+  }
 
-   .style-book {
-      font-family: 'SF Pro Display', 'Arial', Helvetica, sans-serif;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      height: 100vh;
-      overflow: auto;
-   }
+  .style-book {
+    font-family: 'SF Pro Display', 'Arial', Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100vh;
+    overflow: auto;
+  }
 
-   .style-component {
-      background-color: var(--sb-background);
-      border-radius: 0.5rem;
-      color: var(--sb-on-background);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-      width: 720px;
-   }
+  .style-component {
+    background-color: var(--sb-background);
+    border-radius: 0.5rem;
+    color: var(--sb-on-background);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    width: 720px;
+  }
 
-   .style-variant-card {
-      background-color: var(--sb-background);
-      border-radius: 0.5rem;
-      box-shadow: 4px 4px 10px 0 rgba(var(--sb-on-color), var(--sb-alpha-5));
-      margin: 1rem;
-      min-width: 200px;
-      padding: 1rem;
-   }
+  .style-variant-card {
+    background-color: var(--sb-background);
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 10px 0 rgba(var(--sb-on-color), var(--sb-alpha-5));
+    margin: 1rem;
+    min-width: 200px;
+    padding: 1rem;
+  }
 
-   .style-variant {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0.5rem;
-   }
+  .style-variant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem;
+  }
 
-   h3 {
-      border-bottom: 1px solid rgba(var(--sb-on-color), var(--sb-alpha-2));
-      display: block !important;
-      margin: 0;
-      width: 100%;
-   }
+  h3 {
+    border-bottom: 1px solid rgba(var(--sb-on-color), var(--sb-alpha-2));
+    display: block !important;
+    margin: 0;
+    width: 100%;
+  }
 
-   pre {
-      background-color: var(--sb-on-background);
-      color: var(--sb-background);
-      max-width: 640px;
-      overflow: auto;
-      padding: 0.5rem;
-   }
+  pre {
+    background-color: var(--sb-on-background);
+    color: var(--sb-background);
+    max-width: 640px;
+    overflow: auto;
+    padding: 0.5rem;
+  }
 
-   pre.error {
-      background-color: var(--sb-error);
-      color: var(--sb-on-error);
-   }
+  pre.error {
+    background-color: var(--sb-error);
+    color: var(--sb-on-error);
+  }
 
-   .main {
-      display: flex;
-      flex-wrap: nowrap;
-   }
+  .main {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 
-   .navbar {
-      min-width: 13rem;
-   }
+  .navbar {
+    min-width: 13rem;
+  }
 `;
 
 export class StyleBook extends HTMLElement {
@@ -139,16 +147,16 @@ export class StyleBook extends HTMLElement {
     if (styleBook) return styleBook;
     super();
     this.innerHTML = html`
-         <div class="main">
-            <style>
-               ${styleBookCSS}
-            </style>
-            <nav class="navbar">
-               <ul></ul>
-            </nav>
-            <div class="style-book"></div>
-         </div>
-      `;
+      <div class="main">
+        <style>
+          ${styleBookCSS}
+        </style>
+        <nav class="navbar">
+          <ul></ul>
+        </nav>
+        <div class="style-book"></div>
+      </div>
+    `;
   }
 
   // connectedCallback() {}
@@ -162,10 +170,10 @@ export class StyleBook extends HTMLElement {
   addToNavbar(component_: StyleComponent): void {
     const navbarItem: HTMLElement = document.createElement('li');
     navbarItem.innerHTML = html`<a
-         onclick="document.querySelector('#${component_.id}')?.scrollIntoView()"
-         href="#${component_.tag}"
-         >${component_.tag}</a
-      >`;
+      onclick="document.querySelector('#${component_.id}')?.scrollIntoView()"
+      href="#${component_.tag}"
+      >${component_.tag}</a
+    >`;
     this.querySelector('.navbar ul')?.appendChild(navbarItem);
   }
 
@@ -203,9 +211,9 @@ export class StyleBook extends HTMLElement {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'style-book': StyleBook;
-   }
+  interface HTMLElementTagNameMap {
+    'style-book': StyleBook;
+  }
 }
 
 customElements.define('style-book', StyleBook);
@@ -217,6 +225,7 @@ customElements.define('style-book', StyleBook);
 // const styleBook = document.createElement('style-book') as StyleBook;
 const styleBook = new StyleBook();
 document.body.appendChild(styleBook);
+styleTfActionBar(styleBook);
 StyleTfActivityCard(styleBook);
 styleTfAgeSelector(styleBook);
 styleTfBackground(styleBook);
@@ -232,32 +241,40 @@ styleTfChip(styleBook);
 styleTfCityOfTheWeek(styleBook);
 styleTfCitySwiper(styleBook);
 styleTfCitySwiperItem(styleBook);
+styleTfDateSelector(styleBook);
 styleTfDay(styleBook);
+styleTfDropdown(styleBook);
+styleTfDropdownItem(styleBook);
 styleTfDropDownListButton(styleBook);
 styleTfFavorite(styleBook);
 styleTfFavoritePlan(styleBook);
 styleTfHomeCard(styleBook);
 styleTfIcon(styleBook);
+styleTfInfoBubble(styleBook);
 styleTfInputText(styleBook);
 styleTfInputPassword(styleBook);
 styleTfLogo(styleBook);
 styleTfLogoNotch(styleBook);
 styleTfMainContainer(styleBook);
+StyleTfMonthHeader(styleBook);
 styleTfNavigationBar(styleBook);
 styleTfNavigationItem(styleBook);
 styleTfProgressBar(styleBook);
-styleTfSimpleSlider(styleBook);
-styleTfTextButton(styleBook);
-styleTfWelcomeCard(styleBook);
-styleTfWelcomeImage(styleBook);
+styleTfRadioButton(styleBook);
 styleTfSearchActivityCard(styleBook);
 styleTfSearchBadge(styleBook);
-styleTfSearchBudget(styleBook);
-styleTfSearchChip(styleBook);
-styleTfSearchFavorite(styleBook);
 styleTfSearchCardDetails(styleBook);
 styleTfSearchCardHeaderImage(styleBook);
-styleTfSearchButton(styleBook);
-styleTfRadioButton(styleBook);
+styleTfSimpleSlider(styleBook);
+styleTfSliderThumb(styleBook);
+styleTfStep(styleBook);
+styleTfStepper(styleBook);
+styleTfTextButton(styleBook);
+styleTfTypeAHead(styleBook);
+styleTfTypeAHeadItem(styleBook);
+styleTfWeek(styleBook);
+styleTfWeekDays(styleBook);
+styleTfWelcomeCard(styleBook);
+styleTfWelcomeImage(styleBook);
 
 document.body.appendChild(styleBook);

@@ -2,593 +2,587 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-
 //medium button Primary
-const smallPrimaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const smallPrimaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no text, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'small',
-    icon : 'add',
+    icon: 'add',
   },
 };
 
-const smallPrimaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const smallPrimaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'small',
-    icon : 'add',
-    text : '',
-    content : 'Button',
+    icon: 'add',
+    text: '',
+    content: 'Button',
   },
 };
 
-const smallPrimaryInactive : StyleVariantProps<'tf-button'> = {
+const smallPrimaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'small',
-    text : '',
-    content : 'Button',
+    text: '',
+    content: 'Button',
   },
 };
 
-const smallPrimaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const smallPrimaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is small, with no text, and based on the primary variant.',
   data: {
     ...smallPrimaryInactiveOnlyIcon.data,
     state: 'hover',
-    active : '',
+    active: '',
   },
 };
 
-const smallPrimaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const smallPrimaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is small, with no icon, and based on the primary variant.',
   data: {
     ...smallPrimaryHoverOnlyIcon.data,
-    icon : 'add',
-    text : '',
-    content : 'Button',
+    icon: 'add',
+    text: '',
+    content: 'Button',
   },
 };
 
-const smallPrimaryHover : StyleVariantProps<'tf-button'> = {
+const smallPrimaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Small Active Button',
   tag: 'tf-button',
   description: 'The Active button is small, with no icon, and based on the primary variant.',
   data: {
     ...smallPrimaryInactive.data,
-    state : 'hover',
-    active : '',
+    state: 'hover',
+    active: '',
   },
 };
 
 //small button Secondary
-const smallSecondaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const smallSecondaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no text, and based on the secondary variant.',
   data: {
     ...smallPrimaryInactiveOnlyIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const smallSecondaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const smallSecondaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no icon, and based on the secondary variant.',
   data: {
     ...smallPrimaryInactiveIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const smallSecondaryInactive : StyleVariantProps<'tf-button'> = {
+const smallSecondaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no icon, and based on the secondary variant.',
   data: {
     ...smallPrimaryInactive.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const smallSecondaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const smallSecondaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is small, with no text, and based on the secondary variant.',
   data: {
     ...smallPrimaryHoverOnlyIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const smallSecondaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const smallSecondaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is small, with no icon, and based on the secondary variant.',
   data: {
     ...smallPrimaryHoverIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const smallSecondaryHover : StyleVariantProps<'tf-button'> = {
+const smallSecondaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Small Active Button',
   tag: 'tf-button',
   description: 'The Active button is small, with no icon, and based on the secondary variant.',
   data: {
     ...smallPrimaryHover.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 //small button Teriary
-const smallTertiaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const smallTertiaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no text, and based on the tertiary variant.',
   data: {
     ...smallPrimaryInactiveOnlyIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const smallTertiaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const smallTertiaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no icon, and based on the tertiary variant.',
   data: {
     ...smallPrimaryInactiveIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const smallTertiaryInactive : StyleVariantProps<'tf-button'> = {
+const smallTertiaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Small Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is small, with no icon, and based on the tertiary variant.',
   data: {
     ...smallPrimaryInactive.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const smallTertiaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const smallTertiaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is small, with no text, and based on the tertiary variant.',
   data: {
     ...smallPrimaryHoverOnlyIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const smallTertiaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const smallTertiaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Small Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is small, with no icon, and based on the tertiary variant.',
   data: {
     ...smallPrimaryHoverIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const smallTertiaryHover : StyleVariantProps<'tf-button'> = {
+const smallTertiaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Small Active Button',
   tag: 'tf-button',
   description: 'The Active button is small, with no icon, and based on the tertiary variant.',
   data: {
     ...smallPrimaryHover.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
 //small button Primary
-const mediumPrimaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const mediumPrimaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no text, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'medium',
-    icon : 'add',
+    icon: 'add',
   },
 };
 
-const mediumPrimaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const mediumPrimaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'medium',
-    icon : 'add',
-    text : '',
-    content : 'Button',
+    icon: 'add',
+    text: '',
+    content: 'Button',
   },
 };
 
-const mediumPrimaryInactive : StyleVariantProps<'tf-button'> = {
+const mediumPrimaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'medium',
-    text : '',
-    content : 'Button',
+    text: '',
+    content: 'Button',
   },
 };
 
-const mediumPrimaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const mediumPrimaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is medium, with no text, and based on the primary variant.',
   data: {
     ...mediumPrimaryInactiveOnlyIcon.data,
     state: 'hover',
-    active : '',
+    active: '',
   },
 };
 
-const mediumPrimaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const mediumPrimaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is medium, with no icon, and based on the primary variant.',
   data: {
     ...mediumPrimaryHoverOnlyIcon.data,
-    icon : 'add',
-    text : '',
-    content : 'Button',
+    icon: 'add',
+    text: '',
+    content: 'Button',
   },
 };
 
-const mediumPrimaryHover : StyleVariantProps<'tf-button'> = {
+const mediumPrimaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Medium Active Button',
   tag: 'tf-button',
   description: 'The Active button is medium, with no icon, and based on the primary variant.',
   data: {
     ...mediumPrimaryInactive.data,
-    state : 'hover',
-    active : '',
+    state: 'hover',
+    active: '',
   },
 };
 
 //medium button Secondary
-const mediumSecondaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const mediumSecondaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no text, and based on the secondary variant.',
   data: {
     ...mediumPrimaryInactiveOnlyIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const mediumSecondaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const mediumSecondaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no icon, and based on the secondary variant.',
   data: {
     ...mediumPrimaryInactiveIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const mediumSecondaryInactive : StyleVariantProps<'tf-button'> = {
+const mediumSecondaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no icon, and based on the secondary variant.',
   data: {
     ...mediumPrimaryInactive.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const mediumSecondaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const mediumSecondaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is medium, with no text, and based on the secondary variant.',
   data: {
     ...mediumPrimaryHoverOnlyIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const mediumSecondaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const mediumSecondaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is medium, with no icon, and based on the secondary variant.',
   data: {
     ...mediumPrimaryHoverIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const mediumSecondaryHover : StyleVariantProps<'tf-button'> = {
+const mediumSecondaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Medium Active Button',
   tag: 'tf-button',
   description: 'The Active button is medium, with no icon, and based on the secondary variant.',
   data: {
     ...mediumPrimaryHover.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 //medium button Teriary
-const mediumTertiaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const mediumTertiaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no text, and based on the tertiary variant.',
   data: {
     ...mediumPrimaryInactiveOnlyIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const mediumTertiaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const mediumTertiaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no icon, and based on the tertiary variant.',
   data: {
     ...mediumPrimaryInactiveIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const mediumTertiaryInactive : StyleVariantProps<'tf-button'> = {
+const mediumTertiaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Medium Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is medium, with no icon, and based on the tertiary variant.',
   data: {
     ...mediumPrimaryInactive.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const mediumTertiaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const mediumTertiaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is medium, with no text, and based on the tertiary variant.',
   data: {
     ...mediumPrimaryHoverOnlyIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const mediumTertiaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const mediumTertiaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Medium Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is medium, with no icon, and based on the tertiary variant.',
   data: {
     ...mediumPrimaryHoverIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const mediumTertiaryHover : StyleVariantProps<'tf-button'> = {
+const mediumTertiaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Medium Active Button',
   tag: 'tf-button',
   description: 'The Active button is medium, with no icon, and based on the tertiary variant.',
   data: {
     ...mediumPrimaryHover.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
 //small button Primary
-const largePrimaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const largePrimaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no text, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'large',
-    icon : 'add',
+    icon: 'add',
   },
 };
 
-const largePrimaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const largePrimaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'large',
-    icon : 'add',
-    text : '',
-    content : 'Button',
+    icon: 'add',
+    text: '',
+    content: 'Button',
   },
 };
 
-const largePrimaryInactive : StyleVariantProps<'tf-button'> = {
+const largePrimaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     size: 'large',
-    text : '',
-    content : 'Button',
+    text: '',
+    content: 'Button',
   },
 };
 
-const largePrimaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const largePrimaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is large, with no text, and based on the primary variant.',
   data: {
     ...largePrimaryInactiveOnlyIcon.data,
     state: 'hover',
-    active : '',
+    active: '',
   },
 };
 
-const largePrimaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const largePrimaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is large, with no icon, and based on the primary variant.',
   data: {
     ...largePrimaryHoverOnlyIcon.data,
-    icon : 'add',
-    text : '',
-    content : 'Button',
+    icon: 'add',
+    text: '',
+    content: 'Button',
   },
 };
 
-const largePrimaryHover : StyleVariantProps<'tf-button'> = {
+const largePrimaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Large Active Button',
   tag: 'tf-button',
   description: 'The Active button is large, with no icon, and based on the primary variant.',
   data: {
     ...largePrimaryInactive.data,
-    state : 'hover',
-    active : '',
+    state: 'hover',
+    active: '',
   },
 };
 
 //large button Secondary
-const largeSecondaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const largeSecondaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no text, and based on the secondary variant.',
   data: {
     ...largePrimaryInactiveOnlyIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const largeSecondaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const largeSecondaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no icon, and based on the secondary variant.',
   data: {
     ...largePrimaryInactiveIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const largeSecondaryInactive : StyleVariantProps<'tf-button'> = {
+const largeSecondaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no icon, and based on the secondary variant.',
   data: {
     ...largePrimaryInactive.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const largeSecondaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const largeSecondaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is large, with no text, and based on the secondary variant.',
   data: {
     ...largePrimaryHoverOnlyIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const largeSecondaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const largeSecondaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is large, with no icon, and based on the secondary variant.',
   data: {
     ...largePrimaryHoverIcon.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 
-const largeSecondaryHover : StyleVariantProps<'tf-button'> = {
+const largeSecondaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Large Active Button',
   tag: 'tf-button',
   description: 'The Active button is large, with no icon, and based on the secondary variant.',
   data: {
     ...largePrimaryHover.data,
-    variant : 'secondary',
+    variant: 'secondary',
   },
 };
 //large button Teriary
-const largeTertiaryInactiveOnlyIcon : StyleVariantProps<'tf-button'> = {
+const largeTertiaryInactiveOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no text, and based on the tertiary variant.',
   data: {
     ...largePrimaryInactiveOnlyIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const largeTertiaryInactiveIcon : StyleVariantProps<'tf-button'> = {
+const largeTertiaryInactiveIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no icon, and based on the tertiary variant.',
   data: {
     ...largePrimaryInactiveIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const largeTertiaryInactive : StyleVariantProps<'tf-button'> = {
+const largeTertiaryInactive: StyleVariantProps<'tf-button'> = {
   name: 'Large Inactive Button',
   tag: 'tf-button',
   description: 'The Inactive button is large, with no icon, and based on the tertiary variant.',
   data: {
     ...largePrimaryInactive.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const largeTertiaryHoverOnlyIcon : StyleVariantProps<'tf-button'> = {
+const largeTertiaryHoverOnlyIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is large, with no text, and based on the tertiary variant.',
   data: {
     ...largePrimaryHoverOnlyIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const largeTertiaryHoverIcon : StyleVariantProps<'tf-button'> = {
+const largeTertiaryHoverIcon: StyleVariantProps<'tf-button'> = {
   name: 'Large Hover Button',
   tag: 'tf-button',
   description: 'The Hover button is large, with no icon, and based on the tertiary variant.',
   data: {
     ...largePrimaryHoverIcon.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
 
-const largeTertiaryHover : StyleVariantProps<'tf-button'> = {
+const largeTertiaryHover: StyleVariantProps<'tf-button'> = {
   name: 'Large Active Button',
   tag: 'tf-button',
   description: 'The Active button is large, with no icon, and based on the tertiary variant.',
   data: {
     ...largePrimaryHover.data,
-    variant : 'tertiary',
+    variant: 'tertiary',
   },
 };
-
-
-
-
-
 
 const meta: StyleComponentProps<'tf-button'> = {
   ref: 'tf-button',
   tag: 'tf-button',
   description: 'A generic button with 3 variants: primary, secondary and tertiary.',
-  component: 'Tourisfair Button',
+  component: 'Plania Button',
   variants: [
     smallPrimaryInactiveOnlyIcon,
     smallPrimaryInactiveIcon,
@@ -607,7 +601,7 @@ const meta: StyleComponentProps<'tf-button'> = {
     smallTertiaryInactive,
     smallTertiaryHoverOnlyIcon,
     smallTertiaryHoverIcon,
-    smallTertiaryHover, 
+    smallTertiaryHover,
     mediumPrimaryInactiveOnlyIcon,
     mediumPrimaryInactiveIcon,
     mediumPrimaryInactive,
@@ -644,8 +638,6 @@ const meta: StyleComponentProps<'tf-button'> = {
     largeTertiaryHoverOnlyIcon,
     largeTertiaryHoverIcon,
     largeTertiaryHover,
-
-
   ],
 };
 
