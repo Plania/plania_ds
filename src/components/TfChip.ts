@@ -1,82 +1,99 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   span {
-      background-color: var(--tf-sys-light-surface);
-      outline: 1px solid var(--tf-sys-light-primary);
-      border-radius: 1rem;
-      padding: 0.25rem 0.5rem;
-      font: var(--tf-body-small);
-      display: flex;
-      align-items: center;
-      width: fit-content;
-      cursor: pointer;
-   }
+  span {
+    background-color: var(--tf-sys-light-surface);
+    outline: 1px solid var(--tf-sys-light-primary);
+    border-radius: 1rem;
+    padding: 0.25rem 0.5rem;
+    font: var(--tf-body-small);
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    cursor: pointer;
+  }
 
-   span > tf-icon {
-      width: 1rem;
-      height: 1rem;
-      color: var(--tf-sys-light-onprimary);
-   }
+  span > tf-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--tf-sys-light-onprimary);
+  }
 
-   .selected {
-      background-color: var(--tf-sys-light-primary);
-   }
+  .primary {
+    background-color: var(--tf-sys-light-primary);
+    outline-color: var(--tf-sys-light-primary);
+  }
+  .secondary {
+    background-color: var(--tf-sys-light-secondary);
+    outline-color: var(--tf-sys-light-secondary);
+  }
+  .tertiary {
+    background-color: var(--tf-sys-light-tertiary);
+    outline-color: var(--tf-sys-light-tertiary);
+  }
 
-   .disabled {
-      color:var(--tf-sys-light-outline);
-      background-color: var(--tf-sys-light-surface-variant);
-      outline-color: var(--tf-sys-light-outline);
-      cursor: default;
-   }
+  .not-selected {
+    background: var(--tf-sys-light-surface);
+  }
 
-   .chip-card {
-      background-color: var(--tf-sys-light-surface);
-      outline:none;
-      box-shadow: 2px 2px 4px 0px #00000040;
-      padding: 0rem 0.5rem;
-   }
+  .disabled {
+    color: var(--tf-sys-light-outline);
+    background-color: var(--tf-sys-light-surface-variant);
+    outline-color: var(--tf-sys-light-outline);
+    cursor: default;
+  }
+
+  .chip-card {
+    background-color: var(--tf-sys-light-surface);
+    outline: none;
+    box-shadow: 2px 2px 4px 0px #00000040;
+    padding: 0rem 0.5rem;
+  }
 `;
 
 export class TfChip extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <span class='disabled'>
-               <slot></slot>
-            </span>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <span class="disabled">
+          <slot></slot>
+        </span>
+      `);
   }
 
   // connectedCallback() {}
 
   static get observedAttributes() {
-    return ['selected', 'active', 'symbol', 'icon'];
+    return ['selected', 'active', 'symbol', 'icon', 'variant'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     const chipElem = this.shadowRoot?.querySelector('span');
     if (!chipElem) return;
-    chipElem.classList.remove('selected');
     chipElem.classList.remove('disabled');
 
-    if(!this.active){
+    if (!this.active) {
       chipElem.classList.add('disabled');
     }
-    switch (name) {
-    case 'selected':
+    if (!this.selected) {
+      chipElem.classList.remove('selected');
+      chipElem.classList.add('not-selected');
+    } else {
+      chipElem.classList.remove('not-selected');
       chipElem.classList.add('selected');
-      break;
+    }
+    switch (name) {
     case 'symbol':
       if (!this.icon) return;
-      chipElem.insertAdjacentHTML(
-        'afterbegin',
-        '<tf-icon icon="' + newValue + '"></tf-icon>'
-      );
+      chipElem.insertAdjacentHTML('afterbegin', '<tf-icon icon="' + newValue + '"></tf-icon>');
+      break;
+    case 'variant':
+      chipElem.classList.remove(oldValue);
+      chipElem.classList.add(newValue);
       break;
     }
   }
@@ -123,12 +140,20 @@ export class TfChip extends TfBase {
     value && this.setAttribute('icon', '');
     !value && this.removeAttribute('icon');
   }
+
+  get variant() {
+    return this.getAttribute('variant');
+  }
+
+  set variant(value) {
+    this.setAttribute('variant', value ?? 'primary');
+  }
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-chip': TfChip;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-chip': TfChip;
+  }
 }
 
 customElements.define('tf-chip', TfChip);

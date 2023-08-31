@@ -128,7 +128,7 @@ export class TfInputPassword extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['icon', 'status', 'show', 'pictogramme', 'label' , 'value'];
+    return ['icon', 'status', 'show', 'pictogramme', 'label', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
@@ -139,39 +139,39 @@ export class TfInputPassword extends TfBase {
     if (!input || !label) return;
 
     switch (name) {
-    case 'status':
-      input?.classList.toggle(_newValue, true);
-      input.disabled = _newValue === 'disabled';
+      case 'status':
+        input?.classList.toggle(_newValue, true);
+        input.disabled = _newValue === 'disabled';
 
-      if (_newValue === 'error') {
-        label.insertAdjacentHTML(
-          'afterend',
-          '<div class="error-message"><slot name="error"></slot></div>'
-        );
-      }
-      break;
+        if (_newValue === 'error') {
+          label.insertAdjacentHTML(
+            'afterend',
+            '<div class="error-message"><slot name="error"></slot></div>'
+          );
+        }
+        break;
 
-    case 'label':
-      label?.classList.toggle('label', true);
-      label.textContent = _newValue;
-      break;
+      case 'label':
+        label?.classList.toggle('label', true);
+        label.textContent = _newValue;
+        break;
 
-    case 'show':
-      input.type = _newValue === 'true' ? 'text' : 'password';
-      eyesIcon?.setAttribute('icon', _newValue === 'true' ? 'visibility-off' : 'visibility');
-      break;
+      case 'show':
+        input.type = _newValue === 'true' ? 'text' : 'password';
+        eyesIcon?.setAttribute('icon', _newValue === 'true' ? 'visibility-off' : 'visibility');
+        break;
 
-    case 'icon':
-      _newValue === 'true' &&
+      case 'icon':
+        _newValue === 'true' &&
           input?.insertAdjacentHTML('afterend', '<tf-icon icon="lock" class="icon"></tf-icon>');
-      input?.classList.add('input-icon');
-      break;
-    
-    case 'value':
-      input.value = _newValue;
-      if (input.value.length <= 0) return;
-      input.classList.add('keep-focus');
-      break;
+        input?.classList.add('input-icon');
+        break;
+
+      case 'value':
+        input.value = _newValue;
+        if (input.value.length <= 0) return;
+        input.classList.add('keep-focus');
+        break;
     }
   }
 

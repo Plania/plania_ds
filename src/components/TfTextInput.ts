@@ -5,7 +5,7 @@ const style = css`
     padding: 0.5rem 0;
     width: calc(100% - 0.75rem);
     padding-left: 0.75rem;
-    font : var(--tf-body1);
+    font: var(--tf-body1);
     border: 1px solid var(--tf-sys-light-outline);
     border-radius: 1.5rem;
   }
@@ -22,6 +22,8 @@ const style = css`
   input:focus ~ label,
   .error ~ label {
     top: -10px;
+    left: 0;
+    font: var(--tf-label-large);
   }
 
   .input-icon ~ label {
@@ -30,13 +32,20 @@ const style = css`
 
   .input-icon:focus ~ label,
   .error ~ label {
-    left: 2rem;
+    left: 0;
   }
 
   .keep-focus ~ label {
-      top: -10px;
-      left: 2rem;
-   }
+    top: -10px;
+    left: 0;
+    font: var(--tf-label-large);
+  }
+
+  .keep-focus-status ~ label {
+    top: -10px;
+    left: 0;
+    font: var(--tf-label-large);
+  }
 
   .input-icon {
     padding-left: 3rem !important;
@@ -63,7 +72,7 @@ const style = css`
   }
 
   .default {
-    background-color: var(--tf-sys-light-primary-container);
+    background-color: var(--tf-sys-light-surface);
   }
 
   .disabled {
@@ -83,7 +92,7 @@ const style = css`
     color: var(--tf-sys-light-error);
   }
 
-  .error-message{
+  .error-message {
     margin-left: 1rem;
     margin-bottom: 0.5rem;
   }
@@ -92,34 +101,37 @@ const style = css`
 export class TfInputText extends TfBase {
   constructor() {
     super();
-    this.shadowRoot && 
-    (this.shadowRoot.innerHTML += html`
-      <style>
-        ${style}
-      </style>
-      <div class="container">
-        <input type="text" class="default" />
-        <label></label>
-      </div>
-    `);
+    this.shadowRoot &&
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <div class="container">
+          <input type="text" class="default" />
+          <label></label>
+        </div>
+      `);
   }
 
   connectedCallback() {
     const input = this.shadowRoot?.querySelector('input');
-    if(!input) return;
+    if (!input) return;
     input.addEventListener('input', () => {
       if (input.value.length > 0) {
         input.classList.add('keep-focus');
-      }else{
+      } else {
         input.classList.remove('keep-focus');
       }
       this.value = input.value;
       this.dispatchEvent(new CustomEvent('keyup', { detail: input.value }));
+      input.addEventListener('focus', () => {
+        this.dispatchEvent(new CustomEvent('focus'));
+      });
     });
   }
 
   static get observedAttributes() {
-    return ['icon', 'status', 'pictogramme', 'label' , 'value'];
+    return ['icon', 'status', 'pictogramme', 'label', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
@@ -127,14 +139,22 @@ export class TfInputText extends TfBase {
     const label = this.shadowRoot?.querySelector('label');
     const icon = this.shadowRoot?.querySelector('tf-icon');
     if (!input || !label) return;
-    
+
     switch (name) {
     case 'status':
       input.classList.remove(_oldValue);
       input?.classList.toggle(_newValue, true);
       input.disabled = _newValue === 'disabled';
       if (_newValue === 'error') {
-        label.insertAdjacentHTML('afterend', '<div class="error-message"><slot name="error"></slot></div>');
+        label.insertAdjacentHTML(
+          'afterend',
+          '<div class="error-message"><slot name="error"></slot></div>'
+        );
+      }
+      if (_newValue === 'label') {
+        input.classList.add('keep-focus-status');
+      } else {
+        input.classList.remove('keep-focus-status');
       }
       break;
 
@@ -210,3 +230,4 @@ declare global {
 }
 
 customElements.define('tf-text-input', TfInputText);
+
