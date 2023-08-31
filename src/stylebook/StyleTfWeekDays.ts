@@ -13,7 +13,7 @@ const meta: StyleComponentProps<'tf-week-days'> = {
   ref: 'tf-week-days',
   tag: 'tf-week-days',
   description: 'Week Days',
-  component: 'Tourisfair Week Days',
+  component: 'Plania Week Days',
   variants: [weekDays],
 };
 

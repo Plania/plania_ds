@@ -17,7 +17,7 @@ const SliderOnDefaultOnlyNumberInput: StyleVariantProps<'tf-age-selector'> = {
   description: 'Slider on default',
   data: {
     status: 'default',
-    slider:'',
+    slider: '',
   },
 };
 const SliderOnFocus: StyleVariantProps<'tf-age-selector'> = {
@@ -35,7 +35,7 @@ const SliderOnFocusOnlyNumberInput: StyleVariantProps<'tf-age-selector'> = {
   description: 'Slider on default',
   data: {
     status: 'focus',
-    slider:'',
+    slider: '',
   },
 };
 
@@ -54,7 +54,7 @@ const SliderDisabledWithSlider: StyleVariantProps<'tf-age-selector'> = {
   description: 'Slider on default',
   data: {
     status: 'disabled',
-    slider:'',
+    slider: '',
   },
 };
 
@@ -73,17 +73,25 @@ const SliderErrorWithSlider: StyleVariantProps<'tf-age-selector'> = {
   description: 'Slider error',
   data: {
     status: 'error',
-    slider:'',
+    slider: '',
   },
 };
-
 
 const meta: StyleComponentProps<'tf-age-selector'> = {
   ref: 'tf-slider',
   tag: 'tf-age-selector',
-  description: 'Tourisfair slider component',
-  component: 'Tourisfair Slider Component',
-  variants: [ SliderOnDefault , SliderOnDefaultOnlyNumberInput , SliderOnFocus , SliderOnFocusOnlyNumberInput , SliderDisabled , SliderDisabledWithSlider , SliderError , SliderErrorWithSlider],
+  description: 'Plania slider component',
+  component: 'Plania Slider Component',
+  variants: [
+    SliderOnDefault,
+    SliderOnDefaultOnlyNumberInput,
+    SliderOnFocus,
+    SliderOnFocusOnlyNumberInput,
+    SliderDisabled,
+    SliderDisabledWithSlider,
+    SliderError,
+    SliderErrorWithSlider,
+  ],
 };
-  
+
 export const styleTfAgeSelector = (styleBook: StyleBook) => styleBook.addComponent(meta);

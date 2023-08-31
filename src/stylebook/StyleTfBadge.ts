@@ -12,8 +12,8 @@ const ecoBadge: StyleVariantProps<'tf-badge'> = {
 const meta: StyleComponentProps<'tf-badge'> = {
   ref: 'tf-badge',
   tag: 'tf-badge',
-  description: 'Tourisfair badge component. It is used to showcase an ecological activity',
-  component: 'Tourisfair Badge',
+  description: 'Plania badge component. It is used to showcase an ecological activity',
+  component: 'Plania Badge',
   variants: [ecoBadge],
 };
 

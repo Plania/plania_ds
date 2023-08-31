@@ -44,8 +44,8 @@ const meta: StyleComponentProps<'tf-search-activity-card'> = {
   ref: 'tf-search-activity-card',
   tag: 'tf-search-activity-card',
   description:
-    'Tourisfair activity card are used to display information about an activity or a place in the search page.',
-  component: 'Tourisfair Search Activity Card',
+    'Plania activity card are used to display information about an activity or a place in the search page.',
+  component: 'Plania Search Activity Card',
   variants: [defaultSearchActivityCard],
 };
 

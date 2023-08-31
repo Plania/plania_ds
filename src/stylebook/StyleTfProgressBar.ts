@@ -105,7 +105,7 @@ const meta: StyleComponentProps<'tf-progress-bar'> = {
   ref: 'tf-progress-bar',
   tag: 'tf-progress-bar',
   description: 'A progress bar.',
-  component: 'Tourisfair Progress Bar',
+  component: 'Plania Progress Bar',
   variants: [
     progressBar0,
     progressBar10,

@@ -6,8 +6,7 @@ const tfWeekDefault: StyleVariantProps<'tf-week'> = {
   name: 'default',
   tag: 'tf-week',
   description: 'Default week',
-  data: {
-  },
+  data: {},
 };
 
 const tfWeekDisabled: StyleVariantProps<'tf-week'> = {
@@ -15,10 +14,10 @@ const tfWeekDisabled: StyleVariantProps<'tf-week'> = {
   tag: 'tf-week',
   description: 'Disabled day before today',
   data: {
-    disabledpreviousdays : 'true',
-    year : '2023',
-    month : 'July',
-    week : '2',
+    disabledpreviousdays: 'true',
+    year: '2023',
+    month: 'July',
+    week: '2',
   },
 };
 
@@ -26,7 +25,7 @@ const meta: StyleComponentProps<'tf-week'> = {
   ref: 'tf-week',
   tag: 'tf-week',
   description: 'Week',
-  component: 'Tourisfair Week',
+  component: 'Plania Week',
   variants: [tfWeekDefault, tfWeekDisabled],
 };
 
