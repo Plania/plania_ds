@@ -29,7 +29,7 @@ const TypeAHeadIcon: StyleVariantProps<'tf-type-a-head'> = {
     <tf-typeahead-item thumb="https://picsum.photos/48/48" side="bottom">Typeahead Item Top</tf-typeahead-item>
     <tf-typeahead-item thumb="https://picsum.photos/48/48" side="top">Typeahead Item Bottom</tf-typeahead-item>
     `,
-    icon: ''
+    icon: '',
   },
 };
 
@@ -58,7 +58,7 @@ const TypeAHeadIconOpen: StyleVariantProps<'tf-type-a-head'> = {
     value: 'Typeahead',
     status: 'default',
     open: '',
-    icon : '',
+    icon: '',
     content: `
     <tf-typeahead-item thumb="https://picsum.photos/48/48" side="bottom">Typeahead Item Top</tf-typeahead-item>
     <tf-typeahead-item thumb="https://picsum.photos/48/48" side="top">Typeahead Item Bottom</tf-typeahead-item>
@@ -89,7 +89,7 @@ const TypeAHeadDisabledIcon: StyleVariantProps<'tf-type-a-head'> = {
     label: 'Typeahead',
     value: 'Typeahead',
     status: 'disabled',
-    icon : '',
+    icon: '',
     content: `
     <tf-typeahead-item thumb="https://picsum.photos/48/48" side="bottom">Typeahead Item Top</tf-typeahead-item>
     <tf-typeahead-item thumb="https://picsum.photos/48/48" side="top">Typeahead Item Bottom</tf-typeahead-item>
@@ -97,15 +97,11 @@ const TypeAHeadDisabledIcon: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-
-
-
-
 const meta: StyleComponentProps<'tf-type-a-head'> = {
   ref: 'tf-type-a-head',
   tag: 'tf-type-a-head',
   description: 'A typeahead.',
-  component: 'Tourisfair Typeahead',
+  component: 'Plania Typeahead',
   variants: [
     TypeAHeadDefault,
     TypeAHeadIcon,

@@ -7,7 +7,7 @@ const singleDateSelector: StyleVariantProps<'tf-date-selector'> = {
   tag: 'tf-date-selector',
   description: 'Single Date Selector',
   data: {
-    'variant': 'single'
+    variant: 'single',
   },
 };
 
@@ -16,19 +16,16 @@ const intervalDateSelector: StyleVariantProps<'tf-date-selector'> = {
   tag: 'tf-date-selector',
   description: 'Interval Date Selector',
   data: {
-    'variant': 'interval'
+    variant: 'interval',
   },
 };
 
-const meta : StyleComponentProps<'tf-date-selector'> = {
+const meta: StyleComponentProps<'tf-date-selector'> = {
   ref: 'tf-date-selector',
-  description: 'Tourisfair Date Selector component. It is used to enter date.',
+  description: 'Plania Date Selector component. It is used to enter date.',
   tag: 'tf-date-selector',
-  component: 'Tourisfair Date Selector',
-  variants: [
-    singleDateSelector,
-    intervalDateSelector
-  ],
+  component: 'Plania Date Selector',
+  variants: [singleDateSelector, intervalDateSelector],
 };
 
-export const styleTfDateSelector = (stylebook : StyleBook) => stylebook.addComponent(meta);
+export const styleTfDateSelector = (stylebook: StyleBook) => stylebook.addComponent(meta);

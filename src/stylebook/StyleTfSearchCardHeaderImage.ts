@@ -14,8 +14,8 @@ const defaultCardHeaderImage: StyleVariantProps<'tf-search-card-header-image'> =
 const meta: StyleComponentProps<'tf-search-card-header-image'> = {
   ref: 'tf-search-card-header-image',
   tag: 'tf-search-card-header-image',
-  description: 'Tourisfair card header image component, showing the header image of a card.',
-  component: 'Tourisfair Card Header Image',
+  description: 'Plania card header image component, showing the header image of a card.',
+  component: 'Plania Card Header Image',
   variants: [defaultCardHeaderImage],
 };
 

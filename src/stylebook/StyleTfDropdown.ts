@@ -64,12 +64,11 @@ const TfDropdownDisabled: StyleVariantProps<'tf-dropdown'> = {
   },
 };
 
-
 const meta: StyleComponentProps<'tf-dropdown'> = {
   ref: 'tf dropdown',
   tag: 'tf-dropdown',
-  description: 'Tourisfair dropdown component. It is used to showcase a dropdown text',
-  component: 'Tourisfair Dropdown',
+  description: 'Plania dropdown component. It is used to showcase a dropdown text',
+  component: 'Plania Dropdown',
   variants: [TfDropdownIconDefault, TfDropdownDefault, TfDropdownDisabledIcon, TfDropdownDisabled],
 };
 

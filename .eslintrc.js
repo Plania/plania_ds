@@ -3,6 +3,7 @@ module.exports = {
       browser: true,
       es2021: true,
    },
+   files: ["src/**/*.ts"],
    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
    overrides: [],
    parser: '@typescript-eslint/parser',
@@ -13,9 +14,9 @@ module.exports = {
    },
    plugins: ['@typescript-eslint'],
    rules: {
-      indent: ['error', 2],
+      //indent: ['error', 2],
       'linebreak-style': 0,
-      quotes: ['error', 'single'],
+      quotes: ['error', 'single', { "avoidEscape": true }],
       semi: ['error', 'always'],
    },
 };

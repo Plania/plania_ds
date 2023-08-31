@@ -6,15 +6,14 @@ const calendar: StyleVariantProps<'tf-calendar'> = {
   name: 'Calendar picker',
   tag: 'tf-calendar',
   description: 'Calendar picker',
-  data: {
-  },
+  data: {},
 };
 
 const calendarStyle: StyleComponentProps<'tf-calendar'> = {
   ref: 'Calendar picker',
   tag: 'tf-calendar',
   description: 'Calendar picker',
-  component: 'Tourisfair Calendar',
+  component: 'Plania Calendar',
   variants: [calendar],
 };
 

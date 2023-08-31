@@ -23,12 +23,11 @@ const TfBackgroundSecondary: StyleVariantProps<'tf-background'> = {
   },
 };
 
-
 const meta: StyleComponentProps<'tf-background'> = {
   ref: 'tf-background',
   tag: 'tf-background',
-  description: 'Tourisfair background component. It is used to showcase a background',
-  component: 'Tourisfair Background',
+  description: 'Plania background component. It is used to showcase a background',
+  component: 'Plania Background',
   variants: [TfBackgroundPrimary, TfBackgroundSecondary],
 };
 
