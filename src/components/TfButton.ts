@@ -105,11 +105,11 @@ export class TfButton extends TfBase {
     this.setButtonContent(buttonElem);
 
     switch (name) {
-      case 'variant':
-      case 'state':
-      case 'size':
-        this.updateButtonClass(buttonElem, oldValue, newValue);
-        break;
+    case 'variant':
+    case 'state':
+    case 'size':
+      this.updateButtonClass(buttonElem, oldValue, newValue);
+      break;
     }
 
     if (name === 'icon') {
@@ -193,12 +193,6 @@ export class TfButton extends TfBase {
 
   set icon(value) {
     this.setAttribute('icon', value);
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'tf-button': TfButton;
   }
 }
 

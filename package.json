@@ -1,9 +1,10 @@
 {
-  "name": "tourisfair_search",
+  "name": "plania_design_system",
   "version": "1.0.0",
-  "description": "Search engine for tourism activities based on GetYourGuide",
-  "main": "index.js",
+  "description": "Plania Design System is a library of web-components that can be used to build a tourism planning tool. It is based on the Web Components standard and can be used with any framework or no framework at all.",
   "scripts": {
+    "watch": "tsc --build --watch",
+    "build": "tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -24,8 +25,5 @@
     "eslint": "^8.40.0",
     "prettier": "^2.8.8",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "tslint": "^6.1.3"
   }
 }
