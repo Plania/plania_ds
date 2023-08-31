@@ -32,8 +32,8 @@ const addIcon: StyleVariantProps<'tf-icon'> = {
 const meta: StyleComponentProps<'tf-icon'> = {
   ref: 'tf-icon',
   tag: 'tf-icon',
-  description: 'Tourisfair icon component. It is used to showcase an icon',
-  component: 'Tourisfair Icon',
+  description: 'Plania icon component. It is used to showcase an icon',
+  component: 'Plania Icon',
   variants: [arrowForwardIosIcon, arrowBackIosIcon, addIcon],
 };
 

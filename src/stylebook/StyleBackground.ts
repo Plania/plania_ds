@@ -1,58 +1,34 @@
+import { html } from '../components.js';
 import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const TfBackgroundPrimary : StyleVariantProps<'tf-background'> = {
+const TfBackgroundPrimary: StyleVariantProps<'tf-background'> = {
   name: 'Primary',
   tag: 'tf-background',
-  description: 'Primary background',
+  description: 'background with actions , action is like a footer',
   data: {
-    variant: 'primary',
-    content: '<p>Primary background</p>'
-  }
+    action: '',
+    content: html` <div slot="content">Content</div>
+      <div slot="actions">Actions</div>`,
+  },
 };
 
-const TfBackgroundSecondary : StyleVariantProps<'tf-background'> = {
+const TfBackgroundSecondary: StyleVariantProps<'tf-background'> = {
   name: 'Secondary',
   tag: 'tf-background',
-  description: 'Secondary background',
+  description: 'background without actions',
   data: {
-    variant: 'secondary',
-    content: '<p>Secondary background</p>'
-  }
-};
-
-const TfBackgroundTertiary : StyleVariantProps<'tf-background'> = {
-  name: 'Tertiary',
-  tag: 'tf-background',
-  description: 'Tertiary background',
-  data: {
-    variant: 'tertiary',
-    content: '<p>Tertiary background</p>'
-  }
-};
-
-const TfBackgroundDefault : StyleVariantProps<'tf-background'> = {
-  name: 'Default',
-  tag: 'tf-background',
-  description: 'Default background',
-  data: {
-    variant: 'default',
-    content: '<p>Default background</p>'
-  }
+    content: html` <div slot="content">Content</div>`,
+  },
 };
 
 const meta: StyleComponentProps<'tf-background'> = {
   ref: 'tf-background',
   tag: 'tf-background',
-  description: 'Tourisfair background component. It is used to showcase a background',
-  component: 'Tourisfair Background',
-  variants: [
-    TfBackgroundPrimary,
-    TfBackgroundSecondary,
-    TfBackgroundTertiary,
-    TfBackgroundDefault
-  ],
+  description: 'Plania background component. It is used to showcase a background',
+  component: 'Plania Background',
+  variants: [TfBackgroundPrimary, TfBackgroundSecondary],
 };
 
 export const styleTfBackground = (styleBook: StyleBook) => styleBook.addComponent(meta);

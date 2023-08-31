@@ -86,8 +86,8 @@ const meta: StyleComponentProps<'tf-main-container'> = {
   ref: 'tf-main-container',
   tag: 'tf-main-container',
   description:
-      'A  main container with 4 colors: default,primary, secondary and tertiary with corner round up or down',
-  component: 'Tourisfair Main Container',
+    'A  main container with 4 colors: default,primary, secondary and tertiary with corner round up or down',
+  component: 'Plania Main Container',
   variants: [
     defaultBackgroundUp,
     defaultBackgroundDown,

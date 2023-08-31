@@ -48,7 +48,7 @@ const meta: StyleComponentProps<'tf-welcome-card'> = {
   ref: 'tf-welcome-card',
   tag: 'tf-welcome-card',
   description: 'Indicate the current step of a welcome card.',
-  component: 'Tourisfair Welcome Card',
+  component: 'Plania Welcome Card',
   variants: [welcomeCardFirst, welcomeCardIntermediate, welcomeCardFinal],
 };
 
