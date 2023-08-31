@@ -23,7 +23,9 @@ export class TfActionBar extends TfBase {
   }
 
   render() {
-    this.shadowRoot!.innerHTML = `
+    if (!this.shadowRoot) return;
+
+    this.shadowRoot.innerHTML = html`
       <style>
         ${style}
       </style>
@@ -32,11 +34,11 @@ export class TfActionBar extends TfBase {
       </div>
     `;
 
-    const slotElement = this.shadowRoot!.querySelector('slot');
+    const slotElement = this.shadowRoot.querySelector('slot');
 
     if (slotElement) {
       slotElement.addEventListener('slotchange', () => {
-        for (let node of slotElement.assignedNodes()) {
+        for (const node of slotElement.assignedNodes()) {
           if (!(node instanceof HTMLElement && node.tagName.toLowerCase() === 'tf-button')) {
             node.parentNode?.removeChild(node);
           }
