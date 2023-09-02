@@ -1,5 +1,4 @@
 import { css, html, TfBase } from './TfBase.js';
-import { tfIconNameMap } from './TfIcon.js';
 
 const style = css`
   :host {
@@ -32,6 +31,14 @@ const style = css`
     box-shadow: none;
   }
 
+  tf-icon {
+    display: none;
+  }
+
+  .icon {
+    display: inline;
+  }
+
   .disabled:hover {
     cursor: default;
     box-shadow: none;
@@ -49,27 +56,17 @@ const style = css`
 
   .small {
     padding: 6px 1rem;
-    font-size: 11px;
-  }
-
-  .small svg {
-    width: 1rem;
-    height: 1rem;
+    font-size: 0.75rem;
   }
 
   .large {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .medium {
     padding: 4px 1rem;
     font-size: 1rem;
-  }
-
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
   }
 
   .disabled {
@@ -87,6 +84,7 @@ export class TfButton extends TfBase {
           ${style}
         </style>
         <button class="primary">
+          <tf-icon></tf-icon>
           <slot></slot>
         </button>
       `);
@@ -98,6 +96,7 @@ export class TfButton extends TfBase {
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     const buttonElem = this.shadowRoot?.querySelector('button');
+    const iconElem = this.shadowRoot?.querySelector('tf-icon');
 
     if (!buttonElem) return;
 
@@ -105,15 +104,21 @@ export class TfButton extends TfBase {
     this.setButtonContent(buttonElem);
 
     switch (name) {
-    case 'variant':
-    case 'state':
-    case 'size':
-      this.updateButtonClass(buttonElem, oldValue, newValue);
-      break;
+      case 'variant':
+      case 'state':
+      case 'size':
+        this.updateButtonClass(buttonElem, oldValue, newValue);
+        break;
     }
 
     if (name === 'icon') {
-      this.insertIcon(buttonElem, newValue);
+      if (oldValue !== newValue) {
+        iconElem?.classList.add('icon');
+        iconElem?.setAttribute('icon', newValue);
+      }
+    } else if (!this.hasIcon) {
+      iconElem?.classList.remove('icon');
+      iconElem?.setAttribute('icon', '');
     }
   }
 
@@ -141,9 +146,7 @@ export class TfButton extends TfBase {
   }
 
   insertIcon(buttonElem: HTMLButtonElement, icon: string) {
-    this.shadowRoot?.querySelector('svg')?.remove();
-    if (!tfIconNameMap[icon]) return;
-    buttonElem.insertAdjacentHTML('afterbegin', tfIconNameMap[icon]);
+    buttonElem.insertAdjacentHTML('afterbegin', html`<tf-icon icon="${icon}"></tf-icon>`);
   }
 
   get variant() {
@@ -185,6 +188,10 @@ export class TfButton extends TfBase {
   set text(value) {
     value && this.setAttribute('text', '');
     !value && this.removeAttribute('text');
+  }
+
+  get hasIcon() {
+    return this.hasAttribute('icon');
   }
 
   get icon() {

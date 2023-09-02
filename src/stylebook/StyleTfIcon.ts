@@ -11,6 +11,15 @@ const accountCircleIcon: StyleVariantProps<'tf-icon'> = {
   },
 };
 
+const addCircleOutlineIcon: StyleVariantProps<'tf-icon'> = {
+  name: 'Add Circle Outline icon ',
+  tag: 'tf-icon',
+  description: 'Add icon with circle outline',
+  data: {
+    icon: 'add-circle-outline',
+  },
+};
+
 const addIcon: StyleVariantProps<'tf-icon'> = {
   name: 'Add icon',
   tag: 'tf-icon',
@@ -290,6 +299,15 @@ const poundSymbolIcon: StyleVariantProps<'tf-icon'> = {
   },
 };
 
+const removeCircleOutlineIcon: StyleVariantProps<'tf-icon'> = {
+  name: 'Remove Circle Outline icon',
+  tag: 'tf-icon',
+  description: 'Remove icon with circle outline',
+  data: {
+    icon: 'remove-circle-outline',
+  },
+};
+
 const removeIcon: StyleVariantProps<'tf-icon'> = {
   name: 'Remove icon',
   tag: 'tf-icon',
@@ -377,6 +395,7 @@ const meta: StyleComponentProps<'tf-icon'> = {
   component: 'Tourisfair Icon',
   variants: [
     accountCircleIcon,
+    addCircleOutlineIcon,
     addIcon,
     arrowBackIosIcon,
     arrowDropdDownIcon,
@@ -408,6 +427,7 @@ const meta: StyleComponentProps<'tf-icon'> = {
     numbersIcon,
     phoneIcon,
     poundSymbolIcon,
+    removeCircleOutlineIcon,
     removeIcon,
     searchIcon,
     sendIcon,
