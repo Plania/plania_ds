@@ -19,10 +19,10 @@ export class TfActionBar extends TfBase {
   }
 
   connectedCallback() {
-    this.render();
+    this._render();
   }
 
-  render() {
+  _render() {
     if (!this.shadowRoot) return;
 
     this.shadowRoot.innerHTML = html`
