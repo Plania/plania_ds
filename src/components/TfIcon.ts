@@ -26,6 +26,7 @@ const accountCircle = html`<svg
   />
 </svg> `;
 
+<<<<<<< Updated upstream
 const add = html` <svg
   width="100%"
   height="100%"
@@ -35,6 +36,54 @@ const add = html` <svg
 >
   <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor" />
 </svg>`;
+=======
+const iconList = [
+  'account-circle',
+  'add-circle-outline',
+  'add',
+  'arrow-back-ios',
+  'arrow-drop-down',
+  'arrow-drop-up',
+  'arrow-forward-ios',
+  'change-circle',
+  'check',
+  'chevron-left',
+  'chevron-right',
+  'child-friendly',
+  'date-range',
+  'euro-symbol',
+  'explore',
+  'eyes',
+  'favorite',
+  'favorite-border',
+  'half-star',
+  'hourglass-bottom',
+  'hourglass-top',
+  'keyboard-arrow-down',
+  'keyboard-arrow-right',
+  'language',
+  'lock',
+  'location-on',
+  'location-city',
+  'low-priority',
+  'man',
+  'message',
+  'numbers',
+  'phone',
+  'pound-symbol',
+  'remove',
+  'remove-circle-outline',
+  'search',
+  'send',
+  'star-outlined',
+  'star-rate',
+  'trash',
+  'view-headline',
+  'visibility',
+  'visibility-off',
+  'world',
+];
+>>>>>>> Stashed changes
 
 const arrowBackIos = html`
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

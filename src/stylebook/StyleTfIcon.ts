@@ -344,6 +344,15 @@ const trashIcon: StyleVariantProps<'tf-icon'> = {
   },
 };
 
+const viewHeadlineIcon: StyleVariantProps<'tf-icon'> = {
+  name: 'View Headline icon',
+  tag: 'tf-icon',
+  description: 'View Headline icon',
+  data: {
+    icon: 'view-headline',
+  },
+};
+
 const visibilityIcon: StyleVariantProps<'tf-icon'> = {
   name: 'Visibility icon',
   tag: 'tf-icon',
@@ -414,6 +423,7 @@ const meta: StyleComponentProps<'tf-icon'> = {
     starOutlinedIcon,
     starRateIcon,
     trashIcon,
+    viewHeadlineIcon,
     visibilityIcon,
     visibilityOffIcon,
     worldIcon,
