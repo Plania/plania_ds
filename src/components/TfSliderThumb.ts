@@ -1,5 +1,7 @@
 import { css, html, TfBase } from './TfBase.js';
 
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   :host {
     --thumb-size: 1.5rem;
     --outline-color: var(--tf-sys-light-outline);
