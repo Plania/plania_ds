@@ -13,8 +13,8 @@ style.replaceSync(css`
     box-shadow: 0 0 0 0.2rem var(--tf-sys-light-outline);
   }
 
-  .thumb.primary {
-    background-color: var(--theme-sys-light-primary, #00AAE3);
+  :host[disabled] {
+    --bg-color: var(--tf-sys-light-surface-variant);
   }
 
   .thumb.secondary {
