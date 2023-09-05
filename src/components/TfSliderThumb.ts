@@ -13,8 +13,9 @@ style.replaceSync(css`
     box-shadow: 0 0 0 0.2rem var(--tf-sys-light-outline);
   }
 
-  :host[disabled] {
-    --bg-color: var(--tf-sys-light-surface-variant);
+  .disabled {
+    /* TODO: Should investigate the interaction with .primary, .secondary .tertiary defined in TfBase */
+    background-color: var(--tf-sys-light-surface-variant);
   }
 
   .thumb.secondary {
