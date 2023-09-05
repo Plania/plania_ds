@@ -27,41 +27,36 @@ style.replaceSync(css`
   .container {
     position: relative;
     display: inline-flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
-  tf-info-bubble {
-    display: none;
-    position: absolute;
-    z-index: 0;
-  }
-
-  tf-info-bubble.show {
-    display: block;
-  }
-  
   .thumb {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 4px 4px;
+    padding: 4px;
     border-radius: 50%;
-    min-width: 1.5em;
-    min-height: 1.5em;
+    width: fit-content;
+    min-width: 1em;
+    min-height: 1em;
   }
 
   .thumb.outlined {
     border: 1px solid var(--outline-color);
+    padding: 3px;
   }
-  
+
   .thumb label {
+    color: var(--color);
     text-align: center;
     font-size: 0.75em;
   }
-  
+
   .thumb tf-icon {
-    color: var(--tf-sys-light-onprimary);
+    color: var(--color);
   }
 `);
 
@@ -125,11 +120,11 @@ export class TfSliderThumb extends TfBase {
   set outlined(value) {
     (value && this.setAttribute('outlined', '')) || this.removeAttribute('outlined');
   }
-  
+
   get hasBubble() {
     return this.hasAttribute('bubble');
   }
-  
+
   get bubble() {
     return this.getAttribute('bubble') || '';
   }
