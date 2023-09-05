@@ -18,8 +18,10 @@ style.replaceSync(css`
     background-color: var(--tf-sys-light-surface-variant);
   }
 
-  .thumb.secondary {
-    background-color: var(--theme-sys-light-secondary, #FF805E);
+  .error {
+    background-color: var(--tf-sys-light-error-container);
+    --outline-color: var(--tf-sys-light-error);
+    --color: var(--tf-sys-light-error);
   }
 
   .container {
@@ -79,7 +81,11 @@ export class TfSliderThumb extends TfBase {
       (this.shadowRoot.innerHTML = html`
         <div class="container">
           ${this.hasBubble ? html`<tf-info-bubble>${this.bubble}</tf-info-bubble>` : ''}
-          <div class="thumb ${this.outlined ? 'outlined' : ''} ${this.variant}">
+          <div
+            class="thumb ${this.outlined ? 'outlined' : ''} ${this.variant}  ${this.disabled
+              ? 'disabled'
+              : ''} ${this.error ? 'error' : ''}"
+          >
             ${this.hasLabel
               ? html`<label>${this.label}</label>`
               : html`<tf-icon icon="view-headline" />`}
@@ -94,6 +100,22 @@ export class TfSliderThumb extends TfBase {
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     this.render();
+  }
+
+  get disabled() {
+    return this.hasAttribute('disabled');
+  }
+
+  set disabled(value) {
+    (value && this.setAttribute('disabled', '')) || this.removeAttribute('disabled');
+  }
+
+  get error() {
+    return this.hasAttribute('error');
+  }
+
+  set error(value) {
+    (value && this.setAttribute('error', '')) || this.removeAttribute('error');
   }
 
   get outlined() {
