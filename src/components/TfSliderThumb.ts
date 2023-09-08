@@ -38,7 +38,7 @@ style.replaceSync(css`
     align-items: center;
     position: relative;
     padding: 4px;
-    border-radius: 50%;
+    border-radius: 1.5rem;
     width: fit-content;
     min-width: 1em;
     min-height: 1em;
