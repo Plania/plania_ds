@@ -1,4 +1,5 @@
 import { css, html, TfBase } from './TfBase.js';
+import { TfSimpleSlider } from './TfSimpleSlider.js';
 
 const style = css`
   * {
@@ -349,55 +350,23 @@ export class TfAgeSelector extends TfBase {
           ${style}
         </style>
         <section class="slider-age-container">
-          <label> Age </label>
+          <slot name="label">Age</slot>
           <div class="input-container">
-            <svg
-              class="minus"
-              id="iconDown"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="var(--icon-fill-color, #FF805E)"
-            >
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-              />
-            </svg>
+            <tf-icon icon="remove-circle-outline"></tf-icon>
             <div class="input-wrapper">
-              <input type="number" value="18" id="ageInput" />
+              <tf-simple-slider value="18" id="ageInput" />
             </div>
-            <svg
-              class="plus"
-              id="iconUp"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="var(--icon-fill-color, #FF805E)"
-            >
-              <path
-                d="M11 5H9V9H5V11H9V15H11V11H15V9H11V5ZM10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10C20 4.49 15.51 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-              />
-            </svg>
+            <tf-icon icon="add-circle-outline"></tf-icon>
           </div>
 
           <div class="slider-container">
             <tf-icon icon="child-friendly"></tf-icon>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value="18"
-              class="styled-slider slider-progress"
-              id="myRange"
-            />
-
+            <tf-simple-slider min="0" max="100" value="18" />
             <tf-icon icon="man"></tf-icon>
           </div>
         </section>
       `);
-    const ageInput = this.shadowRoot?.querySelector('#ageInput') as HTMLInputElement;
+    const ageInput = this.shadowRoot?.querySelector('tf-simple-slider') as TfSimpleSlider;
     ageInput.style.width = ageInput.value.length + 1 + 'ch';
 
     ageInput.addEventListener('input', () => {
@@ -407,30 +376,23 @@ export class TfAgeSelector extends TfBase {
 
   connectedCallback() {
     const range = this.shadowRoot?.querySelector('.styled-slider') as HTMLInputElement;
-    const updateGradient = () => {
-      const rangeValue = parseInt(range.value);
-      const rangeMin = parseInt(range.min);
-      const rangeMax = parseInt(range.max);
-      const percentage = ((rangeValue - rangeMin) / (rangeMax - rangeMin)) * 100;
-      range.style.setProperty('--color-stop', `${percentage}%`);
-    };
 
-    updateGradient();
+    this._updateGradient();
 
-    range.addEventListener('input', updateGradient);
-    this.eventForNumberInput();
-    this.inputRange.addEventListener('input', () => {
-      this.inputNumber.value = this.inputRange.value;
-      this.value = this.inputRange.value;
-      this.dispatchEvent(new CustomEvent('input', { detail: this.inputRange.value }));
-    });
-    this.inputNumber.addEventListener('input', () => {
-      this.inputRange.value = this.inputNumber.value;
-      this.value = this.inputNumber.value;
-      this.dispatchEvent(new CustomEvent('input', { detail: this.inputRange.value }));
-    });
-    this.eventForArrowUp();
-    this.eventForArrowDown();
+    this._eventForInputNumber();
+    this._eventForInputRange();
+    // this._inputRange.addEventListener('input', () => {
+    //   this._inputNumber.value = this._inputRange.value;
+    //   this.value = this._inputRange.value;
+    //   this.dispatchEvent(new CustomEvent('change', { detail: this._inputRange.value }));
+    // });
+    // this._inputNumber.addEventListener('input', () => {
+    //   this._inputRange.value = this._inputNumber.value;
+    //   this.value = this._inputNumber.value;
+    //   this.dispatchEvent(new CustomEvent('change', { detail: this._inputRange.value }));
+    // });
+    this._eventForArrowUp();
+    this._eventForArrowDown();
 
     if (!this.slider) {
       const slider = this.shadowRoot?.querySelector('.slider-container') as HTMLElement;
@@ -443,47 +405,55 @@ export class TfAgeSelector extends TfBase {
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    const sectionStyle = this.getSectionStyle();
-    const upIconStyle = this.getStyleById('iconUp');
-    const downIconStyle = this.getStyleById('iconDown');
+    const sectionStyle = this._getSectionStyle();
+    const upIconStyle = this._getStyleById('iconUp');
+    const downIconStyle = this._getStyleById('iconDown');
     const host = this.shadowRoot?.querySelector(
       'input[type="range"].slider-progress'
     ) as HTMLInputElement;
     if (name === 'status') {
       switch (_newValue) {
-      case 'disabled':
-        this.disableInputNumber();
-        this.setAttributeOnSlider('status', 'disabled');
-        sectionStyle.setProperty('--tf-font-color', COLORS.disabledFont);
-        upIconStyle.setProperty('--icon-fill-color', COLORS.disabledFont);
-        downIconStyle.setProperty('--icon-fill-color', COLORS.disabledFont);
-        upIconStyle.setProperty('pointer-events', 'none');
-        downIconStyle.setProperty('pointer-events', 'none');
-        host.disabled = true;
-        break;
-      case 'error':
-        this.setAttributeOnSlider('status', 'error');
-        sectionStyle.setProperty('--tf-font-color', COLORS.errorFont);
-        upIconStyle.setProperty('--icon-fill-color', COLORS.errorFont);
-        downIconStyle.setProperty('--icon-fill-color', COLORS.errorFont);
-        break;
-      case 'focus':
-        this.setAttributeOnSlider('status', 'focus');
-        sectionStyle.setProperty('--tf-font-color', COLORS.focusedFont);
-        upIconStyle.setProperty('--icon-fill-color', COLORS.focusedFont);
-        downIconStyle.setProperty('--icon-fill-color', COLORS.focusedFont);
-        break;
-      case 'default':
-        this.setAttributeOnSlider('status', 'default');
-        upIconStyle.setProperty('--icon-fill-color', '#FF805E');
-        downIconStyle.setProperty('--icon-fill-color', '#FF805E');
+        case 'disabled':
+          this._disableInputNumber();
+          this._setAttributeOnSlider('status', 'disabled');
+          sectionStyle.setProperty('--tf-font-color', COLORS.disabledFont);
+          upIconStyle.setProperty('--icon-fill-color', COLORS.disabledFont);
+          downIconStyle.setProperty('--icon-fill-color', COLORS.disabledFont);
+          upIconStyle.setProperty('pointer-events', 'none');
+          downIconStyle.setProperty('pointer-events', 'none');
+          host.disabled = true;
+          break;
+        case 'error':
+          this._setAttributeOnSlider('status', 'error');
+          sectionStyle.setProperty('--tf-font-color', COLORS.errorFont);
+          upIconStyle.setProperty('--icon-fill-color', COLORS.errorFont);
+          downIconStyle.setProperty('--icon-fill-color', COLORS.errorFont);
+          break;
+        case 'focus':
+          this._setAttributeOnSlider('status', 'focus');
+          sectionStyle.setProperty('--tf-font-color', COLORS.focusedFont);
+          upIconStyle.setProperty('--icon-fill-color', COLORS.focusedFont);
+          downIconStyle.setProperty('--icon-fill-color', COLORS.focusedFont);
+          break;
+        case 'default':
+          this._setAttributeOnSlider('status', 'default');
+          upIconStyle.setProperty('--icon-fill-color', '#FF805E');
+          downIconStyle.setProperty('--icon-fill-color', '#FF805E');
 
-        break;
+          break;
       }
     }
   }
 
-  changeColorIcon = (remove: boolean) => {
+  private _updateGradient() {
+    const rangeValue = parseInt(this._inputRange.value);
+    const rangeMin = parseInt(this._inputRange.min);
+    const rangeMax = parseInt(this._inputRange.max);
+    const percentage = ((rangeValue - rangeMin) / (rangeMax - rangeMin)) * 100;
+    this._inputRange.style.setProperty('--color-stop', `${percentage}%`);
+  }
+
+  private _changeColorIcon = (remove: boolean) => {
     const icon = this.shadowRoot?.querySelectorAll('.icon') as NodeListOf<HTMLElement>;
     icon.forEach((element) => {
       if (remove) {
@@ -495,52 +465,64 @@ export class TfAgeSelector extends TfBase {
     });
   };
 
-  checkInputValue = () => {
-    if (parseInt(this.inputNumber.value) < parseInt(this.inputRange.min)) {
-      this.inputNumber.value = this.inputRange.min;
-    } else if (parseInt(this.inputNumber.value) > parseInt(this.inputRange.max)) {
-      this.inputNumber.value = this.inputRange.max;
+  _checkInputValue = () => {
+    if (parseInt(this._inputNumber.value) < parseInt(this._inputRange.min)) {
+      this._inputNumber.value = this._inputRange.min;
+    } else if (parseInt(this._inputNumber.value) > parseInt(this._inputRange.max)) {
+      this._inputNumber.value = this._inputRange.max;
     }
   };
 
-  eventForNumberInput = () => {
-    this.inputNumber.value = this.inputRange.value;
-    this.value = this.inputRange.value;
+  _eventForInputRange = () => {
+    this._inputRange.value = this._inputNumber.value;
+    this.value = this._inputNumber.value;
+    this._checkInputValue();
+    this._updateInputRange(this._inputRange.value);
+    this._inputRange.addEventListener('change', () => {
+      this._inputRange.style.setProperty('--value', this._inputRange.value);
+      this._updateGradient();
+      this.dispatchEvent(new CustomEvent('change', { detail: this._inputRange.value }));
+    });
+  };
 
-    this.inputNumber.addEventListener('change', () => {
-      this.inputRange.value = this.inputNumber.value;
-      this.value = this.inputNumber.value;
-      this.checkInputValue();
-      this.eventListener(this.inputRange.value);
-      this.dispatchEvent(new CustomEvent('change', { detail: this.inputRange.value }));
+  _eventForInputNumber = () => {
+    this._inputNumber.value = this._inputRange.value;
+    this.value = this._inputRange.value;
+
+    this._inputNumber.addEventListener('change', () => {
+      this._inputRange.value = this._inputNumber.value;
+      this.value = this._inputNumber.value;
+      this._checkInputValue();
+      this._updateInputRange(this._inputRange.value);
+      this.dispatchEvent(new CustomEvent('change', { detail: this._inputRange.value }));
     });
 
-    this.inputNumber.addEventListener('focus', () => {
-      this.getSectionStyle().setProperty(
+    this._inputNumber.addEventListener('focus', () => {
+      this._getSectionStyle().setProperty(
         '--tf-border-color',
         this.status === 'error' ? 'var(--tf-font-color)' : 'var(--tf-sys-light-primary)'
       );
-      this.changeColorIcon(false);
+      this._changeColorIcon(false);
     });
 
-    this.inputNumber.addEventListener('blur', () => {
-      this.getSectionStyle().setProperty('--tf-border-color', 'var(--tf-sys-light-outline)');
-      this.changeColorIcon(true);
+    this._inputNumber.addEventListener('blur', () => {
+      this._getSectionStyle().setProperty('--tf-border-color', 'var(--tf-sys-light-outline)');
+      this._changeColorIcon(true);
     });
   };
 
-  eventForArrowUp = () => {
+  _eventForArrowUp = () => {
     const icon = this.shadowRoot?.querySelector('#iconUp') as HTMLElement;
-    this.eventForArrow(icon, 1);
+    this._eventForArrow(icon, 1);
   };
 
-  eventForArrowDown = () => {
+  _eventForArrowDown = () => {
     const icon = this.shadowRoot?.querySelector('#iconDown') as HTMLElement;
-    this.eventForArrow(icon, -1);
+    this._eventForArrow(icon, -1);
   };
 
-  eventForArrow = (icon: HTMLElement, value: number) => {
-    icon.addEventListener('click', () => this.handleOnClicked(value));
+  _eventForArrow = (icon: HTMLElement, value: number) => {
+    icon.addEventListener('click', () => this._handleOnClicked(value));
     icon.addEventListener('mousedown', () => {
       this.status === 'error'
         ? (icon.style.color = 'black')
@@ -549,64 +531,61 @@ export class TfAgeSelector extends TfBase {
 
     icon.addEventListener('mouseup', () => {
       icon.style.setProperty('color', 'var(--tf-font-color)');
-
-      this.getSectionStyle().setProperty('--tf-border-color', 'var(--tf-sys-light-outline)');
+      this._getSectionStyle().setProperty('--tf-border-color', 'var(--tf-sys-light-outline)');
     });
   };
 
-  handleOnClicked = (value: number) => {
-    this.inputNumber.value = (parseInt(this.inputNumber.value) + value).toString();
-    this.inputRange.value = this.inputNumber.value;
-    this.value = this.inputNumber.value;
-    this.dispatchEvent(new CustomEvent('click', { detail: this.inputRange.value }));
-    this.checkInputValue();
-    this.eventListener(this.inputRange.value);
-  };
+  _handleOnClicked(value: number) {
+    this._inputNumber.value = (parseInt(this._inputNumber.value) + value).toString();
+    this._inputRange.value = this._inputNumber.value;
+    this.value = this._inputNumber.value;
+    this._checkInputValue();
+    this._updateInputRange(this._inputRange.value);
+    this.dispatchEvent(new CustomEvent('change', { detail: this._inputRange.value }));
+  }
 
-  eventListener = (value: undefined | string) => {
+  _updateInputRange = (value: undefined | string) => {
     if (value) {
-      this.inputRange.value = value;
+      this._inputRange.value = value;
     }
-    this.inputRange.style.setProperty('--value', this.inputRange.value);
-    this.inputRange.style.setProperty(
+    this._inputRange.style.setProperty('--value', this._inputRange.value);
+    this._inputRange.style.setProperty(
       '--min',
-      this.inputRange.min == '' ? '0' : this.inputRange.min
+      this._inputRange.min == '' ? '0' : this._inputRange.min
     );
-    this.inputRange.style.setProperty(
+    this._inputRange.style.setProperty(
       '--max',
-      this.inputRange.max == '' ? '100' : this.inputRange.max
-    );
-    this.inputRange.addEventListener('input', () =>
-      this.inputRange.style.setProperty('--value', this.inputRange.value)
+      this._inputRange.max == '' ? '100' : this._inputRange.max
     );
   };
 
-  private getStyleById(id: string): CSSStyleDeclaration {
+  private _getStyleById(id: string): CSSStyleDeclaration {
     return this.shadowRoot?.getElementById(id)?.style as CSSStyleDeclaration;
   }
 
-  private getSectionStyle(): CSSStyleDeclaration {
+  private _getSectionStyle(): CSSStyleDeclaration {
     return this.shadowRoot?.querySelector('section')?.style as CSSStyleDeclaration;
   }
 
-  private disableInputNumber(): void {
-    this.inputNumber.disabled = true;
+  private _disableInputNumber(): void {
+    this._inputNumber.disabled = true;
   }
 
-  private setAttributeOnSlider(name: string, value: string): void {
+  private _setAttributeOnSlider(name: string, value: string): void {
     const inputRange = this.shadowRoot?.querySelector('input[type="range"]') as HTMLInputElement;
     if (inputRange) {
       inputRange.setAttribute(name, value);
     }
   }
 
-  get inputNumber(): HTMLInputElement {
+  get _inputNumber(): HTMLInputElement {
     return this.shadowRoot?.querySelector('input[type="number"]') as HTMLInputElement;
   }
 
-  get inputRange(): HTMLInputElement {
-    return this.shadowRoot?.querySelector('input[type="range"]') as HTMLInputElement;
+  get _inputRange(): TfSimpleSlider {
+    return this.shadowRoot?.querySelector('tf-simple-slider') as TfSimpleSlider;
   }
+
   get slider(): boolean {
     return this.hasAttribute('slider');
   }
