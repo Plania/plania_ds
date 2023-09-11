@@ -1,13 +1,14 @@
+import marked from '../components.js';
 import { css, html } from '../components/TfBase.js';
 import { styleBookCSS } from './StyleBook.js';
 import { StyleVariant, StyleVariantProps } from './StyleVariant.js';
 
 export interface StyleComponentProps<K extends keyof HTMLElementTagNameMap> {
-   ref: string;
-   description: string;
-   tag: K;
-   component: string;
-   variants: StyleVariantProps<K>[];
+  ref: string;
+  description: string;
+  tag: K;
+  component: string;
+  variants: StyleVariantProps<K>[];
 }
 
 export class StyleComponent extends HTMLElement {
@@ -15,43 +16,43 @@ export class StyleComponent extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${styleBookCSS}
-            </style>
-            <style>
-               details {
-                  border: 1px solid #ccc1;
-                  border-radius: 0.25rem;
-                  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
-                  margin: 0.25rem;
-               }
-               summary {
-                  list-style-position: outside;
-                  border-bottom: 1px solid #ddd;
-                  padding-bottom: 0.5rem;
-               }
-               summary a {
-                  display: inline-block;
-                  float: right;
-               }
-            </style>
-            <details class="style-component" open>
-               <summary>
-                  <slot name="title"></slot>
-                  <a href="#">Top <tf-icon icon="arrow-drop-up" /></a>
-               </summary>
-               <slot></slot>
-            </details>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${styleBookCSS}
+        </style>
+        <style>
+          details {
+            border: 1px solid #ccc1;
+            border-radius: 0.25rem;
+            box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+            margin: 0.25rem;
+          }
+          summary {
+            list-style-position: outside;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+          }
+          summary a {
+            display: inline-block;
+            float: right;
+          }
+        </style>
+        <details class="style-component" open>
+          <summary>
+            <slot name="title"></slot>
+            <a href="#">Top <tf-icon icon="arrow-drop-up" /></a>
+          </summary>
+          <slot></slot>
+        </details>
+      `);
   }
 
   connectedCallback(): void {
     this.innerHTML = html`
-         <h2 slot="title" style="display: inline;">${this.component}</h2>
-         <p>${this.description}</p>
-         ${this.innerHTML}
-      `;
+      <h2 slot="title" style="display: inline;">${marked.parse(this.component)}</h2>
+      <p>${marked.parse(this.description)}</p>
+      ${this.innerHTML}
+    `;
 
     this.variants.map((variant_) => this.addVariant(variant_));
   }
@@ -112,9 +113,9 @@ export class StyleComponent extends HTMLElement {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'style-component': StyleComponent;
-   }
+  interface HTMLElementTagNameMap {
+    'style-component': StyleComponent;
+  }
 }
 
 customElements.define('style-component', StyleComponent);
