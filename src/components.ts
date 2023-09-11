@@ -1,3 +1,4 @@
+export * from './components/TfActionBar.js';
 export * from './components/TfActivityCard.js';
 export * from './components/TfAgeSelector.js';
 export * from './components/TfBackground.js';
@@ -38,6 +39,8 @@ export * from './components/TfSearchCardHeaderImage.js';
 export * from './components/TfSearchCardDetails.js';
 export * from './components/TfSimpleSlider.js';
 export * from './components/TfSliderThumb.js';
+export * from './components/TfStep.js';
+export * from './components/TfStepper.js';
 export * from './components/TfTextButton.js';
 export * from './components/TfTextInput.js';
 export * from './components/TfTypeAHeadItem.js';
@@ -46,3 +49,75 @@ export * from './components/TfWeek.js';
 export * from './components/TfWeekDays.js';
 export * from './components/TfWelcomeCard.js';
 export * from './components/TfWelcomeImage.js';
+
+// Creates a proxy to the marked object as `window.marked` as a type-safe ESM export
+
+/*
+
+This loads (and executes) the Marked script the first time that
+this module is imported into the module graph, which assigns
+the Marked object to `window.marked`. This is scope pollution, and is
+one of the things that ES modules avoid, but is necessary here because
+you expressed dissatisfaction at the available Leaflet ES module options
+at existing CDN URLs.
+
+This proxy technique "works" well here because Leaflet
+is an object export/namspace and is documented to be used this way. However,
+note that — for other modules which provide multiple exports that are
+intended to be imported individually by name — this technique wouldn't be
+a good fit because it requires the entire module to be made available
+on a single (named) export. (Note that the default export is just a named export
+using the name "default").
+
+Please refer to: https://stackoverflow.com/questions/73091042/importing-leaflet-into-module-from-cdn-with-typescript-support
+*/
+
+import 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js';
+
+import type * as Marked from 'marked';
+import { html } from './components/TfBase.js';
+
+const { marked } = window as unknown as { marked: typeof Marked };
+
+// Set options
+marked.use({
+  pedantic: false,
+  gfm: true,
+});
+
+// Override function
+const renderer = {
+  code(text: string, level: any) {
+    return html`
+      <style>
+        pre {
+          background-color: lightgrey;
+          padding: 1rem;
+          border-radius: 0.25rem;
+          overflow: auto;
+        }
+      </style>
+      <pre>
+        <code>${text}</code>
+      </pre
+      >
+    `;
+  },
+  codespan(text: string) {
+    return html`
+      <style>
+        code {
+          background-color: lightgrey;
+          padding: 0.25rem;
+          border-radius: 0.25rem;
+        }
+      </style>
+      <code>${text}</code>
+    `;
+  },
+};
+
+marked.use({ renderer });
+
+// Same as `export {marked as default}`:
+export default marked;

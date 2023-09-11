@@ -4,7 +4,8 @@ export const html = (strings: TemplateStringsArray, ...values: string[]) =>
 export const css = (strings: TemplateStringsArray, ...values: string[]) =>
   String.raw({ raw: strings }, ...values);
 
-const style = css`
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   html,
   body,
   div,
@@ -177,18 +178,13 @@ const style = css`
   .background {
     background-color: var(--tf-sys-light-background);
   }
-`;
+`);
 
 export class TfBase extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot &&
-      (this.shadowRoot.innerHTML = html`
-        <style>
-          ${style}
-        </style>
-      `);
+    this.shadowRoot && (this.shadowRoot.adoptedStyleSheets = [style]);
   }
 }
 

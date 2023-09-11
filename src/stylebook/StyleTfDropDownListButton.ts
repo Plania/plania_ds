@@ -26,7 +26,7 @@ const meta: StyleComponentProps<'tf-dropdown-list-button'> = {
   ref: 'tf-dropdown-list-button',
   tag: 'tf-dropdown-list-button',
   description: 'A button that opens or close a drop down list.',
-  component: 'Tourisfair Drop Down List Button',
+  component: 'Plania Drop Down List Button',
   variants: [dropDownListButton, dropDownListButtonClosed],
 };
 

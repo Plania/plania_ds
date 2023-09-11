@@ -1,3 +1,4 @@
+import marked from '../components.js';
 import { css, html } from '../components/TfBase.js';
 import { styleBookCSS } from './StyleBook.js';
 
@@ -7,18 +8,18 @@ export const escapeHTML = (htm_: string): string =>
 export type StyleVariantDataProps = Record<string, unknown>;
 
 export interface StyleVariantProps<K extends keyof HTMLElementTagNameMap> {
-   name: string;
-   description: string;
-   tag: K;
-   data: StyleVariantDataProps;
+  name: string;
+  description: string;
+  tag: K;
+  data: StyleVariantDataProps;
 }
 
 export interface StyleComponentProps<K extends keyof HTMLElementTagNameMap> {
-   ref: string;
-   description: string;
-   tag: K;
-   component: string;
-   variants: StyleVariantProps<K>[];
+  ref: string;
+  description: string;
+  tag: K;
+  component: string;
+  variants: StyleVariantProps<K>[];
 }
 
 export class StyleVariant<K extends keyof HTMLElementTagNameMap> extends HTMLElement {
@@ -28,19 +29,19 @@ export class StyleVariant<K extends keyof HTMLElementTagNameMap> extends HTMLEle
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${styleBookCSS}
-            </style>
-            <div class="style-variant-card">
-               <slot name="title"></slot>
-               <slot name="description"></slot>
-               <div class="style-variant">
-                  <slot></slot>
-               </div>
-               <slot name="code"></slot>
-            </div>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${styleBookCSS}
+        </style>
+        <div class="style-variant-card">
+          <slot name="title"></slot>
+          <slot name="description"></slot>
+          <div class="style-variant">
+            <slot></slot>
+          </div>
+          <slot name="code"></slot>
+        </div>
+      `);
   }
 
   connectedCallback() {
@@ -65,21 +66,23 @@ export class StyleVariant<K extends keyof HTMLElementTagNameMap> extends HTMLEle
 
   updateName(): void {
     const titleElem: HTMLHeadingElement | null = this.querySelector<HTMLHeadingElement>('h3');
+    const nameHTML = marked.parse(this.name);
     if (titleElem) {
-      titleElem.innerHTML = this.name;
+      titleElem.innerHTML = nameHTML;
     } else {
-      this.innerHTML += html` <h3 slot="title" style="display: inline;">${this.name}</h3> `;
+      this.innerHTML += html` <h3 slot="title" style="display: inline;">${nameHTML}</h3> `;
     }
   }
 
   updateDescription(): void {
     if (!this.description) return;
+    const descriptionHTML = marked.parse(this.description);
     const descriptionElem: HTMLParagraphElement | null =
-         this.querySelector<HTMLParagraphElement>('p');
+      this.querySelector<HTMLParagraphElement>('p');
     if (descriptionElem) {
-      descriptionElem.innerHTML = this.description;
+      descriptionElem.innerHTML = descriptionHTML;
     } else {
-      this.innerHTML += html` <p slot="description">${this.description}</p> `;
+      this.innerHTML += html` <p slot="description">${descriptionHTML}</p> `;
     }
   }
 
@@ -90,22 +93,20 @@ export class StyleVariant<K extends keyof HTMLElementTagNameMap> extends HTMLEle
     ) as unknown as HTMLElementTagNameMap[K];
     const shouldBe: string = this.shouldBe();
     this.innerHTML += html`
-         <div slot="code">
-            <pre><code>${escapeHTML(variant.outerHTML)}</code></pre>
-            ${variant.outerHTML !== shouldBe
-    ? html`<p>Should be:</p>
-                    <pre class="error"><code>${escapeHTML(shouldBe)}</code></pre>`
-    : ''}
-         </div>
-      `;
+      <div slot="code">
+        <pre><code>${escapeHTML(variant.outerHTML)}</code></pre>
+        ${variant.outerHTML !== shouldBe
+          ? html`<p>Should be:</p>
+              <pre class="error"><code>${escapeHTML(shouldBe)}</code></pre>`
+          : ''}
+      </div>
+    `;
     this.appendChild(variant);
   }
 
   buildVariant(tag_: K, data_: string): HTMLElementTagNameMap[K] {
     const variant: HTMLElementTagNameMap[K] = document.createElement(tag_);
-    const parsedData: StyleVariantDataProps = JSON.parse(
-      data_
-    ) as unknown as StyleVariantDataProps;
+    const parsedData: StyleVariantDataProps = JSON.parse(data_) as unknown as StyleVariantDataProps;
     for (const key in parsedData) {
       if (key === 'content') continue;
       variant.setAttribute(key, parsedData[key] as string);
@@ -177,9 +178,9 @@ export class StyleVariant<K extends keyof HTMLElementTagNameMap> extends HTMLEle
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'style-variant': StyleVariant<keyof HTMLElementTagNameMap>;
-   }
+  interface HTMLElementTagNameMap {
+    'style-variant': StyleVariant<keyof HTMLElementTagNameMap>;
+  }
 }
 
 customElements.define('style-variant', StyleVariant);
