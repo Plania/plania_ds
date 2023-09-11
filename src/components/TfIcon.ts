@@ -21,6 +21,7 @@ import { css, html, TfBase } from './TfBase.js';
 const style = css`
   :host {
     display: inline-block;
+    align-self: center;
   }
 
   :host div {

@@ -4,15 +4,12 @@ const style = new CSSStyleSheet();
 style.replaceSync(css`
   :host {
     width: 100%;
-    --value: 50;
-    --min: 0;
-    --max: 100;
     --background-color: var(--tf-sys-light-surface-variant);
     --track-color: var(--tf-sys-light-secondary-container);
     --outline-color: var(--tf-sys-light-outline);
   }
 
-  :host:focus {
+  :host(:focus) {
     --track-color: var(--tf-sys-light-secondary);
   }
 
@@ -57,6 +54,12 @@ style.replaceSync(css`
     z-index: 99;
   }
 
+  .container {
+    --value: 50;
+    --min: 0;
+    --max: 100;
+  }
+
   .background {
     background-color: var(--background-color);
     border-radius: 0.25rem;
@@ -70,6 +73,7 @@ style.replaceSync(css`
     background-color: var(--track-color);
     border: 1px solid var(--outline-color);
     border-radius: 0.25rem;
+    box-sizing: border-box;
     position: absolute;
     top: 0.5rem;
     width: calc(var(--value) * 1% + 0.25rem);
@@ -98,21 +102,22 @@ export class TfSimpleSlider extends TfBase {
     this.render();
   }
 
-  static get observedAttributes() {
-    return ['value', 'min', 'max', 'status', 'text'];
-  }
-
   connectedCallback() {
     const input = this.shadowRoot?.querySelector('input') as HTMLInputElement;
 
     if (input) {
-      input.addEventListener('input', (e) => this.handleInput(e));
+      input.addEventListener('input', (e) => this._handleInput(e));
       input.dispatchEvent(new CustomEvent('input'));
     }
   }
 
+  static get observedAttributes() {
+    return ['value', 'min', 'max', 'status', 'text'];
+  }
+
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    this.render();
+    if (name === 'value') this._setInput();
+    else this.render();
   }
 
   render() {
@@ -124,29 +129,39 @@ export class TfSimpleSlider extends TfBase {
         <tf-slider-thumb
           outlined
           ${this.text ? `label='${this.value}'` : ''}
-          ${(this.status === 'error' && 'error') ||
-          (this.status === 'disabled' && 'disabled') ||
-          `variant='secondary'`}
+          ${['error', 'disabled'].includes(this.status) ? this.status : `variant='secondary'`}
         ></tf-slider-thumb>
       </div>`);
   }
 
-  handleInput = (e: Event) => {
+  private _handleInput(e: Event) {
     const input = e.target as HTMLInputElement;
     if (input) {
       this.value = input?.value;
-      this.style.setProperty('--value', input.value);
-      this.style.setProperty('--min', input.min == '' ? '0' : input.min);
-      this.style.setProperty('--max', input.max == '' ? '100' : input.max);
-      e &&
-        this.dispatchEvent(
-          new CustomEvent('tf-input', {
-            detail: { min: +this.min, max: +this.max, value: +this.value },
-          })
-        );
+      this.dispatchEvent(
+        new CustomEvent('tf-input', {
+          detail: { min: +this.min, max: +this.max, value: +this.value },
+        })
+      );
       this.render();
     }
+  }
+
+  private _setInput() {
+    const input = this.shadowRoot?.querySelector('input') as HTMLInputElement;
+    if (input) {
+      input.setAttribute('value', this.value);
+    }
+  }
+
+  private _checkInputValue = (value: string) => {
+    return '' + (+value < +this.min ? this.min : +value > +this.max ? this.max : value);
   };
+
+  private _setProperty(property: string, value: string) {
+    const container = this.shadowRoot?.querySelector('.container') as HTMLElement;
+    container && container.style.setProperty('--' + property, value);
+  }
 
   get status() {
     return this.getAttribute('status') || 'default';
@@ -169,7 +184,8 @@ export class TfSimpleSlider extends TfBase {
   }
 
   set value(value) {
-    this.setAttribute('value', value);
+    this.setAttribute('value', this._checkInputValue(value));
+    this._setProperty('value', this._checkInputValue(value));
   }
 
   get min() {
@@ -178,6 +194,7 @@ export class TfSimpleSlider extends TfBase {
 
   set min(value) {
     this.setAttribute('min', value);
+    this._setProperty('min', value == '' ? '0' : value);
   }
 
   get max() {
@@ -186,6 +203,7 @@ export class TfSimpleSlider extends TfBase {
 
   set max(value) {
     this.setAttribute('max', value);
+    this._setProperty('max', value == '' ? '100' : value);
   }
 }
 declare global {
