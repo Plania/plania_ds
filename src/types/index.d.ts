@@ -1,11 +1,50 @@
 declare class TfBase extends HTMLElement {}
-declare class TfActionBar extends TfBase {}
-declare class TfActivityCard extends TfBase {}
-declare class TfAgeSelector extends TfBase {}
-declare class TfBackground extends TfBase {}
+
+declare class TfActionBar extends TfBase {
+  /**
+   * This method renders a container for actions.
+   * An action is a button that performs a task on an item or a view.
+   * The method will reject any children item that is not a TfButton.
+   */
+  private _render(): void;
+}
+
+declare class TfActivityCard extends TfBase {
+  img: string;
+  title: string;
+  rating: string;
+  address: string;
+  liked: boolean;
+}
+
+declare class TfAgeSelector extends TfBase {
+  slider: boolean;
+  status: string;
+  min: string;
+  max: string;
+  value: string;
+}
+
+declare class TfBackground extends TfBase {
+  actions: boolean;
+}
+
 declare class TfBadge extends TfBase {}
-declare class TfBudget extends TfBase {}
+
+declare class TfBudget extends TfBase {
+  /**
+   * This property sets the level of the budget per person, from 1 to 5.
+   * Level 1: less than 10 €
+   * Level 2: between 10 € and 20 €
+   * Level 3: between 20 € and 50 €
+   * Level 4: between 50 € and 100 €
+   * Level 5: more than 100 €
+   */
+  level: string;
+}
+
 declare class TfButton extends TfBase {}
+
 declare class TfCalendar extends TfBase {}
 declare class TfCardHeaderImage extends TfBase {}
 declare class TfCarrouselIndicator extends TfBase {}
@@ -50,7 +89,7 @@ declare class TfWeekDays extends TfBase {}
 declare class TfWelcomeCard extends TfBase {}
 declare class TfWelcomeImage extends TfBase {}
 
-declare global {
+declare module 'plania-ds' {
   interface HTMLElementTagNameMap {
     'tf-action-bar': TfActionBar;
     'tf-activity-card': TfActivityCard;
