@@ -2,9 +2,9 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const TypeAHeadDefault: StyleVariantProps<'tf-type-a-head'> = {
-  name: 'typeahead default',
-  tag: 'tf-type-a-head',
+const TypeaheadDefault: StyleVariantProps<'tf-typeahead'> = {
+  name: 'Typeahead default',
+  tag: 'tf-typeahead',
   description: 'A typeahead default.',
   data: {
     label: 'Typeahead',
@@ -17,9 +17,9 @@ const TypeAHeadDefault: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-const TypeAHeadIcon: StyleVariantProps<'tf-type-a-head'> = {
-  name: 'typeahead icon',
-  tag: 'tf-type-a-head',
+const TypeaheadIcon: StyleVariantProps<'tf-typeahead'> = {
+  name: 'Typeahead icon',
+  tag: 'tf-typeahead',
   description: 'A typeahead icon.',
   data: {
     label: 'Typeahead',
@@ -33,9 +33,9 @@ const TypeAHeadIcon: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-const TypeAHeadDefaultOpen: StyleVariantProps<'tf-type-a-head'> = {
-  name: 'typeahead default',
-  tag: 'tf-type-a-head',
+const TypeaheadDefaultOpen: StyleVariantProps<'tf-typeahead'> = {
+  name: 'Typeahead default',
+  tag: 'tf-typeahead',
   description: 'A typeahead default.',
   data: {
     label: 'Typeahead',
@@ -49,9 +49,9 @@ const TypeAHeadDefaultOpen: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-const TypeAHeadIconOpen: StyleVariantProps<'tf-type-a-head'> = {
-  name: 'typeahead icon',
-  tag: 'tf-type-a-head',
+const TypeaheadIconOpen: StyleVariantProps<'tf-typeahead'> = {
+  name: 'Typeahead icon',
+  tag: 'tf-typeahead',
   description: 'A typeahead icon.',
   data: {
     label: 'Typeahead',
@@ -66,9 +66,9 @@ const TypeAHeadIconOpen: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-const TypeAHeadDisabled: StyleVariantProps<'tf-type-a-head'> = {
-  name: 'typeahead icon',
-  tag: 'tf-type-a-head',
+const TypeaheadDisabled: StyleVariantProps<'tf-typeahead'> = {
+  name: 'Typeahead icon',
+  tag: 'tf-typeahead',
   description: 'A typeahead disabled.',
   data: {
     label: 'Typeahead',
@@ -81,9 +81,9 @@ const TypeAHeadDisabled: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-const TypeAHeadDisabledIcon: StyleVariantProps<'tf-type-a-head'> = {
-  name: 'typeahead icon',
-  tag: 'tf-type-a-head',
+const TypeaheadDisabledIcon: StyleVariantProps<'tf-typeahead'> = {
+  name: 'Typeahead icon',
+  tag: 'tf-typeahead',
   description: 'A typeahead disabled.',
   data: {
     label: 'Typeahead',
@@ -97,19 +97,19 @@ const TypeAHeadDisabledIcon: StyleVariantProps<'tf-type-a-head'> = {
   },
 };
 
-const meta: StyleComponentProps<'tf-type-a-head'> = {
-  ref: 'tf-type-a-head',
-  tag: 'tf-type-a-head',
+const meta: StyleComponentProps<'tf-typeahead'> = {
+  ref: 'tf-typeahead',
+  tag: 'tf-typeahead',
   description: 'A typeahead.',
   component: 'Plania Typeahead',
   variants: [
-    TypeAHeadDefault,
-    TypeAHeadIcon,
-    TypeAHeadDefaultOpen,
-    TypeAHeadIconOpen,
-    TypeAHeadDisabled,
-    TypeAHeadDisabledIcon,
+    TypeaheadDefault,
+    TypeaheadIcon,
+    TypeaheadDefaultOpen,
+    TypeaheadIconOpen,
+    TypeaheadDisabled,
+    TypeaheadDisabledIcon,
   ],
 };
 
-export const styleTfTypeAHead = (styleBook: StyleBook) => styleBook.addComponent(meta);
+export const styleTfTypeahead = (styleBook: StyleBook) => styleBook.addComponent(meta);

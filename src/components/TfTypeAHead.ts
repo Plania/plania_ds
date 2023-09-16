@@ -74,7 +74,7 @@ export class TfTypeAHead extends TfBase {
   }
 
   attributeChangedCallback(name: string, oldVal: string, newVal: string) {
-    const input = this.shadowRoot?.querySelector('tf-text-input');
+    const input = this.shadowRoot?.querySelector('tf-input-text');
     const div = this.shadowRoot?.querySelector('.dropDown') as HTMLDivElement;
     if (oldVal === newVal) return;
     switch (name) {
@@ -127,7 +127,7 @@ export class TfTypeAHead extends TfBase {
   }
 
   handleOnInput() {
-    const input = this.shadowRoot?.querySelector('tf-text-input');
+    const input = this.shadowRoot?.querySelector('tf-input-text');
     
 
     input?.addEventListener('input' , () =>{

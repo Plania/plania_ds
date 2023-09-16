@@ -33,7 +33,7 @@ const style = css`
   }
 `;
 
-export class TfTypeAHeadItem extends TfBase {
+export class TfTypeaheadItem extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
@@ -60,21 +60,21 @@ export class TfTypeAHeadItem extends TfBase {
     if (!div) return;
 
     switch (name) {
-    case 'thumb':
-      div.style.backgroundImage = `url(${newValue})`;
-      break;
-    case 'side':
-      container?.classList.remove(oldValue);
-      container?.classList.toggle(newValue, true);
-      break;
+      case 'thumb':
+        div.style.backgroundImage = `url(${newValue})`;
+        break;
+      case 'side':
+        container?.classList.remove(oldValue);
+        container?.classList.toggle(newValue, true);
+        break;
     }
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'tf-typeahead-item': TfTypeAHeadItem;
+    'tf-typeahead-item': TfTypeaheadItem;
   }
 }
 
-customElements.define('tf-type-a-head-item', TfTypeAHeadItem);
+customElements.define('tf-typeahead-item', TfTypeaheadItem);

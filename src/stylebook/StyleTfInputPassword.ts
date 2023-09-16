@@ -3,7 +3,7 @@ import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
 const tfInputPasswordIconDefault: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component with icon and no show password.',
   data: {
@@ -15,7 +15,7 @@ const tfInputPasswordIconDefault: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordIconDefaultShow: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component with icon and show password.',
   data: {
@@ -27,7 +27,7 @@ const tfInputPasswordIconDefaultShow: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordDefault: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component no icon and no show password.',
   data: {
@@ -39,7 +39,7 @@ const tfInputPasswordDefault: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordDefaultIconDisabledShow: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component disabled with icon and show password.',
   data: {
@@ -51,7 +51,7 @@ const tfInputPasswordDefaultIconDisabledShow: StyleVariantProps<'tf-input-passwo
 };
 
 const tfInputPasswordIconDisabled: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component disabled with icon and show password.',
   data: {
@@ -63,7 +63,7 @@ const tfInputPasswordIconDisabled: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordIconDisabledShow: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component disabled with icon and no show password.',
   data: {
@@ -75,7 +75,7 @@ const tfInputPasswordIconDisabledShow: StyleVariantProps<'tf-input-password'> = 
 };
 
 const tfInputPasswordShow: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component disabled with no icon and show password.',
   data: {
@@ -87,7 +87,7 @@ const tfInputPasswordShow: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordDisabled: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component disabled with no icon and no show password.',
   data: {
@@ -99,7 +99,7 @@ const tfInputPasswordDisabled: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordIconError: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component error with icon.',
   data: {
@@ -113,7 +113,7 @@ const tfInputPasswordIconError: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordError: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component error no icon.',
   data: {
@@ -127,7 +127,7 @@ const tfInputPasswordError: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordIconErrorShow: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component error with icon.',
   data: {
@@ -142,7 +142,7 @@ const tfInputPasswordIconErrorShow: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordErrorShow: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component error without icon.',
   data: {
@@ -157,7 +157,7 @@ const tfInputPasswordErrorShow: StyleVariantProps<'tf-input-password'> = {
 };
 
 const tfInputPasswordErrorShowNoText: StyleVariantProps<'tf-input-password'> = {
-  name: 'tf input password',
+  name: 'Plania input password',
   tag: 'tf-input-password',
   description: 'A password input component error with icon and no text.',
   data: {

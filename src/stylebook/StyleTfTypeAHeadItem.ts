@@ -2,7 +2,7 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const TypeAHeadItemTop: StyleVariantProps<'tf-typeahead-item'> = {
+const TypeaheadItemTop: StyleVariantProps<'tf-typeahead-item'> = {
   name: 'typeahead item top',
   tag: 'tf-typeahead-item',
   description: 'A typeahead item top.',
@@ -13,7 +13,7 @@ const TypeAHeadItemTop: StyleVariantProps<'tf-typeahead-item'> = {
   },
 };
 
-const TypeAHeadItemBottom: StyleVariantProps<'tf-typeahead-item'> = {
+const TypeaheadItemBottom: StyleVariantProps<'tf-typeahead-item'> = {
   name: 'typeahead item bottom',
   tag: 'tf-typeahead-item',
   description: 'A typeahead item bottom.',
@@ -29,7 +29,7 @@ const meta: StyleComponentProps<'tf-typeahead-item'> = {
   tag: 'tf-typeahead-item',
   description: 'A typeahead item.',
   component: 'Plania Typeahead Item',
-  variants: [TypeAHeadItemTop, TypeAHeadItemBottom],
+  variants: [TypeaheadItemTop, TypeaheadItemBottom],
 };
 
-export const styleTfTypeAHeadItem = (styleBook: StyleBook) => styleBook.addComponent(meta);
+export const styleTfTypeaheadItem = (styleBook: StyleBook) => styleBook.addComponent(meta);

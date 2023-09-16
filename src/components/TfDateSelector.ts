@@ -18,13 +18,13 @@ export class TfDateSelector extends TfBase {
           ${style}
         </style>
         <div class="date-selector">
-          <tf-text-input
+          <tf-input-text
             icon
             status="default"
             pictogramme="date-range"
             label="Start"
             id="start"
-          ></tf-text-input>
+          ></tf-input-text>
         </div>
       `);
   }
@@ -34,13 +34,19 @@ export class TfDateSelector extends TfBase {
   }
 
   keyUpEventForTextInput() {
-    this.shadowRoot?.querySelectorAll('tf-text-input').forEach((input) => {
+    this.shadowRoot?.querySelectorAll('tf-input-text').forEach((input) => {
       input?.addEventListener('keyup', (e) => {
         e.preventDefault();
-        if(e.key === 'Backspace' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === undefined) return;
-       
-        input.value = input.value.replace(/[^0-9-]/g,'');
-        
+        if (
+          e.key === 'Backspace' ||
+          e.key === 'ArrowLeft' ||
+          e.key === 'ArrowRight' ||
+          e.key === undefined
+        )
+          return;
+
+        input.value = input.value.replace(/[^0-9-]/g, '');
+
         if (input.value.length === 2) {
           input.value += '-';
         }
@@ -62,40 +68,40 @@ export class TfDateSelector extends TfBase {
         }
       });
       input?.addEventListener('input', (e) => {
-        input.id === 'start' ? this.start = input.value.slice(0,10) : this.end = input.value.slice(0,10);
+        input.id === 'start'
+          ? (this.start = input.value.slice(0, 10))
+          : (this.end = input.value.slice(0, 10));
       });
     });
-
-    
   }
 
   static get observedAttributes() {
     return ['variant', 'start', 'end'];
   }
 
-  attributeChangedCallback(name : string , oldValue: string, newValue: string) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     const div = this.shadowRoot?.querySelector('div') as HTMLElement;
-    
+
     switch (name) {
-    case 'variant':
-      if (newValue === 'interval'){
-        this.createEndInput(div);
-      }else if(newValue === 'single'){
-        if(div?.querySelector('#end')) div?.querySelector('#end')?.remove();
-        this.removeAttribute('end');
-      }
-      break;
-    case 'start':
-      this.shadowRoot?.querySelector('#start')?.setAttribute('value', newValue);
-      break;
-    case 'end':
-      this.shadowRoot?.querySelector('#end')?.setAttribute('value', newValue);
-      break;
+      case 'variant':
+        if (newValue === 'interval') {
+          this.createEndInput(div);
+        } else if (newValue === 'single') {
+          if (div?.querySelector('#end')) div?.querySelector('#end')?.remove();
+          this.removeAttribute('end');
+        }
+        break;
+      case 'start':
+        this.shadowRoot?.querySelector('#start')?.setAttribute('value', newValue);
+        break;
+      case 'end':
+        this.shadowRoot?.querySelector('#end')?.setAttribute('value', newValue);
+        break;
     }
   }
 
-  createEndInput(div : HTMLElement) {
-    const input = document.createElement('tf-text-input');
+  createEndInput(div: HTMLElement) {
+    const input = document.createElement('tf-input-text');
     input.setAttribute('icon', '');
     input.setAttribute('status', 'default');
     input.setAttribute('pictogramme', 'date-range');

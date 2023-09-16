@@ -141,43 +141,43 @@ export class TfInputText extends TfBase {
     if (!input || !label) return;
 
     switch (name) {
-    case 'status':
-      input.classList.remove(_oldValue);
-      input?.classList.toggle(_newValue, true);
-      input.disabled = _newValue === 'disabled';
-      if (_newValue === 'error') {
-        label.insertAdjacentHTML(
-          'afterend',
-          '<div class="error-message"><slot name="error"></slot></div>'
-        );
-      }
-      if (_newValue === 'label') {
-        input.classList.add('keep-focus-status');
-      } else {
-        input.classList.remove('keep-focus-status');
-      }
-      break;
+      case 'status':
+        input.classList.remove(_oldValue);
+        input?.classList.toggle(_newValue, true);
+        input.disabled = _newValue === 'disabled';
+        if (_newValue === 'error') {
+          label.insertAdjacentHTML(
+            'afterend',
+            '<div class="error-message"><slot name="error"></slot></div>'
+          );
+        }
+        if (_newValue === 'label') {
+          input.classList.add('keep-focus-status');
+        } else {
+          input.classList.remove('keep-focus-status');
+        }
+        break;
 
-    case 'label':
-      label.textContent = _newValue;
-      break;
+      case 'label':
+        label.textContent = _newValue;
+        break;
 
-    case 'pictogramme':
-      icon?.remove();
-      input?.classList.remove('input-icon');
-      if (this.icon) {
-        input?.insertAdjacentHTML(
-          'afterend',
-          `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
-        );
-        input?.classList.add('input-icon');
-      }
-      break;
-    case 'value':
-      input.value = _newValue;
-      if (input.value.length <= 0) return;
-      input.classList.add('keep-focus');
-      break;
+      case 'pictogramme':
+        icon?.remove();
+        input?.classList.remove('input-icon');
+        if (this.icon) {
+          input?.insertAdjacentHTML(
+            'afterend',
+            `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
+          );
+          input?.classList.add('input-icon');
+        }
+        break;
+      case 'value':
+        input.value = _newValue;
+        if (input.value.length <= 0) return;
+        input.classList.add('keep-focus');
+        break;
     }
   }
 
@@ -225,9 +225,8 @@ export class TfInputText extends TfBase {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'tf-text-input': TfInputText;
+    'tf-input-text': TfInputText;
   }
 }
 
-customElements.define('tf-text-input', TfInputText);
-
+customElements.define('tf-input-text', TfInputText);
