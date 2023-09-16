@@ -16,6 +16,7 @@ export * from './components/TfCitySwiper.js';
 export * from './components/TfCitySwiperItem.js';
 export * from './components/TfDateSelector.js';
 export * from './components/TfDay.js';
+export * from './components/TfDoubleSlider.js';
 export * from './components/TfDropdown.js';
 export * from './components/TfDropdownItem.js';
 export * from './components/TfDropDownListButton.js';

@@ -22,7 +22,7 @@ export class TfActionBar extends TfBase {
     this._render();
   }
 
-  _render() {
+  private _render() {
     if (!this.shadowRoot) return;
 
     this.shadowRoot.innerHTML = html`

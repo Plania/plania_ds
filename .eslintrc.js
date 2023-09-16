@@ -18,5 +18,6 @@ module.exports = {
       'linebreak-style': 0,
       quotes: ['error', 'single', { "avoidEscape": true }],
       semi: ['error', 'always'],
+      '@typescript-eslint/no-non-null-assertion': 'off',
    },
 };
