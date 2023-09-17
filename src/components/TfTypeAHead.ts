@@ -39,7 +39,7 @@ const style = css`
   }
 `;
 
-export class TfTypeAHead extends TfBase {
+export class TfTypeahead extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
@@ -78,16 +78,16 @@ export class TfTypeAHead extends TfBase {
     const div = this.shadowRoot?.querySelector('.dropDown') as HTMLDivElement;
     if (oldVal === newVal) return;
     switch (name) {
-    case 'status':
-      input?.setAttribute('status', newVal);
-      break;
-    case 'label':
-      input?.setAttribute('label', newVal);
-      break;
-    case 'value':
-      input?.setAttribute('value', newVal);
+      case 'status':
+        input?.setAttribute('status', newVal);
+        break;
+      case 'label':
+        input?.setAttribute('label', newVal);
+        break;
+      case 'value':
+        input?.setAttribute('value', newVal);
 
-      break;
+        break;
     }
 
     if (this.icon) {
@@ -102,7 +102,7 @@ export class TfTypeAHead extends TfBase {
         div.style.display = 'flex';
         this.handleOnClickedForItem();
       }, 100);
-    }else{
+    } else {
       setTimeout(() => {
         div.style.display = 'none';
       }, 100);
@@ -128,31 +128,29 @@ export class TfTypeAHead extends TfBase {
 
   handleOnInput() {
     const input = this.shadowRoot?.querySelector('tf-input-text');
-    
 
-    input?.addEventListener('input' , () =>{
+    input?.addEventListener('input', () => {
       this.value = input.value;
       let find = 0;
       const slot = this.shadowRoot?.querySelector('slot');
-      const listOfTfHead = slot?.assignedElements().filter((e) => e.nodeName === 'TF-TYPEAHEAD-ITEM') as HTMLElement[];
+      const listOfTfHead = slot
+        ?.assignedElements()
+        .filter((e) => e.nodeName === 'TF-TYPEAHEAD-ITEM') as HTMLElement[];
       listOfTfHead?.forEach((e) => {
         if (e.textContent?.toLowerCase().match(input.value.toLowerCase())) {
           e.style.display = 'flex';
           find += 1;
         } else {
           e.style.display = 'none';
-         
         }
       });
-      if(find === 0){
+      if (find === 0) {
         listOfTfHead?.forEach((e) => {
           e.style.display = 'flex';
-        }
-        );
+        });
       }
     });
   }
-    
 
   get icon() {
     return this.hasAttribute('icon');
@@ -176,7 +174,7 @@ export class TfTypeAHead extends TfBase {
     return this.getAttribute('value') as string;
   }
 
-  set value(value : string) {
+  set value(value: string) {
     this.setAttribute('value', value);
   }
 
@@ -191,8 +189,8 @@ export class TfTypeAHead extends TfBase {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'tf-type-a-head': TfTypeAHead;
+    'tf-typeahead': TfTypeahead;
   }
 }
 
-window.customElements.define('tf-type-a-head', TfTypeAHead);
+window.customElements.define('tf-typeahead', TfTypeahead);
