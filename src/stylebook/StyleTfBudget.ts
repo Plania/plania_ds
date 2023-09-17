@@ -49,9 +49,9 @@ const level5Budget: StyleVariantProps<'tf-budget'> = {
 
 const meta: StyleComponentProps<'tf-budget'> = {
   ref: 'tf-budget',
-  description: 'Tourisfair budget component. It is used to show the budget level of an activity.',
+  description: 'Plania budget component. It is used to show the budget level of an activity.',
   tag: 'tf-budget',
-  component: 'Tourisfair Budget',
+  component: 'Plania Budget',
   variants: [level1Budget, level2Budget, level3Budget, level4Budget, level5Budget],
 };
 

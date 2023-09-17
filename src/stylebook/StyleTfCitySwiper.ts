@@ -27,11 +27,9 @@ const tfCitySwiper: StyleVariantProps<'tf-city-swiper'> = {
 const meta: StyleComponentProps<'tf-city-swiper'> = {
   ref: 'tf-city-swiper',
   tag: 'tf-city-swiper',
-  description:
-    'Tourisfair city swiper component. It is used to showcase multiplie city',
-  component: 'Tourisfair City Swiper',
+  description: 'Plania city swiper component. It is used to showcase multiplie city',
+  component: 'Plania City Swiper',
   variants: [tfCitySwiper],
 };
 
-export const styleTfCitySwiper = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfCitySwiper = (styleBook: StyleBook) => styleBook.addComponent(meta);

@@ -1,163 +1,145 @@
 import { css, html, TfBase } from './TfBase.js';
-import { tfIconNameMap } from './TfIcon.js';
 
 const style = css`
-   :host {
-      display: flex;
-      margin: 0;
-      width: 100%;
-      box-shadow: 2px 2px 4px 0px #00000040;
-   }
+  :host {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    box-shadow: 2px 2px 4px 0px #00000040;
+  }
 
-   .image-container {
-      width: 30%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      position: relative;
-   }
+  .image-container {
+    width: 30%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
 
-   .image-container > tf-chip {
-      position: absolute;
-   }
+  .image-container > tf-chip {
+    position: absolute;
+  }
 
-   #hourglass-top {
-      left: 50%;
-      transform: translate(-50%, -50%);
-   }
+  #hourglass-top {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-   #hourglass-bottom {
-      left: 50%;
-      bottom: 0;
-      transform: translate(-50%, 50%);
-   }
+  #hourglass-bottom {
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+  }
 
-   h3 {
-      font: var(--tf-subhead1);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-   }
+  h3 {
+    font: var(--tf-subhead1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-   .main-container {
-      padding: 0 0.5rem 0.5rem 0.5rem;
-      width: 70%;
-      background-color: var(--tf-sys-light-surface);
-   }
+  .main-container {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    width: 70%;
+    background-color: var(--tf-sys-light-surface);
+  }
 
-   .activity-location-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-   }
+  .activity-location-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-   .activity-location-container > tf-icon {
-      width: 1rem;
-      height: 1rem;
-   }
+  .activity-location-container > tf-icon {
+    font-size: 1rem;
+  }
 
-   .activity-location-container > p {
-      font: var(--tf-caption);
-   }
+  .activity-location-container > p {
+    font: var(--tf-caption);
+  }
 
-   .activity-button-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 0.25rem;
-      width: 100%;
-   }
+  .activity-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    width: 100%;
+  }
 
-   .activity-button-container > svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--tf-sys-light-error);
-   }
+  .activity-button-container > tf-icon {
+    font-size: 1.5rem;
+    color: var(--tf-sys-light-error);
+  }
 
-   .activity-star-container {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: flex-end;
-   }
+  .activity-star-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+  }
 
-   .activity-star-container > svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--tf-sys-light-tertiary);
-   }
+  .activity-star-container > tf-icon {
+    font-size: 1.5rem;
+    color: var(--tf-sys-light-tertiary);
+  }
 
-   .activity-delete-button > button {
-      background-color: var(--tf-sys-light-error);
-   }
+  .activity-delete-button > button {
+    background-color: var(--tf-sys-light-error);
+  }
+
+  tf-favorite {
+    font-size: 1.5rem;
+    color: var(--tf-sys-light-error);
+  }
 `;
 
 export class TfActivityCard extends TfBase {
   elements: {
-      div: HTMLElement;
-      starContainer: Element;
-      buttonContainer: Element;
-      address: Element;
-      h3: HTMLHeadingElement;
-      hourglassTop: Element;
-      hourglassBottom: Element;
-   };
+    div: HTMLElement;
+    starContainer: Element;
+    buttonContainer: Element;
+    address: Element;
+    h3: HTMLHeadingElement;
+    hourglassTop: Element;
+    hourglassBottom: Element;
+  };
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <section class="image-container">
-               <tf-chip active icon symbol="hourglass-top" id="hourglass-top">09:00</tf-chip>
-               <tf-chip active icon symbol="hourglass-bottom" id="hourglass-bottom">12:00</tf-chip>
-            </section>
-            <section class="main-container">
-               <div>
-                  <h3>Activity</h3>
-                  <div class="activity-location-container">
-                     <tf-icon icon="location-on"></tf-icon>
-                     <p id="address"></p>
-                  </div>
-               </div>
-               <div>
-                  <div class="activity-star-container"></div>
-                  <div class="activity-button-container">
-                     <tf-button
-                        variant="tertiary"
-                        size="small"
-                        state="default"
-                        active
-                        icon="low-priority"
-                     ></tf-button>
-                     <tf-button
-                        variant="default"
-                        size="small"
-                        state="default"
-                        active
-                        icon="change-circle"
-                     ></tf-button>
-                     <tf-button
-                        variant="default"
-                        size="small"
-                        state="default"
-                        active
-                        icon="euro-symbol"
-                     ></tf-button>
-                     <tf-button
-                        variant="default"
-                        size="small"
-                        state="default"
-                        active
-                        icon="trash"
-                        class="activity-delete-button"
-                     ></tf-button>
-                     ${tfIconNameMap['favorite-border']}
-                  </div>
-               </div>
-            </section>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <section class="image-container">
+          <tf-chip active icon symbol="hourglass-top" id="hourglass-top">09:00</tf-chip>
+          <tf-chip active icon symbol="hourglass-bottom" id="hourglass-bottom">12:00</tf-chip>
+        </section>
+        <section class="main-container">
+          <div>
+            <h3>Activity</h3>
+            <div class="activity-location-container">
+              <tf-icon icon="location-on"></tf-icon>
+              <p id="address"></p>
+            </div>
+          </div>
+          <div>
+            <div class="activity-star-container"></div>
+            <div class="activity-button-container">
+              <tf-button variant="tertiary" state="default" active icon="low-priority"></tf-button>
+              <tf-button variant="default" state="default" active icon="change-circle"></tf-button>
+              <tf-button variant="default" state="default" active icon="euro-symbol"></tf-button>
+              <tf-button
+                variant="default"
+                state="default"
+                active
+                icon="trash"
+                class="activity-delete-button"
+              ></tf-button>
+              <tf-favorite></tf-favorite>
+            </div>
+          </div>
+        </section>
+      `);
     this.elements = {
       div: this.shadowRoot?.querySelector('section') as HTMLElement,
       starContainer: this.shadowRoot?.querySelector('.activity-star-container') as Element,
@@ -213,24 +195,44 @@ export class TfActivityCard extends TfBase {
       this.elements.div.style.setProperty('background-image', `url(${_newValue})`);
     };
 
+    const setStar = (rate: string) => {
+      switch (rate) {
+        case 'full':
+          this.elements.starContainer.insertAdjacentHTML(
+            'beforeend',
+            html`<tf-icon icon="star-rate"></tf-icon>`
+          );
+          break;
+        case 'half':
+          this.elements.starContainer.insertAdjacentHTML(
+            'beforeend',
+            html`<tf-icon icon="half-star"></tf-icon>`
+          );
+          break;
+        case 'empty':
+          this.elements.starContainer.insertAdjacentHTML(
+            'beforeend',
+            html`<tf-icon icon="star-outlined"></tf-icon>`
+          );
+          break;
+      }
+    };
+
     const updateRating = (_newValue: string) => {
       this.elements.starContainer.innerHTML = '';
       const value = parseFloat(_newValue);
       let j = 0;
       for (let i = 0; i < value - 1; i++) {
-        this.elements.starContainer.insertAdjacentHTML('beforeend', tfIconNameMap['star-rate']);
+        setStar('full');
       }
       if (value % 1 !== 0) {
-        this.elements.starContainer.insertAdjacentHTML('beforeend', tfIconNameMap['half-star']);
+        setStar('half');
         j++;
       } else {
-        this.elements.starContainer.insertAdjacentHTML('beforeend', tfIconNameMap['star-rate']);
+        setStar('full');
       }
       for (let i = 0; i < 5 - value - j; i++) {
-        this.elements.starContainer.insertAdjacentHTML(
-          'beforeend',
-          tfIconNameMap['star-outlined']
-        );
+        setStar('empty');
       }
       this.elements.starContainer.insertAdjacentHTML('beforeend', `<p>${_newValue}</p>`);
     };
@@ -244,10 +246,10 @@ export class TfActivityCard extends TfBase {
     };
 
     const updateLikedButton = () => {
-      this.elements.buttonContainer.removeChild(
-            this.elements.buttonContainer.lastElementChild as Node
-      );
-      this.elements.buttonContainer.insertAdjacentHTML('beforeend', tfIconNameMap['favorite']);
+      const favorite = this.shadowRoot?.querySelector('tf-favorite');
+      if (favorite) {
+        favorite.enabled = this.liked;
+      }
     };
 
     const updateStartHours = (_newValue: string) => {
@@ -316,9 +318,9 @@ export class TfActivityCard extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-activity-card': TfActivityCard;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-activity-card': TfActivityCard;
+  }
 }
 
 customElements.define('tf-activity-card', TfActivityCard);
