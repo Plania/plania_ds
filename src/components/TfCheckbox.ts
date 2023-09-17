@@ -1,6 +1,7 @@
 import { css, html, TfBase } from './TfBase.js';
 
-const style = css`
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   .checkbox {
     display: flex;
     align-items: center;
@@ -62,16 +63,14 @@ const style = css`
   .disabled input[type='checkbox'] ~ .check-icon {
     color: var(--tf-sys-light-outline);
   }
-`;
+`);
 
 export class TfCheckbox extends TfBase {
   constructor() {
     super();
+    this.shadowRoot?.adoptedStyleSheets.push(style);
     this.shadowRoot &&
       (this.shadowRoot.innerHTML += html`
-        <style>
-          ${style}
-        </style>
         <section class="checkbox">
           <input type="checkbox" checked />
           <label for="checkbox">
@@ -83,7 +82,7 @@ export class TfCheckbox extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['status', 'checked', 'focus'];
+    return ['checked', 'disabled', 'error'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
@@ -118,6 +117,22 @@ export class TfCheckbox extends TfBase {
 
   set checked(value) {
     value ? this.setAttribute('checked', '') : this.removeAttribute('checked');
+  }
+
+  get disabled() {
+    return this.hasAttribute('disabled');
+  }
+
+  set disabled(value) {
+    value ? this.setAttribute('disabled', '') : this.removeAttribute('disabled');
+  }
+
+  get error() {
+    return this.hasAttribute('error');
+  }
+
+  set error(value) {
+    value ? this.setAttribute('error', '') : this.removeAttribute('error');
   }
 }
 

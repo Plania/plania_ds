@@ -3,55 +3,81 @@ import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
 const checkboxDefault: StyleVariantProps<'tf-checkbox'> = {
-  name: 'Checkbox ',
+  name: 'Checkbox unchecked',
   tag: 'tf-checkbox',
-  description: 'Checkbox default not checked, click to focus',
+  description: 'Checkbox unchecked.',
   data: {
-    status: 'default',
     content: 'Checkbox',
   },
 };
 
 const checkboxDefaultChecked: StyleVariantProps<'tf-checkbox'> = {
-  name: 'Checkbox',
+  name: 'Checkbox checked',
   tag: 'tf-checkbox',
-  description: 'Checkbox default checked, click to focus',
+  description: 'Checkbox checked.',
   data: {
-    status: 'default',
-    checked: 'true',
+    checked: '',
     content: 'Checkbox',
   },
 };
 
-
-
 const checkboxDisabled: StyleVariantProps<'tf-checkbox'> = {
-  name: 'Checkbox',
+  name: 'Checkbox Disabled Unchecked',
   tag: 'tf-checkbox',
-  description: 'Checkbox disabled not checked',
+  description: 'Checkbox disabled unchecked',
   data: {
-    status: 'disabled',
+    disabled: '',
     content: 'Checkbox',
   },
 };
 
 const checkboxDisabledChecked: StyleVariantProps<'tf-checkbox'> = {
-  name: 'Checkbox',
+  name: 'Checkbox Disabled Checked',
   tag: 'tf-checkbox',
   description: 'Checkbox disabled checked',
   data: {
-    status: 'disabled',
-    checked: 'true',
+    disabled: '',
+    checked: '',
+    content: 'Checkbox',
+  },
+};
+
+const checkboxError: StyleVariantProps<'tf-checkbox'> = {
+  name: 'Checkbox Error Unchecked',
+  tag: 'tf-checkbox',
+  description: 'Checkbox error unchecked',
+  data: {
+    error: '',
+    content: 'Checkbox',
+  },
+};
+
+const checkboxErrorChecked: StyleVariantProps<'tf-checkbox'> = {
+  name: 'Checkbox Error Checked',
+  tag: 'tf-checkbox',
+  description: 'Checkbox error checked',
+  data: {
+    error: '',
+    checked: '',
     content: 'Checkbox',
   },
 };
 
 const meta: StyleComponentProps<'tf-checkbox'> = {
   ref: 'tf-checkbox',
-  description: 'Plania checkbox component. It is used to show a checkbox.',
+  description: `Plania checkbox component.
+  
+  To check the \`focus\`, click on the checkbox or press tab`,
   tag: 'tf-checkbox',
   component: 'Plania Checkbox',
-  variants: [checkboxDefault, checkboxDefaultChecked, checkboxDisabled, checkboxDisabledChecked],
+  variants: [
+    checkboxDefault,
+    checkboxDefaultChecked,
+    checkboxDisabled,
+    checkboxDisabledChecked,
+    checkboxError,
+    checkboxErrorChecked,
+  ],
 };
 
 export const styleTfCheckbox = (styleBook: StyleBook) => styleBook.addComponent(meta);
