@@ -1,114 +1,99 @@
 import { html, css, TfBase } from './TfBase.js';
 
-const style = css`
-  input {
-    padding: 0.5rem 0;
-    width: calc(100% - 0.75rem);
-    padding-left: 0.75rem;
-    font: var(--tf-body1);
-    border: 1px solid var(--tf-sys-light-outline);
-    border-radius: 1.5rem;
-  }
-
-  label {
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: 0.2s ease all;
-  }
-
-  input:focus ~ label,
-  .error ~ label {
-    top: -10px;
-    left: 0;
-    font: var(--tf-label-large);
-  }
-
-  .input-icon ~ label {
-    left: 3rem;
-  }
-
-  .input-icon:focus ~ label,
-  .error ~ label {
-    left: 0;
-  }
-
-  .keep-focus ~ label {
-    top: -10px;
-    left: 0;
-    font: var(--tf-label-large);
-  }
-
-  .keep-focus-status ~ label {
-    top: -10px;
-    left: 0;
-    font: var(--tf-label-large);
-  }
-
-  .input-icon {
-    padding-left: 3rem !important;
-    width: calc(100% - 3rem - 2px);
-  }
-
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   .container {
-    position: relative;
-  }
-
-  .icon {
-    position: absolute;
-    top: 0;
-    left: 1rem;
-    transform: translateY(50%);
-    color: var(--tf-sys-light-on-primary);
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: var(--tf-sys-light-on-primary);
-  }
-
-  .default {
-    background-color: var(--tf-sys-light-surface);
+    --background: var(--tf-sys-light-surface);
+    --border: var(--tf-sys-light-outline-opacity-016);
+    --color: var(--tf-sys-light-onprimary);
+    display: flex;
+    flex-direction: column;
+    color: var(--color);
   }
 
   .disabled {
-    border-color: var(--tf-sys-light-surface-variant);
-    background-color: var(--tf-sys-light-surface-variant);
+    --background: var(--tf-sys-light-surface-variant);
+    --color: var(--tf-sys-light-outline);
+    pointer-events: none;
+  }
+
+  .label-frame {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease all;
+  }
+
+  .input-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    color: var(--color);
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    color: var(--color);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .container:focus-within > .label-frame {
+    visibility: visible;
+  }
+
+  .container:focus-within > .input-box {
+    --border: var(--tf-sys-light-outline);
   }
 
   .error {
-    background-color: var(--tf-sys-light-error-container);
+    --background: var(--tf-sys-light-error-container);
+    --border: var(--tf-sys-light-error);
+    --color: var(--tf-sys-light-error);
   }
 
-  .error,
-  .error ~ label,
-  .error-message,
-  .error::placeholder,
-  .error ~ .icon {
-    color: var(--tf-sys-light-error);
+  .error-frame {
+    visibility: none;
+    display: flex;
+    align-items: center;
   }
 
-  .error-message {
-    margin-left: 1rem;
-    margin-bottom: 0.5rem;
+  .error > .error-frame {
+    visibility: visible;
   }
-`;
+`);
 
 export class TfInputText extends TfBase {
   constructor() {
     super();
+    this.shadowRoot?.adoptedStyleSheets.push(style);
+
     this.shadowRoot &&
-      (this.shadowRoot.innerHTML += html`
-        <style>
-          ${style}
-        </style>
+      (this.shadowRoot.innerHTML = html`
         <div class="container">
-          <input type="text" class="default" />
-          <label></label>
+          <div class="label-frame">
+            <div class="spacer"></div>
+            <slot name="label"></slot>
+          </div>
+          <div class="input-box">
+            <slot name="icon"></slot>
+            <input
+              type="text"
+              placeholder="${this.placeholder}"
+              ${this.value !== '' ? `value="this.value"` : ''}
+            />
+          </div>
+          <div class="error-frame">
+            <div class="spacer"></div>
+            <slot name="error"></slot>
+          </div>
         </div>
       `);
   }
@@ -116,102 +101,72 @@ export class TfInputText extends TfBase {
   connectedCallback() {
     const input = this.shadowRoot?.querySelector('input');
     if (!input) return;
+    input.addEventListener('focus', () => {
+      this.dispatchEvent(new CustomEvent('focus'));
+    });
+    input.addEventListener('blur', () => {
+      this.dispatchEvent(new CustomEvent('blur'));
+    });
     input.addEventListener('input', () => {
-      if (input.value.length > 0) {
-        input.classList.add('keep-focus');
-      } else {
-        input.classList.remove('keep-focus');
-      }
       this.value = input.value;
-      this.dispatchEvent(new CustomEvent('keyup', { detail: input.value }));
-      input.addEventListener('focus', () => {
-        this.dispatchEvent(new CustomEvent('focus'));
-      });
+      this.dispatchEvent(new CustomEvent('tf-input'));
+    });
+    input.addEventListener('change', () => {
+      this.dispatchEvent(new CustomEvent('tf-change'));
     });
   }
 
   static get observedAttributes() {
-    return ['icon', 'status', 'pictogramme', 'label', 'value'];
+    return ['placeholder', 'disabled', 'error', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
+    const container = this.shadowRoot?.querySelector('.container');
     const input = this.shadowRoot?.querySelector('input');
-    const label = this.shadowRoot?.querySelector('label');
-    const icon = this.shadowRoot?.querySelector('tf-icon');
-    if (!input || !label) return;
+
+    if (!container) return;
+    if (!input) return;
 
     switch (name) {
-      case 'status':
-        input.classList.remove(_oldValue);
-        input?.classList.toggle(_newValue, true);
-        input.disabled = _newValue === 'disabled';
-        if (_newValue === 'error') {
-          label.insertAdjacentHTML(
-            'afterend',
-            '<div class="error-message"><slot name="error"></slot></div>'
-          );
-        }
-        if (_newValue === 'label') {
-          input.classList.add('keep-focus-status');
-        } else {
-          input.classList.remove('keep-focus-status');
-        }
+      case 'placeholder':
+        input.placeholder = this.placeholder;
+      case 'error':
+        this.error && container.classList.add('error');
+        !this.error && container.classList.remove('error');
         break;
-
-      case 'label':
-        label.textContent = _newValue;
-        break;
-
-      case 'pictogramme':
-        icon?.remove();
-        input?.classList.remove('input-icon');
-        if (this.icon) {
-          input?.insertAdjacentHTML(
-            'afterend',
-            `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
-          );
-          input?.classList.add('input-icon');
-        }
+      case 'disabled':
+        input.disabled = this.disabled;
+        this.disabled && container.classList.add('disabled');
+        !this.disabled && container.classList.remove('disabled');
         break;
       case 'value':
-        input.value = _newValue;
-        if (input.value.length <= 0) return;
-        input.classList.add('keep-focus');
+        input.value = this.value;
         break;
     }
   }
 
-  get icon() {
-    return this.hasAttribute('icon');
+  get placeholder() {
+    return this.getAttribute('placeholder') || '';
   }
 
-  set icon(value) {
-    value && this.setAttribute('icon', '');
-    !value && this.removeAttribute('icon');
+  set placeholder(value) {
+    this.setAttribute('placeholder', value);
   }
 
-  get status() {
-    return this.getAttribute('status') || 'default';
+  get error() {
+    return this.hasAttribute('error');
   }
 
-  set status(value) {
-    this.setAttribute('status', value);
+  set error(value) {
+    (value && this.setAttribute('error', '')) || this.removeAttribute('error');
   }
 
-  get pictogramme() {
-    return this.getAttribute('pictogramme') || 'arrow-forward-ios';
+  get disabled() {
+    return this.hasAttribute('disabled');
   }
 
-  set pictogramme(value) {
-    this.setAttribute('pictogramme', value);
-  }
-
-  get label() {
-    return this.getAttribute('label') || '';
-  }
-
-  set label(value) {
-    this.setAttribute('label', value);
+  set disabled(value) {
+    (value && this.setAttribute('disabled', '')) || this.removeAttribute('disabled');
   }
 
   get value() {

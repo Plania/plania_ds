@@ -1,3 +1,4 @@
+import { html } from '../components.js';
 import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
@@ -5,12 +6,13 @@ import { StyleVariantProps } from './StyleVariant.js';
 const tfInputTextIconDefault: StyleVariantProps<'tf-input-text'> = {
   name: 'Plania input text',
   tag: 'tf-input-text',
-  description: 'A text input component with icon.',
+  description: 'A text input component with icon and label.',
   data: {
-    icon: 'true',
-    status: 'default',
-    pictogramme: 'account-circle',
-    label: 'Default Icon',
+    placeholder: 'Type here',
+    content: html`
+      <label slot="label">Label</label>
+      <tf-icon icon="account-circle" slot="icon"></tf-icon>
+    `,
   },
 };
 
@@ -19,32 +21,8 @@ const tfInputTextDefault: StyleVariantProps<'tf-input-text'> = {
   tag: 'tf-input-text',
   description: 'A text input component no icon.',
   data: {
-    icon: 'false',
-    status: 'default',
-    label: 'Default',
-  },
-};
-
-const tfInputTextDefaultFocus: StyleVariantProps<'tf-input-text'> = {
-  name: 'Plania input text',
-  tag: 'tf-input-text',
-  description: 'A text input component no icon. Focussed.',
-  data: {
-    icon: 'false',
-    status: 'label',
-    label: 'Default',
-  },
-};
-
-const tfInputTextIconDefaultFocus: StyleVariantProps<'tf-input-text'> = {
-  name: 'Plania input text',
-  tag: 'tf-input-text',
-  description: 'A text input component with icon. Focussed.',
-  data: {
-    icon: 'true',
-    status: 'label',
-    pictogramme: 'account-circle',
-    label: 'Default Icon',
+    placeholder: 'Type here',
+    content: html` <label slot="label">Label</label> `,
   },
 };
 
@@ -53,10 +31,12 @@ const tfInputTextIconDisabled: StyleVariantProps<'tf-input-text'> = {
   tag: 'tf-input-text',
   description: 'A text input component disabled with icon.',
   data: {
-    icon: 'true',
-    status: 'disabled',
-    pictogramme: 'account-circle',
-    label: 'Disabled Icon',
+    placeholder: 'Type here',
+    disabled: '',
+    content: html`
+      <label slot="label">Label</label>
+      <tf-icon icon="account-circle" slot="icon"></tf-icon>
+    `,
   },
 };
 
@@ -65,9 +45,9 @@ const tfInputTextDisabled: StyleVariantProps<'tf-input-text'> = {
   tag: 'tf-input-text',
   description: 'A text input component disabled no icon.',
   data: {
-    icon: 'false',
-    status: 'disabled',
-    label: 'Disabled',
+    placeholder: 'Type here',
+    disabled: '',
+    content: html` <label slot="label">Label</label> `,
   },
 };
 
@@ -76,12 +56,13 @@ const tfInputTextIconError: StyleVariantProps<'tf-input-text'> = {
   tag: 'tf-input-text',
   description: 'A text input component error with icon.',
   data: {
-    icon: 'true',
-    status: 'error',
-    pictogramme: 'account-circle',
-    label: 'Error',
-    value: 'old value',
-    content: '<span slot="error">Error message</span>',
+    value: 'Some error value',
+    error: '',
+    content: html`
+      <label slot="label">Label</label>
+      <tf-icon icon="account-circle" slot="icon"></tf-icon>
+      <span slot="error">Error message</span>
+    `,
   },
 };
 
@@ -90,11 +71,13 @@ const tfInputTextError: StyleVariantProps<'tf-input-text'> = {
   tag: 'tf-input-text',
   description: 'A text input component error no icon.',
   data: {
-    icon: 'false',
-    status: 'error',
-    label: 'Error',
-    value: 'old value',
-    content: '<span slot="error">Error message</span>',
+    value: 'Some error value',
+    error: '',
+    content: html`
+      <label slot="label">Label</label>
+      <tf-icon icon="account-circle" slot="icon"></tf-icon>
+      <span slot="error">Error message</span>
+    `,
   },
 };
 
@@ -105,9 +88,7 @@ const meta: StyleComponentProps<'tf-input-text'> = {
   component: 'Plania Input Text',
   variants: [
     tfInputTextIconDefault,
-    tfInputTextIconDefaultFocus,
     tfInputTextDefault,
-    tfInputTextDefaultFocus,
     tfInputTextIconDisabled,
     tfInputTextDisabled,
     tfInputTextIconError,
