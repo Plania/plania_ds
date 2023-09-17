@@ -145,8 +145,9 @@ style.replaceSync(css`
     --tf-sys-light-error-container: var(--light-error-container, #ffdad4);
     --tf-sys-light-surface-variant: var(--light-surface-variant, #d4d4d4);
     --tf-sys-light-surface: var(--light-surface, #f9f9f8);
-    --tf-sys-light-outline: var(--light-outline, #71787d);
     --tf-sys-light-background: var(--light-background, #f3f3f3);
+    --tf-sys-light-outline: var(--light-outline, #71787d);
+    --tf-sys-light-outline-opacity-016: var(--light-outline-opacity-016, rgba(113, 120, 125, 0.16));
     --tf-subhead1: var(--subhead1, 700 1rem/2rem Nunito, sans-serif);
     --tf-caption: var(--caption, 400 0.75rem/1rem Nunito, sans-serif);
     --tf-body-medium: var(--body-medium, 400 0.875rem/1.25rem Nunito, sans-serif);

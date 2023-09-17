@@ -18,13 +18,10 @@ export class TfDateSelector extends TfBase {
           ${style}
         </style>
         <div class="date-selector">
-          <tf-input-text
-            icon
-            status="default"
-            pictogramme="date-range"
-            label="Start"
-            id="start"
-          ></tf-input-text>
+          <tf-input-text id="start">
+            <label slot="label">Start</label>
+            <tf-icon slot="icon" icon="date-range"></tf-icon>
+          </tf-input-text>
         </div>
       `);
   }
@@ -55,7 +52,6 @@ export class TfDateSelector extends TfBase {
         }
         if (input.value.length >= 10) {
           input.value = input.value.slice(0, 10);
-          input.status = 'default';
           input.innerHTML = '';
           if (
             input.value.match(
@@ -63,7 +59,7 @@ export class TfDateSelector extends TfBase {
             )
           )
             return;
-          input.status = 'error';
+          input.error = true;
           input.innerHTML += html`<span slot="error">date format JJ-MM-YYYY </span>`;
         }
       });
