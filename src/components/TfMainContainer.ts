@@ -11,6 +11,7 @@ const style = css`
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    height: 100%;
   }
   .down {
     border-radius: 0 0 40px 40px;
