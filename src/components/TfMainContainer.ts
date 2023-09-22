@@ -1,41 +1,42 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   :host {
-      display: block;
-      width: 100%;
-      height: 100%;
-   }
+  :host {
+    display: block;
+  }
 
-   main{
-      width: 100%;
-      height: 100%;
-   }
-   .down {
-      border-radius: 0 0 40px 40px;
-   }
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  .down {
+    border-radius: 0 0 40px 40px;
+  }
 
-   .up {
-      border-radius: 40px 40px 0 0;
-   }
+  .up {
+    border-radius: 40px 40px 0 0;
+  }
 
-   .default {
-      background-color: var(--tf-sys-light-background)
-   }
+  .default {
+    background-color: var(--tf-sys-light-background);
+  }
 `;
 
 export class TfMainContainer extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <main class="main down primary">
-               <slot></slot>
-            </main>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <main class="main down primary">
+          <slot></slot>
+        </main>
+      `);
   }
 
   // connectedCallback() {}
@@ -71,9 +72,9 @@ export class TfMainContainer extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-main-container': TfMainContainer;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-main-container': TfMainContainer;
+  }
 }
 
 customElements.define('tf-main-container', TfMainContainer);

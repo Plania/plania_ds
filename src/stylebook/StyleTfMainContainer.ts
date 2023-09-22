@@ -1,3 +1,4 @@
+import { html } from '../components.js';
 import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
@@ -9,6 +10,9 @@ const defaultBackgroundUp: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'default',
     direction: 'up',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -19,6 +23,9 @@ const defaultBackgroundDown: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'default',
     direction: 'down',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -29,6 +36,9 @@ const primaryBackgroundUp: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'primary',
     direction: 'up',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -39,6 +49,9 @@ const primaryBackgroundDown: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'primary',
     direction: 'down',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -49,6 +62,9 @@ const secondaryBackgroundUp: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'secondary',
     direction: 'up',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -59,6 +75,9 @@ const secondaryBackgroundDown: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'secondary',
     direction: 'down',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -69,6 +88,9 @@ const tertiaryBackgroundUp: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'tertiary',
     direction: 'up',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
@@ -79,6 +101,9 @@ const tertiaryBackgroundDown: StyleVariantProps<'tf-main-container'> = {
   data: {
     color: 'tertiary',
     direction: 'down',
+    content: html`
+      <div style="width: 100%; height: 100px; background: lightgrey;">Some content</div>
+    `,
   },
 };
 
