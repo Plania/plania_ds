@@ -71,7 +71,10 @@ declare class TfNavigationItem extends TfBase {}
 declare class TfNavigationBar extends TfBase {}
 declare class TfPasswordInput extends TfBase {}
 declare class TfProgressBar extends TfBase {}
-declare class TfRadioButton extends TfBase {}
+declare class TfRadioButton extends TfBase {
+  name: string;
+  checked: boolean;
+}
 declare class TfSearchActivityCard extends TfBase {}
 declare class TfSearchBadge extends TfBase {}
 declare class TfSearchCardHeaderImage extends TfBase {}

@@ -34,6 +34,8 @@ export * from './components/TfMonthHeader.js';
 export * from './components/TfNavigationItem.js';
 export * from './components/TfNavigationBar.js';
 export * from './components/TfProgressBar.js';
+export * from './components/TfRadioButton.js';
+export * from './components/TfRadioButtonGroup.js';
 export * from './components/TfSearchActivityCard.js';
 export * from './components/TfSearchBadge.js';
 export * from './components/TfSearchCardHeaderImage.js';
