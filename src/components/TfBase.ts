@@ -187,6 +187,11 @@ export class TfBase extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot && (this.shadowRoot.adoptedStyleSheets = [style]);
   }
+
+  adoptStylesheet(stylesheet: CSSStyleSheet) {
+    this.shadowRoot &&
+      (this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, stylesheet]);
+  }
 }
 
 declare global {
