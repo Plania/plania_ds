@@ -73,7 +73,7 @@ style.replaceSync(css`
 export class TfInputText extends TfBase {
   constructor() {
     super();
-    this.shadowRoot?.adoptedStyleSheets.push(style);
+    this.adoptStylesheet(style);
 
     this.shadowRoot &&
       (this.shadowRoot.innerHTML = html`
