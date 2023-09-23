@@ -12,7 +12,7 @@ style.replaceSync(css`
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    height: 100%;
+    height: calc(100% - 4rem);
   }
   .down {
     border-radius: 0 0 40px 40px;
