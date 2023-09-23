@@ -53,7 +53,7 @@ export class TfBackground extends TfBase {
 
     if (!actions || !content) return;
 
-    if (name === 'actions' && newValue === '') {
+    if (name === 'actions' && this.actions) {
       actions.classList.remove('hide');
     } else {
       actions.classList.add('hide');
