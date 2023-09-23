@@ -7,8 +7,7 @@ const defaultLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Default logo',
   data: {
-    variant: 'alone',
-    color: 'default',
+    type: 'alone',
   },
 };
 
@@ -17,7 +16,7 @@ const textColorLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Logo with text color',
   data: {
-    variant: 'text',
+    type: 'text',
     color: 'color',
   },
 };
@@ -27,7 +26,7 @@ const textInvertedLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Logo with text color inverted',
   data: {
-    variant: 'text',
+    type: 'text',
     color: 'inverted',
   },
 };
@@ -37,8 +36,8 @@ const textMonoLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Logo with text color monochrome',
   data: {
-    variant: 'text',
-    color: 'monochrome',
+    type: 'text',
+    color: 'mono',
   },
 };
 
@@ -47,7 +46,7 @@ const mantraColorLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Logo with description color',
   data: {
-    variant: 'mantra',
+    type: 'mantra',
     color: 'color',
   },
 };
@@ -57,7 +56,7 @@ const mantraInvertedLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Logo with description color inverted',
   data: {
-    variant: 'mantra',
+    type: 'mantra',
     color: 'inverted',
   },
 };
@@ -67,8 +66,8 @@ const mantraMonoLogo: StyleVariantProps<'tf-logo'> = {
   tag: 'tf-logo',
   description: 'Logo with description color monochrome',
   data: {
-    variant: 'mantra',
-    color: 'monochrome',
+    type: 'mantra',
+    color: 'mono',
   },
 };
 
