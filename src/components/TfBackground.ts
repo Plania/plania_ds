@@ -38,7 +38,7 @@ export class TfBackground extends TfBase {
       (this.shadowRoot.innerHTML = html`
         <section>
           <div class="content"><slot name="content"></slot></div>
-          <div class="actions hide"><slot name="actions"></slot></div>
+          <div class="actions ${this.actions ? '' : 'hide'}"><slot name="actions"></slot></div>
         </section>
       `);
   }
