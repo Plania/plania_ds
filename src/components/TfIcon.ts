@@ -121,7 +121,7 @@ export class TfIcon extends TfBase {
   private _getIconPath(): string {
     // The SVG path is computed using the SVG name and is relative
     // to the assets folder.
-    const path = `${window.TfDS.LOCAL ? '' : 'https://ds.plania.io'}/assets`;
+    const path = `${window.TfDS?.LOCAL ? '' : 'https://ds.plania.io'}/assets`;
     return `${path}/icons/${this.icon}.svg`;
   }
 
