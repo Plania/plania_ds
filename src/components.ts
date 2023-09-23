@@ -28,7 +28,6 @@ export * from './components/TfInfoBubble.js';
 export * from './components/TfInputPassword.js';
 export * from './components/TfInputText.js';
 export * from './components/TfLogo.js';
-export * from './components/TfLogoNotch.js';
 export * from './components/TfMainContainer.js';
 export * from './components/TfMonthHeader.js';
 export * from './components/TfNavigationItem.js';
