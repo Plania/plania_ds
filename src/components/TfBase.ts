@@ -92,6 +92,7 @@ style.replaceSync(css`
     border: 0;
     vertical-align: baseline;
     font-family: Nunito, 'Arial', Helvetica, sans-serif;
+    box-sizing: border-box;
   }
   /* HTML5 display-role reset for older browsers */
   article,

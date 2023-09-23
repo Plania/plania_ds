@@ -18,7 +18,8 @@ import { css, html, TfBase } from './TfBase.js';
 
 // For responsiveness, we use `em` as unit. To change size,
 // change the font-size of the host element.
-const style = css`
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   :host {
     display: inline-block;
     align-self: center;
@@ -39,7 +40,7 @@ const style = css`
     width: 1em;
     height: 1em;
   }
-`;
+`);
 
 const requestMap = new Map<string, Promise<Response>>();
 
@@ -95,6 +96,11 @@ type TfIconName = (typeof iconList)[number];
 export class TfIcon extends TfBase {
   private _svg: string = '';
 
+  constructor() {
+    super();
+    this.adoptStylesheet(style);
+  }
+
   connectedCallback() {
     this._loadIcon();
     this._render();
@@ -102,12 +108,7 @@ export class TfIcon extends TfBase {
 
   private _render() {
     this.shadowRoot &&
-      (this.shadowRoot.innerHTML = html`
-        <style>
-          ${style}
-        </style>
-        <div aria-hidden="true">${this._svg}</div>
-      `);
+      (this.shadowRoot.innerHTML = html` <div aria-hidden="true">${this._svg}</div> `);
   }
 
   private onLoad(message: string) {

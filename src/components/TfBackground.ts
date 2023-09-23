@@ -1,39 +1,44 @@
 import { css, html, TfBase } from './TfBase.js';
 
-const style = css`
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   :host,
   section {
     width: 100%;
     height: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  ::slotted([slot='content']) {
+  .content {
     width: 100%;
     height: 100%;
-    display: block;
+    padding: 1rem;
     background-color: var(--tf-sys-light-background, #fff);
   }
 
-  ::slotted([slot='actions']) {
+  .actions {
     width: 100%;
-    height: 6rem;
-    display: block;
+    height: fit-content;
+    padding: 1rem;
     background-color: var(--tf-sys-light-surface, #00aae3);
   }
-`;
+
+  .hide {
+    display: none;
+  }
+`);
 
 export class TfBackground extends TfBase {
   constructor() {
     super();
+    this.adoptStylesheet(style);
     this.shadowRoot &&
-      (this.shadowRoot.innerHTML += html`
-        <style>
-          ${style}
-        </style>
+      (this.shadowRoot.innerHTML = html`
         <section>
-          <slot name="content"></slot>
-          <slot name="actions"></slot>
+          <div class="content"><slot name="content"></slot></div>
+          <div class="actions hide"><slot name="actions"></slot></div>
         </section>
       `);
   }
@@ -43,14 +48,15 @@ export class TfBackground extends TfBase {
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    const slotAction = this.shadowRoot?.querySelector('slot[name="actions"]') as HTMLSlotElement;
-    const slotContent = this.shadowRoot?.querySelector('slot[name="content"]') as HTMLSlotElement;
-    if (this.actions) {
-      slotAction.style.display = 'block';
-      slotContent.style.height = 'calc(100% - 6rem)';
+    const actions = this.shadowRoot?.querySelector('.actions') as HTMLElement;
+    const content = this.shadowRoot?.querySelector('.content') as HTMLElement;
+
+    if (!actions || !content) return;
+
+    if (name === 'actions' && newValue === '') {
+      actions.classList.remove('hide');
     } else {
-      slotAction.style.display = 'none';
-      slotContent.style.height = '100%';
+      actions.classList.add('hide');
     }
   }
 
@@ -59,8 +65,7 @@ export class TfBackground extends TfBase {
   }
 
   set actions(value) {
-    value && this.setAttribute('actions', '');
-    !value && this.removeAttribute('actions');
+    value ? this.setAttribute('actions', '') : this.removeAttribute('actions');
   }
 }
 

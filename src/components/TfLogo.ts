@@ -46,6 +46,11 @@ const requestMap = new Map<string, Promise<Response>>();
 export class TfLogo extends TfBase {
   private _svg: string = '';
 
+  constructor() {
+    super();
+    this.adoptStylesheet(style);
+  }
+
   connectedCallback() {
     this._loadLogo();
     this._render();

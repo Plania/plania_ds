@@ -4,29 +4,31 @@ import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
 const TfBackgroundPrimary: StyleVariantProps<'tf-background'> = {
-  name: 'Primary',
+  name: 'Background with actions',
   tag: 'tf-background',
-  description: 'background with actions , action is like a footer',
+  description: 'Plania Background with actions, displayed as a footer.',
   data: {
-    action: '',
-    content: html` <div slot="content">Content</div>
-      <div slot="actions">Actions</div>`,
+    actions: '',
+    content: html`
+      <div slot="content">Content</div>
+      <div slot="actions">Actions</div>
+    `,
   },
 };
 
 const TfBackgroundSecondary: StyleVariantProps<'tf-background'> = {
-  name: 'Secondary',
+  name: 'Background w/o actions',
   tag: 'tf-background',
-  description: 'background without actions',
+  description: 'Plania Background without actions.',
   data: {
-    content: html` <div slot="content">Content</div>`,
+    content: html` <div slot="content">Content</div> `,
   },
 };
 
 const meta: StyleComponentProps<'tf-background'> = {
   ref: 'tf-background',
   tag: 'tf-background',
-  description: 'Plania background component. It is used to showcase a background',
+  description: 'Plania background component. It is a dedicated container for some forms.',
   component: 'Plania Background',
   variants: [TfBackgroundPrimary, TfBackgroundSecondary],
 };

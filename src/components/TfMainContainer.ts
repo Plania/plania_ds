@@ -1,6 +1,7 @@
 import { css, html, TfBase } from './TfBase.js';
 
-const style = css`
+const style = new CSSStyleSheet();
+style.replaceSync(css`
   :host {
     display: block;
   }
@@ -24,16 +25,14 @@ const style = css`
   .default {
     background-color: var(--tf-sys-light-background);
   }
-`;
+`);
 
 export class TfMainContainer extends TfBase {
   constructor() {
     super();
+    this.adoptStylesheet(style);
     this.shadowRoot &&
-      (this.shadowRoot.innerHTML += html`
-        <style>
-          ${style}
-        </style>
+      (this.shadowRoot.innerHTML = html`
         <main class="main down primary">
           <slot></slot>
         </main>

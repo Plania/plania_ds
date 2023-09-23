@@ -3,7 +3,7 @@ import { css, html } from '../components/TfBase.js';
 import { styleTfActionBar } from './StyleTfActionBar.js';
 import { StyleTfActivityCard } from './StyleTfActivityCard.js';
 import { styleTfAgeSelector } from './StyleTfAgeSelector.js';
-import { styleTfBackground } from './StyleBackground.js';
+import { styleTfBackground } from './StyleTfBackground.js';
 import { styleTfBadge } from './StyleTfBadge.js';
 import { styleTfBudget } from './StyleTfBudget.js';
 import { styleTfButton } from './StyleTfButton.js';
