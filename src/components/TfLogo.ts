@@ -29,8 +29,7 @@ style.replaceSync(css`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 41em;
-    height: 23em;
+    width: 100%;
     min-width: 1em;
     min-height: 1em;
     overflow: hidden;
