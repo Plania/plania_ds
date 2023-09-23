@@ -51,6 +51,14 @@ export * from './components/TfWeekDays.js';
 export * from './components/TfWelcomeCard.js';
 export * from './components/TfWelcomeImage.js';
 
+declare global {
+  interface Window {
+    TfDS: {
+      LOCAL: boolean;
+    };
+  }
+}
+
 // Creates a proxy to the marked object as `window.marked` as a type-safe ESM export
 
 /*
