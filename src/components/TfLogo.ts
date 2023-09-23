@@ -68,7 +68,7 @@ export class TfLogo extends TfBase {
   private _getLogoPath(): string {
     // The SVG path is computed using the SVG name and is relative
     // to the assets folder.
-    const path = '/assets';
+    const path = `${window.TfDS.LOCAL ? '' : 'https://ds.plania.io'}/assets`;
     const logo_filename = `logo_${this.type}${
       this.type !== 'alone' ? `_${this.color || 'color'}` : ''
     }`;
