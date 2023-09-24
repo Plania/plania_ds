@@ -149,6 +149,7 @@ style.replaceSync(css`
     --tf-sys-light-background: var(--light-background, #f3f3f3);
     --tf-sys-light-outline: var(--light-outline, #71787d);
     --tf-sys-light-outline-opacity-016: var(--light-outline-opacity-016, rgba(113, 120, 125, 0.16));
+    /* Font style */
     --tf-subhead1: var(--subhead1, 700 1rem/2rem Nunito, sans-serif);
     --tf-caption: var(--caption, 400 0.75rem/1rem Nunito, sans-serif);
     --tf-body-medium: var(--body-medium, 400 0.875rem/1.25rem Nunito, sans-serif);
@@ -156,6 +157,16 @@ style.replaceSync(css`
     --tf-button: var(--button, 700 1rem Nunito, sans-serif);
     --tf-body1: var(--body1, 400 1rem/1.5rem Nunito, sans-serif);
     --tf-label-large: var(--label-large, 600 1rem/1.5rem Nunito, sans-serif);
+    /* Borders */
+    --tf-border-radius-small: var(--border-radius-small, 0.5rem);
+    --tf-border-radius-medium: var(--border-radius-medium, 1rem);
+    --tf-border-radius-regular: var(--border-radius-regular, 2rem);
+    --tf-border-radius-large: var(--border-radius-large, 4rem);
+    /* Spacing */
+    --tf-padding-small: var(--padding-small, 0.5rem);
+    --tf-padding-medium: var(--padding-medium, 1rem);
+    --tf-padding-regular: var(--padding-regular, 2rem);
+    --tf-padding-large: var(--padding-large, 4rem);
   }
 
   .primary {
