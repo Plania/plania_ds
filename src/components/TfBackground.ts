@@ -16,6 +16,7 @@ style.replaceSync(css`
     height: 100%;
     padding: 1rem;
     background-color: var(--tf-sys-light-background, #fff);
+    overflow: auto;
   }
 
   .actions {
