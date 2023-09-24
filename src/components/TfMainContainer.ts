@@ -57,8 +57,8 @@ export class TfMainContainer extends TfBase {
 
   connectedCallback() {
     const mainElem = this.shadowRoot?.querySelector('main') as HTMLElement;
-    mainElem.classList.add(this.direction);
-    mainElem.classList.add(this.color);
+    this.direction && mainElem.classList.add(this.direction);
+    this.color && mainElem.classList.add(this.color);
   }
 
   static get observedAttributes() {
