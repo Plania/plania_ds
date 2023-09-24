@@ -4,6 +4,7 @@ const style = new CSSStyleSheet();
 style.replaceSync(css`
   :host {
     display: block;
+    --background: var(--tf-sys-light-background);
   }
 
   .main {
@@ -13,11 +14,24 @@ style.replaceSync(css`
     align-items: center;
     padding: var(--tf-padding-regular);
     height: calc(100% - 2 * var(--tf-padding-regular));
+    background-color: var(--background);
   }
 
   .main ::slotted(*) {
     border-radius: var(--tf-border-radius-regular);
     overflow: hidden;
+  }
+
+  .primary {
+    --background: var(--tf-sys-light-primary);
+  }
+
+  .secondary {
+    --background: var(--tf-sys-light-secondary);
+  }
+
+  .tertiary {
+    --background: var(--tf-sys-light-tertiary);
   }
 
   .down {
@@ -27,10 +41,6 @@ style.replaceSync(css`
   .up {
     border-radius: var(--tf-border-radius-large) var(--tf-border-radius-large) 0 0;
   }
-
-  .default {
-    background-color: var(--tf-sys-light-background);
-  }
 `);
 
 export class TfMainContainer extends TfBase {
@@ -39,13 +49,17 @@ export class TfMainContainer extends TfBase {
     this.adoptStylesheet(style);
     this.shadowRoot &&
       (this.shadowRoot.innerHTML = html`
-        <main class="main down primary">
+        <main class="main">
           <slot></slot>
         </main>
       `);
   }
 
-  // connectedCallback() {}
+  connectedCallback() {
+    const mainElem = this.shadowRoot?.querySelector('main') as HTMLElement;
+    mainElem.classList.add(this.direction);
+    mainElem.classList.add(this.color);
+  }
 
   static get observedAttributes() {
     return ['direction', 'color'];
@@ -61,7 +75,7 @@ export class TfMainContainer extends TfBase {
   }
 
   get direction() {
-    return this.getAttribute('direction') || 'dropdown';
+    return this.getAttribute('direction') || 'down';
   }
 
   set direction(value) {
@@ -69,7 +83,7 @@ export class TfMainContainer extends TfBase {
   }
 
   get color() {
-    return this.getAttribute('color') || 'primary';
+    return this.getAttribute('color') || '';
   }
 
   set color(value) {
