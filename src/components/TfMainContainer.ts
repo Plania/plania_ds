@@ -6,20 +6,26 @@ style.replaceSync(css`
     display: block;
   }
 
-  main {
+  .main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    height: calc(100% - 4rem);
+    padding: var(--tf-padding-regular);
+    height: calc(100% - 2 * var(--tf-padding-regular));
   }
+
+  .main ::slotted(*) {
+    border-radius: var(--tf-border-radius-regular);
+    overflow: hidden;
+  }
+
   .down {
-    border-radius: 0 0 40px 40px;
+    border-radius: 0 0 var(--tf-border-radius-large) var(--tf-border-radius-large);
   }
 
   .up {
-    border-radius: 40px 40px 0 0;
+    border-radius: var(--tf-border-radius-large) var(--tf-border-radius-large) 0 0;
   }
 
   .default {
