@@ -18,7 +18,6 @@ style.replaceSync(css`
   }
 
   .label-frame {
-    visibility: hidden;
     display: flex;
     align-items: center;
     transition: 0.3s ease all;
@@ -46,8 +45,8 @@ style.replaceSync(css`
     width: 100%;
   }
 
-  .container:focus-within > .label-frame {
-    visibility: visible;
+  input::-webkit-calendar-picker-indicator {
+    display: none;
   }
 
   .container:focus-within {
@@ -72,7 +71,7 @@ style.replaceSync(css`
   }
 `);
 
-export class TfInputText extends TfBase {
+export class TfInputDate extends TfBase {
   constructor() {
     super();
     this.adoptStylesheet(style);
@@ -82,14 +81,13 @@ export class TfInputText extends TfBase {
         <div class="container">
           <div class="label-frame">
             <div class="spacer"></div>
-            <label for="text-${this.id}"><slot name="label"></slot></label>
+            <label for="date-${this.id}"><slot name="label"></slot></label>
           </div>
           <div class="input-box">
             <slot name="icon"></slot>
             <input
-              type="text"
-              id="text-${this.id}"
-              placeholder="${this.placeholder}"
+              type="date"
+              id="date-${this.id}"
               ${this.value !== '' ? `value="this.value"` : ''}
             />
           </div>
@@ -117,10 +115,16 @@ export class TfInputText extends TfBase {
     input.addEventListener('change', () => {
       this.dispatchEvent(new CustomEvent('tf-change'));
     });
+    input.addEventListener('error', (e) => {
+      this.error = true;
+      this.querySelector('span')?.remove();
+      this.innerHTML += html`<span slot="error">${e.message}</span>`;
+      this.dispatchEvent(new CustomEvent('tf-error', { detail: e }));
+    });
   }
 
   static get observedAttributes() {
-    return ['placeholder', 'disabled', 'error', 'value'];
+    return ['disabled', 'error', 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
@@ -131,8 +135,6 @@ export class TfInputText extends TfBase {
     if (!input) return;
 
     switch (name) {
-      case 'placeholder':
-        input.placeholder = this.placeholder;
       case 'error':
         this.error && container.classList.add('error');
         !this.error && container.classList.remove('error');
@@ -146,14 +148,6 @@ export class TfInputText extends TfBase {
         input.value = this.value;
         break;
     }
-  }
-
-  get placeholder() {
-    return this.getAttribute('placeholder') || '';
-  }
-
-  set placeholder(value) {
-    this.setAttribute('placeholder', value);
   }
 
   get error() {
@@ -183,8 +177,8 @@ export class TfInputText extends TfBase {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'tf-input-text': TfInputText;
+    'tf-input-date': TfInputDate;
   }
 }
 
-customElements.define('tf-input-text', TfInputText);
+customElements.define('tf-input-date', TfInputDate);

@@ -33,6 +33,7 @@ export * from './components/TfFavoritePlan.js';
 export * from './components/TfHomeCard.js';
 export * from './components/TfIcon.js';
 export * from './components/TfInfoBubble.js';
+export * from './components/TfInputDate.js';
 export * from './components/TfInputPassword.js';
 export * from './components/TfInputText.js';
 export * from './components/TfLogo.js';

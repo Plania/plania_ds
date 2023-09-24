@@ -1,5 +1,5 @@
-import { HTMLAttributes } from 'react';
-import { JsxElement } from 'typescript';
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { JsxAttributes, JsxElement } from 'typescript';
 
 declare class TfBase extends HTMLElement {}
 
@@ -68,6 +68,7 @@ declare class TfIcon extends TfBase {
   icon?: string;
 }
 declare class TfInfoBubble extends TfBase {}
+declare class TfInputDate extends TfBase {}
 declare class TfInputPassword extends TfBase {}
 declare class TfInputText extends TfBase {
   placeholder?: string;
@@ -127,6 +128,7 @@ declare module 'plania-ds' {
     'tf-home-card': TfHomeCard;
     'tf-icon': TfIcon;
     'tf-info-bubble': TfInfoBubble;
+    'tf-input-date': TfInputDate;
     'tf-input-password': TfInputPassword;
     'tf-input-text': TfInputText;
     'tf-logo': TfLogo;
@@ -158,63 +160,65 @@ declare module 'plania-ds' {
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'tf-action-bar': TfActionBar;
-      'tf-activity-card': TfActivityCard;
-      'tf-age-selector': TfAgeSelector;
-      'tf-background': TfBackground;
-      'tf-badge': TfBadge;
-      'tf-base': TfBase;
-      'tf-budget': TfBudget;
-      'tf-button': TfButton;
-      'tf-calendar': TfCalendar;
-      'tf-card-header-image': TfCardHeaderImage;
-      'tf-carrousel-indicator': TfCarrouselIndicator;
-      'tf-checkbox': TfCheckbox;
-      'tf-chip': TfChip;
-      'tf-city-of-the-week': TfCityOfTheWeek;
-      'tf-city-swiper': TfCitySwiper;
-      'tf-city-swiper-item': TfCitySwiperItem;
-      'tf-date-selector': TfDateSelector;
-      'tf-day': TfDay;
-      'tf-dropdown': TfDropdown;
-      'tf-dropdown-item': TfDropdownItem;
-      'tf-drop-down-list-button': TfDropDownListButton;
-      'tf-favorite': TfFavorite;
-      'tf-favorite-plan': TfFavoritePlan;
-      'tf-home-card': TfHomeCard;
-      'tf-icon': TfIcon;
-      'tf-info-bubble': TfInfoBubble;
-      'tf-input-password': TfInputPassword;
-      'tf-input-text': TfInputText;
-      'tf-logo': TfLogo;
-      'tf-logo-notch': TfLogoNotch;
-      'tf-main-container': TfMainContainer;
-      'tf-month-header': TfMonthHeader;
-      'tf-navigation-item': TfNavigationItem;
-      'tf-navigation-bar': TfNavigationBar;
-      'tf-progress-bar': TfProgressBar;
-      'tf-radio-button': TfRadioButton;
-      'tf-search-activity-card': TfSearchActivityCard;
-      'tf-search-badge': TfSearchBadge;
-      'tf-search-card-header-image': TfSearchCardHeaderImage;
-      'tf-search-card-details': TfSearchCardDetails;
-      'tf-simple-slider': TfSimpleSlider;
-      'tf-slider-thumb': TfSliderThumb;
-      'tf-step': TfStep;
-      'tf-stepper': TfStepper;
-      'tf-text-button': TfTextButton;
-      'tf-typeahead-item': TfTypeaheadItem;
-      'tf-typeahead': TfTypeahead;
-      'tf-week': TfWeek;
-      'tf-week-days': TfWeekDays;
-      'tf-welcome-card': TfWelcomeCard;
-      'tf-welcome-image': TfWelcomeImage;
+      'tf-action-bar': TfAttributes<TfActionBar>;
+      'tf-activity-card': TfAttributes<TfActivityCard>;
+      'tf-age-selector': TfAttributes<TfAgeSelector>;
+      'tf-background': TfAttributes<TfBackground>;
+      'tf-badge': TfAttributes<TfBadge>;
+      'tf-base': TfAttributes<TfBase>;
+      'tf-budget': TfAttributes<TfBudget>;
+      'tf-button': TfAttributes<TfButton>;
+      'tf-calendar': TfAttributes<TfCalendar>;
+      'tf-card-header-image': TfAttributes<TfCardHeaderImage>;
+      'tf-carrousel-indicator': TfAttributes<TfCarrouselIndicator>;
+      'tf-checkbox': TfAttributes<TfCheckbox>;
+      'tf-chip': TfAttributes<TfChip>;
+      'tf-city-of-the-week': TfAttributes<TfCityOfTheWeek>;
+      'tf-city-swiper': TfAttributes<TfCitySwiper>;
+      'tf-city-swiper-item': TfAttributes<TfCitySwiperItem>;
+      'tf-date-selector': TfAttributes<TfDateSelector>;
+      'tf-day': TfAttributes<TfDay>;
+      'tf-dropdown': TfAttributes<TfDropdown>;
+      'tf-dropdown-item': TfAttributes<TfDropdownItem>;
+      'tf-drop-down-list-button': TfAttributes<TfDropDownListButton>;
+      'tf-favorite': TfAttributes<TfFavorite>;
+      'tf-favorite-plan': TfAttributes<TfFavoritePlan>;
+      'tf-home-card': TfAttributes<TfHomeCard>;
+      'tf-icon': TfAttributes<TfIcon>;
+      'tf-info-bubble': TfAttributes<TfInfoBubble>;
+      'tf-input-date': TfAttributes<TfInputDate>;
+      'tf-input-password': TfAttributes<TfInputPassword>;
+      'tf-input-text': TfAttributes<TfInputText>;
+      'tf-logo': TfAttributes<TfLogo>;
+      'tf-logo-notch': TfAttributes<TfLogoNotch>;
+      'tf-main-container': TfAttributes<TfMainContainer>;
+      'tf-month-header': TfAttributes<TfMonthHeader>;
+      'tf-navigation-item': TfAttributes<TfNavigationItem>;
+      'tf-navigation-bar': TfAttributes<TfNavigationBar>;
+      'tf-progress-bar': TfAttributes<TfProgressBar>;
+      'tf-radio-button': TfAttributes<TfRadioButton>;
+      'tf-search-activity-card': TfAttributes<TfSearchActivityCard>;
+      'tf-search-badge': TfAttributes<TfSearchBadge>;
+      'tf-search-card-header-image': TfAttributes<TfSearchCardHeaderImage>;
+      'tf-search-card-details': TfAttributes<TfSearchCardDetails>;
+      'tf-simple-slider': TfAttributes<TfSimpleSlider>;
+      'tf-slider-thumb': TfAttributes<TfSliderThumb>;
+      'tf-step': TfAttributes<TfStep>;
+      'tf-stepper': TfAttributes<TfStepper>;
+      'tf-text-button': TfAttributes<TfTextButton>;
+      'tf-typeahead-item': TfAttributes<TfTypeaheadItem>;
+      'tf-typeahead': TfAttributes<TfTypeahead>;
+      'tf-week': TfAttributes<TfWeek>;
+      'tf-week-days': TfAttributes<TfWeekDays>;
+      'tf-welcome-card': TfAttributes<TfWelcomeCard>;
+      'tf-welcome-image': TfAttributes<TfWelcomeImage>;
     }
   }
 
-  interface TfBase extends HTMLAttributes<JsxElement> {
-    children?: React.JSX.Element | React.JSX.Element[] | string;
-    slot?: string;
+  type TfAttributes<T> = DetailedHTMLProps<HTMLAttributes<T>, T> & T;
+
+  interface TfBase extends HTMLAttributes<HTMLElement> {
+    children?: React.JSX.HTMLElement | React.JSX.Element[] | string;
   }
   interface TfActionBar extends TfBase {
     /**
@@ -280,13 +284,17 @@ declare global {
     icon?: string;
   }
   interface TfInfoBubble extends TfBase {}
+  interface TfInputDate extends TfBase {}
   interface TfInputPassword extends TfBase {}
   interface TfInputText extends TfBase {
     placeholder?: string;
   }
   interface TfLogo extends TfBase {}
   interface TfLogoNotch extends TfBase {}
-  interface TfMainContainer extends TfBase {}
+  interface TfMainContainer extends TfBase {
+    direction?: string;
+    color?: string;
+  }
   interface TfMonthHeader extends TfBase {}
   interface TfNavigationItem extends TfBase {}
   interface TfNavigationBar extends TfBase {}
